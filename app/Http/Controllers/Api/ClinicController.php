@@ -4,11 +4,12 @@ namespace Dentist\Http\Controllers\Api;
 
 use Dentist\Clinic;
 use Dentist\Collaborator;
+use Dentist\Http\Controllers\Controller;
+use Dentist\Http\Resources\ClinicCollection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use Dentist\Http\Controllers\Controller;
 
 class ClinicController extends Controller
 {
@@ -18,13 +19,7 @@ class ClinicController extends Controller
      */
     public function index()
     {
-        $clinics = Clinic::all();
-        foreach($clinics as $clinic){
-            $clinic->endereco = $clinic->address()->get()->first();
-            unset($clinic->address_id);
-            unset($clinic->endereco->id);
-        }
-        return new JsonResponse($clinics);
+        return new ClinicCollection(Clinic::all());
     }
     /**
      * Creates a new clinic

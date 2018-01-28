@@ -1,5 +1,4 @@
 <?php
-
 namespace Dentist\Http\Controllers\Api;
 
 use Carbon\Carbon;
@@ -47,7 +46,8 @@ class CollaboratorController extends Controller
 
         return $collaborator;
     }
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $this->validate($request, [
             'clinic_id' => 'not_in:Selecione uma clínica',
             'job_id' => 'not_in:Selecione uma função',
@@ -65,16 +65,13 @@ class CollaboratorController extends Controller
 
         return $collaborator;
     }
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $collaborator = Collaborator::find($request->id);
-        $clinics = Clinic::all('clinica','id');
-        $jobs = Job::all('name','id');
+        $clinics = Clinic::all('name', 'id');
+        $jobs = Job::all('name', 'id');
         $data = [ 'jobs' => compact('jobs'), 'clinic' => compact('clinics') ];
 
-        return view('collaborator.form_update',compact('collaborator'), compact('data'));
-    }
-    public function destroy(Request $request)
-    {
-
+        return view('collaborator.form_update', compact('collaborator'), compact('data'));
     }
 }

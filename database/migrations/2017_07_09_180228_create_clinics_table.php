@@ -15,9 +15,9 @@ class CreateClinicsTable extends Migration
     {
         Schema::create('clinics', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('clinica')->unique();
+            $table->string('name')->unique();
             $table->string('email');
-            $table->string('telefone');
+            $table->string('phone');
             $table->string('latitude');
             $table->string('longitude');
             $table->integer('address_id');

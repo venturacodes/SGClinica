@@ -34,14 +34,12 @@ class UserController extends Controller
      */
     public function show($email, $password)
     {
-
         if(User::where('email',$email)->exists()) {
             $user = User::where('email',$email)->first();
             if(Hash::check($password, $user->password)){
                 return new JsonResponse(User::where('email',$email)->first());
             }
             abort(404);
-
         }
         abort(404);
 
@@ -60,7 +58,7 @@ class UserController extends Controller
         $User = new User();
 
         $User->email = $request->email;
-        $User->password = $request->password;
+        $User->password = bcrypt($request->password);
 
         $User->save();
 

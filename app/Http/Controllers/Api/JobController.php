@@ -24,15 +24,9 @@ class JobController extends Controller
      */
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-        ]);
         $job = new Job();
-
         $job->name = $request->name;
-
         $job->save();
-
         return new JsonResponse($job);
     }
     /**
@@ -46,11 +40,8 @@ class JobController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
-
         $job->name = $request->name;
-
         $job->save();
-
         return new JsonResponse($job);
     }
     /**
@@ -63,7 +54,7 @@ class JobController extends Controller
         $job = Job::find($id);
         $job->delete();
         $job->deleted = true;
-
+        
         return new JsonResponse($job);
     }
 }

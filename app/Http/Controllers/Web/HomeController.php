@@ -29,16 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clinics = Clinic::all('clinica', 'id');
-        $collaborators = Collaborator::all('name','id');
+        $clinics = Clinic::all('name', 'id');
+        $collaborators = Collaborator::all('name', 'id');
         $clients = Client::all('name', 'id');
         $data = [ 'clinic' => compact('clinics'), 'collaborators' => compact('collaborators'), 'clients' => compact('clients') ];
         return view('appointment', compact('data'));
     }
     public function appointment()
     {
-        $clinics = Clinic::all('clinica', 'id');
-        $collaborators = Collaborator::all('name','id');
+        $clinics = Clinic::all('name', 'id');
+        $collaborators = Collaborator::all('name', 'id');
         $clients = Client::all('name', 'id');
         $data = [ 'clinic' => compact('clinics'), 'collaborators' => compact('collaborators'), 'clients' => compact('clients') ];
         return view('appointment', compact('data'));
@@ -47,23 +47,26 @@ class HomeController extends Controller
     {
         return view('collaborator.index', ['collaborators' => Collaborator::all() ]);
     }
-    public function collaborator_destroy($id)
+    public function collaboratorDestroy($id)
     {
         $collaborator = Collaborator::find($id);
         $collaborator->destroy($id);
 
         return new JsonResponse($collaborator);
     }
-    public function clinic(){
+    public function clinic()
+    {
 
         $clinics = Clinic::all();
         return view('clinic.index', compact('clinics'));
     }
-    public function client(){
+    public function client()
+    {
         $clients = Client::all();
         return view('client.index', compact('clients'));
     }
-    public function download_app(){
+    public function downloadApp()
+    {
         return view('download_app');
     }
 }

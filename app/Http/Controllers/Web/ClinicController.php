@@ -4,11 +4,13 @@ namespace Dentist\Http\Controllers\Web;
 
 use Dentist\Clinic;
 use Dentist\Collaborator;
+use Dentist\Http\Controllers\Controller;
+use Dentist\Http\Resources\ClinicCollection;
+use Dentist\Http\Resources\ClinicResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use Dentist\Http\Controllers\Controller;
 
 class ClinicController extends Controller
 {
@@ -25,6 +27,7 @@ class ClinicController extends Controller
             unset($clinic->endereco->id);
         }
         return new JsonResponse($clinics);
+
     }
     /**
      * Creates a new clinic
