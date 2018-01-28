@@ -13,14 +13,6 @@ use Dentist\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-    /**
      * Show all users.
      *  @return JsonResponse
      */
@@ -34,35 +26,27 @@ class UserController extends Controller
      */
     public function show($email, $password)
     {
-
-        if(User::where('email',$email)->exists()) {
-            $user = User::where('email',$email)->first();
-            if(Hash::check($password, $user->password)){
-                return new JsonResponse(User::where('email',$email)->first());
+        if (User::where('email', $email)->exists()) {
+            $user = User::where('email', $email)->first();
+            if (Hash::check($password, $user->password)) {
+                return new JsonResponse(User::where('email', $email)->first());
             }
             abort(404);
-
         }
         abort(404);
-
     }
     /**
      * Creates a new User
      * @var Request $request
      * @return JsonResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'email' => 'required|max:255',
-            'password' => 'required',
-        ]);
         $User = new User();
-
-        $User->email = $request->email;
-        $User->password = $request->password;
-
+        if (User::where('email', '=', $request->email)->exists()) {
+            return new JsonResponse(['message'=> 'Usuário já cadastrado com este e-mail.']);
+        }
+        $User->prepare($request);
         $User->save();
 
         return new JsonResponse($User);
@@ -75,16 +59,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $User = User::find($id);
-
-        $this->validate($request, [
-            'email' => 'required|max:255',
-            'password' => 'required',
-        ]);
-
-
-        $User->email = $request->email;
-        $User->password = $request->password;
-
+        $User->prepare($request);
         $User->save();
 
         return new JsonResponse($User);

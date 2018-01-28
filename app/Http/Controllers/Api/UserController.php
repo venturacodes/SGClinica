@@ -13,14 +13,6 @@ use Dentist\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-    /**
      * Show all users.
      *  @return JsonResponse
      */
@@ -54,9 +46,7 @@ class UserController extends Controller
         if (User::where('email', '=', $request->email)->exists()) {
             return new JsonResponse(['message'=> 'Usuário já cadastrado com este e-mail.']);
         }
-        $User->email = $request->email;
-        $User->password = bcrypt($request->password);
-
+        $User->prepare($request);
         $User->save();
 
         return new JsonResponse($User);
@@ -68,20 +58,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'email'=>'required|email',
-        ]);
         $User = User::find($id);
-
-        $this->validate($request, [
-            'email' => 'required|max:255',
-            'password' => 'required',
-        ]);
-
-
-        $User->email = $request->email;
-        $User->password = $request->password;
-
+        $User->prepare($request);
         $User->save();
 
         return new JsonResponse($User);

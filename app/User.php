@@ -8,21 +8,25 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use  Notifiable;
-
+    const TIPO_ADMIN = 1;
+    const TIPO_COLABORADOR = 2;
+    const TIPO_SECRETARIA = 3;
+    const TIPO_CLIENTE = 4;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
      * Relationship between Roles and User, so users can have roles inside the system.
      * @return mixed
      */
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(\Dentist\Role::class, 'id');
     }
     /**
@@ -31,10 +35,8 @@ class User extends Authenticatable
      */
     public function isAdmin()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Admin')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Admin') {
                 return true;
             }
         }
@@ -43,21 +45,27 @@ class User extends Authenticatable
     }
     public function isDentist()
     {
-        foreach ($this->roles()->get() as $role)
-        {
-            if ($role->name == 'Dentista')
-            {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->name == 'Dentista') {
                 return true;
             }
         }
 
         return false;
     }
-    public function client(){
+    public function client()
+    {
             return $this->hasOne(\Dentist\Client::class);
     }
-    public function clinic(){
+    public function clinic()
+    {
         return $this->hasMany(\Dentist\Clinic::class);
+    }
+    public function prepare(Request $request)
+    {
+        $this->email = $request->email;
+        $this->password = bcrypt($request->password);
+        $this->role_id = TIPO_COLABORADOR;
     }
     /**
      * The attributes that should be hidden for arrays.
