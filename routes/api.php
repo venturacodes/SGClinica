@@ -28,14 +28,7 @@ Route::middleware('Api')->post('/clients/{id}', 'api\ClientController@update')->
 Route::middleware('Api')->delete('/clients/{id}', 'api\ClientController@delete')->where(['id' => '[0-9]+']);
 
 Route::middleware('Api')->get('/collaborators', 'api\CollaboratorController@index');
-Route::middleware('Api')->post('/collaborators', 'api\CollaboratorController@store');
-Route::middleware('Api')->post('/collaborators/{id}', 'api\CollaboratorController@update')->where(['id' => '[0-9]+']);
-Route::middleware('Api')->delete('/collaborators/{id}', 'api\CollaboratorController@delete')->where(['id' => '[0-9]+']);
-
 Route::middleware('Api')->get('/jobs', 'api\JobController@index');
-Route::middleware('Api')->post('/jobs', 'api\JobController@create');
-Route::middleware('Api')->post('/jobs/{id}', 'api\JobController@update')->where(['id' => '[0-9]+']);
-Route::middleware('Api')->delete('/jobs/{id}', 'api\JobController@delete')->where(['id' => '[0-9]+']);
 
 Route::middleware('Api')->get('/appointments/clinic/{clinic_id}', 'api\AppointmentController@showByClinicId')->where(['clinic_id' => '[0-9]+']);
 Route::middleware('Api')->get('/appointments/client/{client_id}', 'api\AppointmentController@showByClientId')->where(['client_id' => '[0-9]+']);

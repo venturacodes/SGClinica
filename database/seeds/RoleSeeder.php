@@ -12,7 +12,12 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            'name' => 'arthur.alves.venturin@gmail.com',
+            'name' => 'Colaborador',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+        ]);
+        DB::table('')->insert([
+            'name' => 'Colaborador',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);

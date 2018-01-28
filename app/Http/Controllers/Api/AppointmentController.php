@@ -15,21 +15,14 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-        return new JsonResponse(Appointment::where('clinic_id',session('chosen_clinic')->id)->get());
+        return new JsonResponse(Appointment::where('clinic_id', session('chosen_clinic')->id)->get());
     }
     public function create(Request $request)
     {
         $appointment = new Appointment();
-
-        $appointment->start_time = $request->start_time;
-        $appointment->end_time = $request->end_time;
-        $appointment->clinic_id = $request->clinic_id;
-        $appointment->client_id = $request->client_id;
-        $appointment->collaborator_id = $request->collaborator_id;
-        $appointment->user_id = $request->user_id;
-        $appointment->appointment_status_id = $request->appoitment_status_id;
-        $appointment->note = $request->note;
-
+        $appointment_availability = $appointment->checkAvailability($request->start_time, $request->end_time, $request->clinic_id);
+        dd($appointment_availability);
+        $appointment->prepare($request);
         $appointment->save();
 
 
@@ -41,7 +34,7 @@ class AppointmentController extends Controller
      */
     public function showByClientId($client_id)
     {
-        return new JsonResponse(Appointment::where('client_id',$client_id)->get());
+        return new JsonResponse(Appointment::where('client_id', $client_id)->get());
     }
     /**
      * Show appointments by it's collaborator_id.
@@ -49,7 +42,7 @@ class AppointmentController extends Controller
      */
     public function showByCollaboratorId($collaborator_id)
     {
-        return new JsonResponse(Appointment::where('collaborator_id',$collaborator_id)->get());
+        return new JsonResponse(Appointment::where('collaborator_id', $collaborator_id)->get());
     }
     /**
      * Show appointments by it's clinic_id.
@@ -57,6 +50,6 @@ class AppointmentController extends Controller
      */
     public function showByClinicId($clinic_id)
     {
-        return new JsonResponse(Appointment::where('clinic_id',$clinic_id)->get());
+        return new JsonResponse(Appointment::where('clinic_id', $clinic_id)->get());
     }
 }
