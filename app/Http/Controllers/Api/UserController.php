@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Dentist\Http\Controllers\Controller;
 
+
 class UserController extends Controller
 {
     /**

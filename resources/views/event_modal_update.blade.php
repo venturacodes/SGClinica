@@ -18,7 +18,7 @@
                             <option value="0">Selecione uma clinica</option>
                             @foreach($data['clinic'] as $clinicas)
                                 @foreach($clinicas as $clinica)
-                                    <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
+                                    <option value="{{$clinica->id}}">{{$clinica->name}}</option>
                                 @endforeach
                             @endforeach
                         </select>

@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         $this->email = $request->email;
         $this->password = bcrypt($request->password);
-        $this->role_id = TIPO_COLABORADOR;
+        $this->role_id = $request->role_id;
     }
     /**
      * The attributes that should be hidden for arrays.
