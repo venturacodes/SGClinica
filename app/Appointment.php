@@ -37,7 +37,7 @@ class Appointment extends Model
         $this->client_id = $request->client_id;
         $this->collaborator_id = $request->collaborator_id;
         $this->user_id = $request->user_id;
-        $this->appointment_status_id = $request->appoitment_status_id;
+        $this->appointment_status_id = $request->appointment_status_id;
         $this->note = $request->note;
     }
 }
