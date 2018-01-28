@@ -34,15 +34,14 @@ class UserController extends Controller
      */
     public function show($email, $password)
     {
-        if(User::where('email',$email)->exists()) {
-            $user = User::where('email',$email)->first();
-            if(Hash::check($password, $user->password)){
-                return new JsonResponse(User::where('email',$email)->first());
+        if (User::where('email', $email)->exists()) {
+            $user = User::where('email', $email)->first();
+            if (Hash::check($password, $user->password)) {
+                return new JsonResponse(User::where('email', $email)->first());
             }
             abort(404);
         }
         abort(404);
-
     }
     /**
      * Creates a new User
@@ -51,12 +50,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'email'=>'required|email',
-        ]);
-
         $User = new User();
-
+        if (User::where('email', '=', $request->email)->exists()) {
+            return new JsonResponse(['message'=> 'Usuário já cadastrado com este e-mail.']);
+        }
         $User->email = $request->email;
         $User->password = bcrypt($request->password);
 
