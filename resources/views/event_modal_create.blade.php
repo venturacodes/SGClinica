@@ -1,6 +1,5 @@
 <div class="modal fade" id="event-modal-create" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -32,7 +31,7 @@
                             @endforeach
                         </select>
                         <label for="client">Cliente</label>
-                        <select class="form-control" id="client" name="client">
+                        <select class="form-control" id="client" name="client" style="width: 100%">
                             <option value="0">Selecione um cliente</option>
                             @foreach($data['clients'] as $clientes)
                                 @foreach($clientes as $cliente)
@@ -57,6 +56,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 </div>

@@ -27,7 +27,7 @@
     <!-- Daterange picker -->
     <link href="{{asset('css/theme/daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet" type="text/css" />
     @yield('calendar-css')
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 <body class="skin-blue">
 @include('auth.authWidget')
@@ -67,5 +67,16 @@
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('calendar-js')
 @yield('additional-js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#client').select2({
+            language: "pt",
+        });
+    });
+    $.fn.select2.defaults.set("theme", "classic");
+</script>
+
+
 </body>
 </html>
