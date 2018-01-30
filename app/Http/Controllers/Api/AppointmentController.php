@@ -20,8 +20,8 @@ class AppointmentController extends Controller
     public function create(Request $request)
     {
         $appointment = new Appointment();
-        $not_available = $appointment->checkAvailability($request->start_time, $request->end_time, $request->clinic_id);
-        if ($not_available) {
+        $already_booked = $appointment->checkIfAlreadyBooked($request->start_time, $request->end_time, $request->clinic_id);
+        if ($already_booked) {
             return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.']);
         }
         $appointment->prepare($request);

@@ -2,6 +2,7 @@
 
 namespace Dentist;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use \Dentist\Clinic as Clinic;
@@ -20,11 +21,11 @@ class Appointment extends Model
     {
         return $this->hasOne(Collaborator::class);
     }
-    public function checkAvailability($start_time, $end_time, $clinic_id)
+    public function checkIfAlreadyBooked(Carbon $start_time, Carbon $end_time, $clinic_id)
     {
         $appointment = $this->where('clinic_id', '=', $clinic_id)
-            ->where('start_time', '<=', $start_time)
-            ->where('end_time', '>=', $end_time)
+            ->where('start_time', '<=', $start_time->subMinutes(29))
+            ->where('end_time', '>=', $end_time->addMinutes(29))
             ->exists();
         
         return $appointment;
