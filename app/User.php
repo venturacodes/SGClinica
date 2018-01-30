@@ -61,11 +61,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(\Dentist\Clinic::class);
     }
-    public function prepare(Request $request)
+    public function prepare(array $data)
     {
-        $this->email = $request->email;
-        $this->password = bcrypt($request->password);
-        $this->role_id = $request->role_id;
+
+        $this->email = $data['email'];
+        $this->password = bcrypt($data['password']);
+        $this->role_id = $data['role_id'];
     }
     /**
      * The attributes that should be hidden for arrays.
