@@ -36,8 +36,9 @@ class ClientController extends Controller
         $client->prepare($request->all());
         $client->save();
         $client->email = $client->user->email;
+        $client->role_id = $client->user->role_id;
         unset($client->user);
-        unset($client->address_id);
+         unset($client->user_id);
         unset($client->updated_at);
         unset($client->created_at);
         return $client;
