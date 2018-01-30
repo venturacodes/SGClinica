@@ -22,7 +22,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('appointment_status_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->text('note');
+            $table->string('note')->nullable(true);
             $table->timestamps();
         });
     }
