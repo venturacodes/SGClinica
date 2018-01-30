@@ -9,9 +9,6 @@ Route::middleware('Api')->get('/jobs', 'api\JobController@index');
 //users
 Route::middleware('Api')->get('/users', 'api\UserController@index');
 Route::middleware('Api')->get('/users/email/{email}/password/{password}', 'api\UserController@show');
-Route::middleware('Api')->post('/users', 'api\UserController@store');
-Route::middleware('Api')->post('/users/{id}', 'api\UserController@update')->where(['id' => '[0-9]+']);
-Route::middleware('Api')->delete('/users/{id}', 'api\UserController@delete')->where(['id' => '[0-9]+']);
 //clinics
 Route::middleware('Api')->get('/clinics', 'api\ClinicController@index');
 Route::middleware('Api')->post('/clinics/{id}', 'api\ClinicController@update');
