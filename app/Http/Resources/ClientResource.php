@@ -15,12 +15,12 @@ class ClientResource extends Resource
      */
     public function toArray($request)
     {
-        /*
-        id nome email telefone
-        */
-        $this->name = $request->name;
-        $this->email = $request->email;
-        $this->phone = $request->phone;
-        return parent::toArray($request);
+        return [
+            'id'=> $this->id,
+            'name' => $this->name,
+            'email' => $this->user->email,
+           'phone' => $this->phone,
+           'role_id' => $this->user->role_id
+        ];
     }
 }

@@ -8,10 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use  Notifiable;
-    const TIPO_ADMIN = 1;
-    const TIPO_COLABORADOR = 2;
-    const TIPO_SECRETARIA = 3;
-    const TIPO_CLIENTE = 4;
+    const ADMIN_ROLE = 1;
+    const COLLABORATOR_ROLE = 2;
+    const SECRETARY_ROLE = 3;
+    const CLIENT_ROLE = 4;
     /**
      * The attributes that are mass assignable.
      *

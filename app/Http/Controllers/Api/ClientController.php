@@ -27,20 +27,21 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
         $user_for_client = new User();
-        $request->merge(['role_id' => User::TIPO_CLIENTE]);
-        $user_for_client->prepare($request->all());
+        if (User::where('email', '=', $data['email'])->exists()) {
+             return new JsonResponse(['message' => 'E-mail já cadastrado.'], 500);
+        }
+        $data['role_id'] = User::CLIENT_ROLE;
+        $user_for_client->prepare($data);
         $user_for_client->save();
-        $request->merge(['user_id' => $user_for_client->id]);
-        $client = new Client();
-        $client->prepare($request->all());
+        $data['user_id'] =  $user_for_client->id;
+
+        $client = new Client($data);
         $client->save();
-        $client->email = $client->user->email;
-        $client->role_id = $client->user->role_id;
-        unset($client->user);
-         unset($client->user_id);
-        unset($client->updated_at);
-        unset($client->created_at);
-        return $client;
+
+        return new ClientResource($client);
     }
+
+
 }
