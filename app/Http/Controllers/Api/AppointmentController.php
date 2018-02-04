@@ -2,6 +2,7 @@
 
 namespace Dentist\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use Dentist\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -19,12 +20,16 @@ class AppointmentController extends Controller
     }
     public function create(Request $request)
     {
+        $data = $request->all();
         $appointment = new Appointment();
-        $already_booked = $appointment->checkIfAlreadyBooked($request->start_time, $request->end_time, $request->clinic_id);
+        $data['start_time'] = new Carbon($request->start_time);
+        $data['end_time'] = new Carbon($request->start_time);
+        $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
+        $already_booked = $appointment->checkIfAlreadyBooked($data['start_time'], $data['end_time'],  $data['clinic_id']);
         if ($already_booked) {
             return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.']);
         }
-        $appointment->prepare($request);
+        $appointment->prepare($data);
         $appointment->save();
 
 

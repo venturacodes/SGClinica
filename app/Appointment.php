@@ -3,12 +3,14 @@
 namespace Dentist;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use \Dentist\Clinic as Clinic;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
+    const DEFAULT_DURATION = 30;
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
@@ -23,22 +25,28 @@ class Appointment extends Model
     }
     public function checkIfAlreadyBooked(Carbon $start_time, Carbon $end_time, $clinic_id)
     {
-        $appointment = $this->where('clinic_id', '=', $clinic_id)
-            ->where('start_time', '<=', $start_time->subMinutes(29))
-            ->where('end_time', '>=', $end_time->addMinutes(29))
-            ->exists();
-        
-        return $appointment;
+        $period_start_time = new Carbon($start_time->toDateTimeString());
+        $period_start_time->subMinutes(29);
+        $query = $this->where('clinic_id', '=', $clinic_id)
+            ->where(function ($query) use ($start_time, $end_time) {
+                $query->where('start_time', '>=', $start_time->toDateTimeString())
+                    ->where('end_time', '<=', $end_time->toDateTimeString());
+            })
+            ->orWhere(function ($query) use ($period_start_time, $end_time){
+                    $query->where('start_time', '>=', $period_start_time->toDateTimeString())
+                        ->where('end_time', '<=', $end_time->toDateTimeString());
+            })->exists();
+        return $query;
     }
-    public function prepare(Request $request)
+    public function prepare(array $data)
     {
-        $this->start_time = $request->start_time;
-        $this->end_time = $request->end_time;
-        $this->clinic_id = $request->clinic_id;
-        $this->client_id = $request->client_id;
-        $this->collaborator_id = $request->collaborator_id;
-        $this->user_id = $request->user_id;
-        $this->appointment_status_id = $request->appointment_status_id;
-        $this->note = $request->note;
+        $this->start_time = $data['start_time'];
+        $this->end_time = $data['end_time'];
+        $this->clinic_id = $data['clinic_id'];
+        $this->client_id = $data['client_id'];
+        $this->collaborator_id = $data['collaborator_id'];
+        $this->user_id = $data['user_id'];
+        $this->appointment_status_id = $data['appointment_status_id'];
+        $this->note = $data['note'];
     }
 }
