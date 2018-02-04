@@ -7,7 +7,6 @@ Route::middleware('Api')->get('/collaborators', 'api\CollaboratorController@inde
 Route::middleware('Api')->get('/jobs', 'api\JobController@index');
 /************************************/
 //users
-Route::middleware('Api')->get('/users', 'api\UserController@index');
 Route::middleware('Api')->get('/users/email/{email}/password/{password}', 'api\UserController@show');
 //clinics
 Route::middleware('Api')->get('/clinics', 'api\ClinicController@index');

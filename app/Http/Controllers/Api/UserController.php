@@ -13,16 +13,10 @@ use Dentist\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
-     * Show all users.
-     *  @return JsonResponse
-     */
-    public function index(Request $request)
-    {
-        return new JsonResponse(User::all());
-    }
-    /**
-     * Show a user by it's email.
-     *  @return JsonResponse
+     * Show a user by it's email and password.
+     * @param string $email
+     * @param string $password
+     * @return JsonResponse
      */
     public function show($email, $password)
     {
@@ -48,32 +42,6 @@ class UserController extends Controller
         }
         $User->prepare($request);
         $User->save();
-
-        return new JsonResponse($User);
-    }
-    /**
-     * Updates the User
-     * @var Request $request
-     * @return JsonResponse
-     */
-    public function update(Request $request, $id)
-    {
-        $User = User::find($id);
-        $User->prepare($request);
-        $User->save();
-
-        return new JsonResponse($User);
-    }
-    /**
-     * Removes a user by it's id
-     *
-     * @return JsonResponse
-     */
-    public function delete($id)
-    {
-        $User = User::find($id);
-        $User->delete();
-        $User->deleted = true;
 
         return new JsonResponse($User);
     }
