@@ -19,13 +19,6 @@
     <link rel="stylesheet" href="{{asset('css/theme/style.css')}}" />
     <link rel="stylesheet" href="{{asset('css/theme/fullcalendar.min.css')}}"  />
     <link href="{{asset('css/theme/fullcalendar.print.min.css')}}" rel="stylesheet" media="print" />
-    <!-- jvectormap -->
-    <link href="{{asset('css/theme/jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css" />
-    <!-- Date Picker -->
-    <link href="{{asset('css/theme/datepicker/datepicker3.css')}}" rel="stylesheet" type="text/css" />
-    <!-- fullCalendar -->
-    <!-- Daterange picker -->
-    <link href="{{asset('css/theme/daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet" type="text/css" />
     @yield('calendar-css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
