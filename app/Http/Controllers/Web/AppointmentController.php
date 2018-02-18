@@ -26,19 +26,25 @@ class AppointmentController extends Controller
     {
         return new JsonResponse(Appointment::where('clinic_id',session('chosen_clinic')->id)->get());
     }
+    /**
+     * function used to create appointments through AJAX Requests from modal_create at fullcalendar.
+     *
+     * @param Request $request
+     * @return void
+     */
     public function create(Request $request)
     {
+
+        $data = $request->all();
         $appointment = new Appointment();
-
-        $appointment->start_time = $request->start_time;
-        $appointment->end_time = $request->end_time;
-        $appointment->clinic_id = $request->clinic_id;
-        $appointment->client_id = $request->client_id;
-        $appointment->collaborator_id = $request->collaborator_id;
-        $appointment->user_id = $request->user_id;
-        $appointment->appointment_status_id = $request->appoitment_status_id;
-        $appointment->note = $request->note;
-
+        $data['start_time'] = new Carbon($request->start_time);
+        $data['end_time'] = new Carbon($request->start_time);
+        $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
+        $already_booked = $appointment->checkIfAlreadyBooked($data['start_time'], $data['end_time'],  $data['clinic_id']);
+        if ($already_booked) {
+            return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.']);
+        }
+        $appointment->prepare($data);
         $appointment->save();
 
 

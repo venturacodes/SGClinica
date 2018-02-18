@@ -5,11 +5,11 @@ Route::get('/', function () {
 Route::get('/home', 'Web\HomeController@index')->name('home');
 Route::get('/download_app', 'Web\HomeController@downloadApp')->name('home.download_app');
 Auth::routes();
-Route::prefix('appointment')->group(function () {
+Route::prefix('appointments')->group(function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
     Route::post('/', 'Web\AppointmentController@create')->name('appointment.create');
 });
-Route::prefix('collaborator')->group(function () {
+Route::prefix('collaborators')->group(function () {
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');
     Route::post('/', 'Web\CollaboratorController@store')->name('collaborator.store');
     Route::get('/create', 'Web\CollaboratorController@create')->name('collaborator.create');
@@ -17,7 +17,7 @@ Route::prefix('collaborator')->group(function () {
     Route::get('/{id}/edit', 'Web\CollaboratorController@edit')->name('collaborator.edit');
     Route::post('/{id}', 'Web\CollaboratorController@update')->name('collaborator.update');
 });
-Route::prefix('client')->group(function () {
+Route::prefix('clients')->group(function () {
     Route::get('/', 'Web\HomeController@client')->name('client.index');
     Route::post('/', 'Web\ClientController@store')->name('client.store');
     Route::get('/create', 'Web\ClientController@create')->name('client.create');
@@ -25,7 +25,7 @@ Route::prefix('client')->group(function () {
     Route::get('/{id}/edit', 'Web\ClientController@edit')->name('client.edit');
     Route::post('/{id}', 'Web\ClientController@update')->name('client.update');
 });
-Route::prefix('clinic')->group(function () {
+Route::prefix('clinics')->group(function () {
     Route::get('/', 'Web\HomeController@clinic')->name('clinic.index');
     Route::get('/create', 'Web\ClinicController@create')->name('clinic.create');
     Route::post('/', 'Web\ClinicController@store')->name('clinic.store');

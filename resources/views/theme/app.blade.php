@@ -51,16 +51,15 @@
 <script src="{{asset('js/theme/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/theme/moment.min.js')}}" type="text/javascript"></script>
 <!-- Director App -->
-<script src="{{asset('js/theme/Director/app.js')}}" type="text/javascript"></script>
-<script src="http://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
+{{--  <script src="{{asset('js/theme/Director/app.js')}}" type="text/javascript"></script>
+<script src="http://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>  --}}
 
-<script src="{{asset('js/theme/fullcalendar.min.js')}}" type="text/javascript"></script>
 <!-- Responsável pela internacionalização do calendário conforme: https://fullcalendar.io/docs/text/locale/ -->
-<script src="{{asset('js/theme/pt-br.js')}}" type="text/javascript"></script>
+{{--  <script src="{{asset('js/theme/pt-br.js')}}" type="text/javascript"></script>  --}}
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('calendar-js')
 @yield('additional-js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#client').select2({
@@ -68,7 +67,7 @@
         });
     });
     $.fn.select2.defaults.set("theme", "classic");
-</script>
+</script>  --}}
 
 
 </body>

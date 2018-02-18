@@ -69,16 +69,13 @@
 @endsection
 
 @section('content')
-        <!--MODAL EVENT -->
-        @include('event_modal_create')
-        @include('event_modal_update')
-        <!-- FINAL MODAL EVENT -->
-            <div id="calendar"></div>
+        <calendar></calendar>
 @endsection
 
 @section('calendar-js')
 <script>
-    $(document).ready(function(){
+
+    {{--  $(document).ready(function(){
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -182,7 +179,7 @@
             $('#event-modal-update').modal("hide");
             e.preventDefault();
         });
-    });
+    });  --}}
 
 </script>
 @endsection
