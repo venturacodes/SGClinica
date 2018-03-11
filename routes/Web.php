@@ -5,7 +5,7 @@ Route::get('/', function () {
 Route::get('/home', 'Web\HomeController@index')->name('home');
 Route::get('/download_app', 'Web\HomeController@downloadApp')->name('home.download_app');
 Auth::routes();
-Route::prefix('appointments')->group(function () {
+Route::prefix('appointments')->group( function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
     Route::post('/', 'Web\AppointmentController@create')->name('appointment.create');
 });

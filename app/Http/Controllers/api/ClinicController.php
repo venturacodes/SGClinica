@@ -1,6 +1,6 @@
 <?php
 
-namespace Dentist\Http\Controllers\Api;
+namespace Dentist\Http\Controllers\api;
 
 use Dentist\Clinic;
 use Dentist\Collaborator;
