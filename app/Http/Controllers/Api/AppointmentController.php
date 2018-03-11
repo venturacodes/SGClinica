@@ -35,8 +35,9 @@ class AppointmentController extends Controller
             'start_time' => 'required',
             'clinic_id' => 'required'
         ]);
+        $data = $request->all();
         $appointment = new Appointment();
-        $data['start_time'] ? new Carbon($request->start_time) : null ;
+        $data['start_time'] = new Carbon($request->start_time);
         $data['end_time'] = new Carbon($request->start_time);
         $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
         $already_booked = $appointment->checkIfAlreadyBooked($data['start_time'], $data['end_time'],  $data['clinic_id']);
@@ -45,6 +46,7 @@ class AppointmentController extends Controller
         }
         $appointment->prepare($data);
         $appointment->save();
+
 
         return new JsonResponse($appointment);
     }

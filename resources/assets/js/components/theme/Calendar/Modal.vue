@@ -1,5 +1,5 @@
 <template>
-<div class="modal fade in" id="modal-template" role="dialog" >
+<div class="modal" id="modal-template" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -23,7 +23,8 @@
                         <label>Observação</label>
                         <textarea v-model="form.note" class="form-control"></textarea>
                     </div>
-                    <button @click="submit" class="btn btn-success btn-block">Agendar</button>
+                    <button v-if="modalType === 'add'" @click="submitAdd" class="btn btn-success btn-block">Agendar</button>
+                    <button v-if="modalType === 'edit'" @click="submitUpdate" class="btn btn-success btn-block">Modificar</button>
                 </form>
             </div>
         </div>
@@ -32,7 +33,7 @@
 </template>
 <script>
     export default {
-        props:['event'],
+        props:['event','modal-type'],
         data(){
             return{
                 form:{
@@ -46,6 +47,7 @@
                     start: '',
                     end: '',
                 },
+                rawEvent:{},
                 rawClinics:[],
                 clinics: [],
                 rawCollaborators: [],
@@ -53,6 +55,18 @@
                 rawClients: [],
                 clients: [],
                 statuses:  [{'value' : 1, 'label' : 'Marcado'},{'value' : 2, 'label' : 'Confirmado'},{'value' : 3, 'label' : 'Desmarcado'}]
+            }
+        },
+        computed:{
+            setEventData: function(){
+                this.rawEvent = this.event
+                this.rawEvent.title = this.form.title
+                this.rawEvent.clinic = this.form.clinic
+                this.rawEvent.collaborator = this.form.collaborator
+                this.rawEvent.client = this.form.client
+                this.rawEvent.status = this.form.status
+                this.rawEvent.note = this.form.note
+                return this.rawEvent
             }
         },
         watch: {
@@ -103,15 +117,22 @@
                 .then(response => response.json())
                 .then(json =>{this.rawClients = json})
             },
-            submit(){
-                this.event.title = this.form.title
-                this.event.clinic = this.form.clinic
-                this.event.collaborator = this.form.collaborator
-                this.event.client = this.form.client
-                this.event.status = this.form.status
-                this.event.note = this.form.note
-                console.log(this.event);
-                this.$parent.$refs.calendar.$emit('render-event', this.event);
+            submitAdd(){
+                var tempEvent = this.setEventData
+
+                this.$parent.$refs.calendar.$emit('render-event', tempEvent);
+                this.$parent.$refs.calendar.events.push(tempEvent);
+                tempEvent = {};
+                this.form = {};
+                $('.modal').modal("hide");
+            },
+             submitUpdate(){
+                var tempEvent = this.setEventData
+
+                this.$parent.$refs.calendar.$emit('render-event', tempEvent);
+                this.$parent.$refs.calendar.events.push(tempEvent);
+                this.event = {};
+                this.form = {};
                 $('.modal').modal("hide");
             }
         },
@@ -122,7 +143,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .modal-mask {
         position: fixed;
         z-index: 9998;

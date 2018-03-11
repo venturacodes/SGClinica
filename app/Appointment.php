@@ -32,7 +32,7 @@ class Appointment extends Model
                 $query->where('start_time', '>=', $start_time->toDateTimeString())
                     ->where('end_time', '<=', $end_time->toDateTimeString());
             })
-            ->orWhere(function ($query) use ($period_start_time, $end_time){
+            ->orWhere(function ($query) use ($period_start_time, $end_time) {
                     $query->where('start_time', '>=', $period_start_time->toDateTimeString())
                         ->where('end_time', '<=', $end_time->toDateTimeString());
             })->exists();

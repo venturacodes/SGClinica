@@ -1,7 +1,7 @@
 <template>
     <div>
-        <full-calendar ref="calendar" :config="config" :events="events" @event-created="eventCreated" @event-selected="test"/>
-        <modal :event="event"></modal>
+        <full-calendar ref="calendar" :config="config" :events="events" @event-created="eventCreated" @event-selected="eventSelected"/>
+        <modal  :event="event" :modal-type="modalType"></modal>
     </div>
 
 </template>
@@ -11,7 +11,9 @@
         name: 'Calendar',
         data () {
             return {
-                    events: [],
+                    isComponentModalActive: false,
+                    modalType: '',
+                    events: Array,
                     event: {},
                     RawApiData: [],
                     config: {
@@ -30,7 +32,7 @@
                             list:     'lista'
                         },
                         navLinks: true,
-                        allDaySlot: false,
+                        allDaySlot: true,
                         minTime: "07:00:00",
                         maxTime: "19:00:00",
                         locale: 'pt-br',
@@ -44,14 +46,14 @@
         },
         watch: {
             RawApiData: function(){
-                let events = [{}];
+                let events = [];
                 this.RawApiData.forEach(function(event, index){
                     events.push({
                         'id': event.id,
                         'title': event.note,
-                        'start_time': moment(event.start_time),
-                        'end_time': moment(event.end_time),
-                        'allDay': false
+                        'start_time': moment(event.start_time).format(),
+                        'end_time': moment(event.end_time).format(),
+                        'allDay': true
                     });
                 });
                 this.events = events;
@@ -68,11 +70,14 @@
             },
             eventCreated(event){
                 this.event =event;
-                 $('.modal').modal();
+                this.modalType = 'add'
+                $(".modal").modal();
+
             },
-            test(event){
+            eventSelected(event){
+                this.modalType = 'edit'
                 this.event =event;
-                 $('.modal').modal();
+                 $(".modal").modal();
             }
         },
         created (){
