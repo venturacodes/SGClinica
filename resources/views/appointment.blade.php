@@ -69,13 +69,14 @@
 @endsection
 
 @section('content')
-        <calendar></calendar>
+        <div id='calendar'></div>
+        @include('event_modal_create')
+        @include('event_modal_update')
 @endsection
 
 @section('calendar-js')
 <script>
-
-    {{--  $(document).ready(function(){
+    $(document).ready(function(){
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -84,15 +85,16 @@
             },
             businessHours: {
                 // days of week. an array of zero-based day of week integers (0=Sunday)
-                dow: [ 1, 2, 3, 4, 5 ], // Monday - Thursday
+                dow: [1, 2, 3, 4, 5 ], // Monday - Thursday
                 start: '08:00', // a start time (10am in this example)
                 end: '19:00', // an end time (6pm in this example)
             },
-            firstDay: moment().day(),
+            // firstDay: moment().day(),
             minTime: "08:00:00",
             maxTime: "20:00:00",
             defaultView: 'agendaWeek',
             allDaySlot: false,
+            weekends: false,
             buttonText:{
                 today:    'hoje',
                 month:    'mês',
@@ -100,23 +102,27 @@
                 day:      'dia',
                 list:     'lista'
             },
+            slotLabelFormat: 'HH:mm',
             locale: 'pt-br',
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            events: this.events,
+            events: {
+                url: '/api/appointments/clinic/1'
+            },
             selectable: true,
             selectHelper: true,
             select: function(start, end) { // PARA CRIAÇÃO DE UM EVENTO.
-                $('#start-time').val(start);
-                $('#end-time').val(end);
+                $('#start').val(start);
+                $('#end').val(end);
                 $("#event-modal-create").modal();
             },
             eventClick: function(calEvent, jsEvent, view) { // PARA EDIÇÃO DE UM
                 $('#update-title').val(calEvent.title);
-                $('#update-collaborator').val(calEvent.collaboratorId);
-                $('#update-clinic').val(calEvent.clinicId);
-                $('#update-client').val(calEvent.clientId);
+                $('#update-collaborator').val(calEvent.collaborator_id);
+                $('#update-clinic').val(calEvent.clinic_id);
+                $('#update-client').val(calEvent.client_id);
+                $('#update-status').val(calEvent.appointment_status_id);
                 $('#update-note').val(calEvent.note);
                 $('#event-id').val(calEvent.id);
                 $("#event-modal-update").modal();
@@ -149,9 +155,10 @@
                 clientId: $('#client').val(),
                 statusId: $('#status').val(),
                 note: $('#note').val(),
-                start: $('#start-time').val(),
-                end: $('#end-time').val()
+                start: $('#start').val(),
+                end: $('#end').val()
             };
+            console.dir(eventData);
 
             //Fazer chamadas AJAX PARA salvar o agendamento
             //Buscar o id e juntar ao eventData.
@@ -162,7 +169,7 @@
         $('#update-modal').click(function(e){ // ATUALIZACAO DE EVENTO
             e.preventDefault();
             var event_obj = $('#calendar').fullCalendar('clientEvents', $('#event-id').val());
-
+            console.dir(event_obj);
             event_obj = event_obj[0]; // clientEvents retorna array, logo sou obrigado a pegar a primeira posição dele.
             event_obj.title = $('#update-title').val();
             event_obj.collaboratorId = $('#update-collaborator').val();
@@ -171,7 +178,6 @@
             event_obj.note = $('#update-note').val();
 
             $('#calendar').fullCalendar('updateEvent',event_obj);
-
             $('#event-modal-update').modal("hide");
         });
         $('#delete-modal').click(function(e){//DELEÇÃO DE EVENTO
@@ -179,7 +185,7 @@
             $('#event-modal-update').modal("hide");
             e.preventDefault();
         });
-    });  --}}
+    });
 
 </script>
 @endsection

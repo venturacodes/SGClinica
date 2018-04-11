@@ -20,8 +20,9 @@ class CreateAppointmentsTable extends Migration
             $table->integer('client_id');
             $table->integer('collaborator_id');
             $table->integer('appointment_status_id');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->string('title')->nullable(false);
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->string('note')->nullable(true);
             $table->timestamps();
         });

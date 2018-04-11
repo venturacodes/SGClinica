@@ -7,22 +7,19 @@
 
 window.Vue = require('vue')
 
-import FullCalendar from 'vue-full-calendar'
 import vSelect from 'vue-select'
 import VueResource from 'vue-resource'
 import Buefy from 'buefy'
+import fullcalendar from 'fullcalendar'
 
-Vue.use(FullCalendar)
 Vue.use(VueResource)
 Vue.use(Buefy)
 
 Vue.component('v-select', vSelect)
-Vue.component('Calendar', require('./components/theme/Calendar/Calendar.vue'))
-Vue.component('Modal', require('./components/theme/Calendar/Modal.vue'))
-Vue.component("modal-buefy", require("./components/theme/Calendar/ModalTest.vue"))
+
 const app = new Vue({
     el: '#app',
-    data:{
-        server : 'http://localhost:8000'
+    data: {
+        server: 'http://localhost:8000'
     }
 })

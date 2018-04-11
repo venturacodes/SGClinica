@@ -41,7 +41,7 @@
                             @endforeach
                         </select>
                         <label for="status">Situação do Agendamento</label>
-                        <select class="form-control" id="status" name="status">
+                        <select class="form-control" id="update-status" name="status">
                             <option value="0">Selecione uma situação</option>
                             <option value="1">Marcado</option>
                             <option value="2">Confirmado</option>

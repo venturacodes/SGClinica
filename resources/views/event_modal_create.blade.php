@@ -11,9 +11,9 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="title">Título</label>
-                        <input type="text" class="form-control" id="title" placeholder="Titulo">
+                        <input type="text" class="form-control" id="title" placeholder="Titulo" required>
                         <label for="clinica">Clinica</label>
-                        <select class="form-control" id="clinic" name="clinica">
+                        <select class="form-control" id="clinic" name="clinica" required>
                             <option value="0">Selecione uma clinica</option>
                             @foreach($data['clinic'] as $clinicas)
                                 @foreach($clinicas as $clinica)
@@ -22,7 +22,7 @@
                             @endforeach
                         </select>
                         <label for="collaborator">Funcionário</label>
-                        <select class="form-control" id="collaborator" name="collaborator">
+                        <select class="form-control" id="collaborator" name="collaborator" required>
                             <option value="0">Selecione um funcionário</option>
                             @foreach($data['collaborators'] as $funcionarios)
                                 @foreach($funcionarios as $funcionario)
@@ -31,7 +31,7 @@
                             @endforeach
                         </select>
                         <label for="client">Cliente</label>
-                        <select class="form-control" id="client" name="client" style="width: 100%">
+                        <select class="form-control" id="client" name="client" style="width: 100%" required>
                             <option value="0">Selecione um cliente</option>
                             @foreach($data['clients'] as $clientes)
                                 @foreach($clientes as $cliente)
@@ -40,17 +40,17 @@
                             @endforeach
                         </select>
                         <label for="status">Situação do Agendamento</label>
-                        <select class="form-control" id="status" name="status">
+                        <select class="form-control" id="status" name="status" required>
                             <option value="0">Selecione uma situação</option>
                             <option value="1" selected>Marcado</option>
                             <option value="2">Confirmado</option>
                             <option value="3">Desmarcado</option>
                         </select>
                         <label for="note">Observação</label>
-                        <textarea id="note" name="note" class="form-control"></textarea>
+                        <textarea id="note" name="note" class="form-control" required></textarea>
                     </div>
-                    <input type="hidden" id="start-time" value="">
-                    <input type="hidden" id="end-time" value="">
+                    <input type="hidden" id="start" value="">
+                    <input type="hidden" id="end" value="">
                     <input type="hidden" id="event" value="">
                     <button id="submit-modal" class="btn btn-success btn-block">Agendar</button>
                 </form>

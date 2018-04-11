@@ -32,19 +32,19 @@ class AppointmentController extends Controller
             'client_id' => 'required',
             'collaborator_id' => 'required',
             'appointment_status_id' => 'required',
-            'start_time' => 'required',
-            'clinic_id' => 'required'
+            'start' => 'required',
+            'end' => 'required'
         ]);
         $data = $request->all();
         $appointment = new Appointment();
-        $data['start_time'] = new Carbon($request->start_time);
-        $data['end_time'] = new Carbon($request->start_time);
-        $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
-        $already_booked = $appointment->checkIfAlreadyBooked($data['start_time'], $data['end_time'],  $data['clinic_id']);
+        $data['start'] = new Carbon($request->start);
+        $data['end'] = new Carbon($request->start);
+        $data['end']->addMinutes(Appointment::DEFAULT_DURATION);
+        $already_booked = $appointment->checkIfAlreadyBooked($data['start'], $data['end'],  $data['clinic_id']);
         if ($already_booked) {
             return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.']);
         }
-        $appointment->prepare($data);
+        $appointment->fill($data);
         $appointment->save();
 
 

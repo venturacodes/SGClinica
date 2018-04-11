@@ -34,7 +34,6 @@ class AppointmentController extends Controller
      */
     public function create(Request $request)
     {
-
         $data = $request->all();
         $appointment = new Appointment();
         $data['start_time'] = new Carbon($request->start_time);
@@ -46,8 +45,6 @@ class AppointmentController extends Controller
         }
         $appointment->prepare($data);
         $appointment->save();
-
-
         return new JsonResponse($appointment);
     }
     /**

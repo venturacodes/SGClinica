@@ -11,6 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     const DEFAULT_DURATION = 30;
+    protected $fillable = [
+        'start'
+    , 'end'
+    , 'clinic_id'
+    , 'client_id'
+    ,  'collaborator_id'
+    , 'user_id'
+    , 'appointment_status_id'
+    , 'note'
+];
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
@@ -29,19 +40,19 @@ class Appointment extends Model
         $period_start_time->subMinutes(29);
         $query = $this->where('clinic_id', '=', $clinic_id)
             ->where(function ($query) use ($start_time, $end_time) {
-                $query->where('start_time', '>=', $start_time->toDateTimeString())
-                    ->where('end_time', '<=', $end_time->toDateTimeString());
+                $query->where('start', '>=', $start_time->toDateTimeString())
+                    ->where('end', '<=', $end_time->toDateTimeString());
             })
             ->orWhere(function ($query) use ($period_start_time, $end_time) {
-                    $query->where('start_time', '>=', $period_start_time->toDateTimeString())
-                        ->where('end_time', '<=', $end_time->toDateTimeString());
+                    $query->where('start', '>=', $period_start_time->toDateTimeString())
+                        ->where('end', '<=', $end_time->toDateTimeString());
             })->exists();
         return $query;
     }
     public function prepare(array $data)
     {
-        $this->start_time = $data['start_time'];
-        $this->end_time = $data['end_time'];
+        $this->start = $data['start'];
+        $this->end = $data['end'];
         $this->clinic_id = $data['clinic_id'];
         $this->client_id = $data['client_id'];
         $this->collaborator_id = $data['collaborator_id'];

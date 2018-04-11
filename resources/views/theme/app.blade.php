@@ -57,6 +57,8 @@
 <!-- Responsável pela internacionalização do calendário conforme: https://fullcalendar.io/docs/text/locale/ -->
 {{--  <script src="{{asset('js/theme/pt-br.js')}}" type="text/javascript"></script>  --}}
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{asset('js/theme/fullcalendar.min.js')}}"></script>
+<script src="{{asset('js/theme/locale/pt-br.js')}}"></script>
 @yield('calendar-js')
 @yield('additional-js')
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
