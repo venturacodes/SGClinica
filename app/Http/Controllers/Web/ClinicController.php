@@ -4,6 +4,7 @@ namespace Dentist\Http\Controllers\Web;
 
 use Dentist\Clinic;
 use Dentist\Collaborator;
+use Dentist\Address;
 use Dentist\Http\Controllers\Controller;
 use Dentist\Http\Resources\ClinicCollection;
 use Dentist\Http\Resources\ClinicResource;
@@ -36,16 +37,46 @@ class ClinicController extends Controller
      */
     public function create(Request $request)
     {
-        $this->validate($request, [
-           'clinica' => 'required|max:255',
-        ]);
-
+        return view('clinic.form_create', compact('data'));
+    }
+    public function store(Request $request){
         $clinic = new Clinic();
         $clinic->name = $request->name;
-        $clinic->address = $request->address;
+        $clinic->email = $request->email;
+        $clinic->phone = $request->phone;
+        $clinic->latitude = '0';
+        $clinic->longitude = '0';
+        $clinic->address_id = $this->store_address($request);
         $clinic->save();
 
-        return new JsonResponse($clinic);
+        return redirect()->route('clinic.index');
+    }
+    public function store_address(Request $request){
+        $data = $request->all();
+        $address = new Address();
+        $address->cep = $data['cep'];
+        $address->uf = $data['uf'];
+        $address->cidade = $data['cidade'];
+        $address->bairro = $data['bairro'];
+        $address->logradouro = $data['logradouro'];
+        $address->numero = $data['numero'];
+        $address->complemento = $data['complemento'];
+        $address->save();
+
+        return $address->id;
+    }
+    /**
+     * edit the Clinic
+     * @var Request $request
+     * @return JsonResponse
+     */
+    public function edit(Request $request, $id)
+    {
+
+        $clinic = Clinic::find($id);
+        $address = Address::find($clinic->address_id);
+        $data = ['clinic'=>$clinic, 'address'=>$address];
+        return view('clinic.form_update', compact('data'));
     }
     /**
      * Updates the Clinic
@@ -54,16 +85,31 @@ class ClinicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'clinica' => 'required|max:255',
-        ]);
-
         $clinic = Clinic::find($id);
         $clinic->name = $request->name;
-        $clinic->address = $request->address;
+        $clinic->email = $request->email;
+        $clinic->phone = $request->phone;
+        $clinic->latitude = '0';
+        $clinic->longitude = '0';
+        $clinic->address_id = $this->update_address($clinic->address_id, $request);
+
         $clinic->save();
 
-        return new JsonResponse($clinic);
+        return redirect()->route('clinic.index');
+    }
+    public function update_address($id, Request $request){
+        $data = $request->all();
+        $address = Address::find($id);
+        $address->cep = $data['cep'];
+        $address->uf = $data['uf'];
+        $address->cidade = $data['cidade'];
+        $address->bairro = $data['bairro'];
+        $address->logradouro = $data['logradouro'];
+        $address->numero = $data['numero'];
+        $address->complemento = $data['complemento'];
+        $address->save();
+
+        return $address->id;
     }
     /**
      * Removes a clinic by it's id

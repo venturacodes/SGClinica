@@ -12,11 +12,12 @@ class Appointment extends Model
 {
     const DEFAULT_DURATION = 30;
     protected $fillable = [
-        'start'
+    'title'
+    , 'start'
     , 'end'
     , 'clinic_id'
     , 'client_id'
-    ,  'collaborator_id'
+    , 'collaborator_id'
     , 'user_id'
     , 'appointment_status_id'
     , 'note'
@@ -56,7 +57,6 @@ class Appointment extends Model
         $this->clinic_id = $data['clinic_id'];
         $this->client_id = $data['client_id'];
         $this->collaborator_id = $data['collaborator_id'];
-        $this->user_id = $data['user_id'];
         $this->appointment_status_id = $data['appointment_status_id'];
         $this->note = $data['note'];
     }

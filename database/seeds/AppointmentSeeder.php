@@ -13,7 +13,6 @@ class AppointmentSeeder extends Seeder
     {
         \Carbon\Carbon::setLocale('pt_BR');
         DB::table('appointments')->insert([
-            'user_id' => 1,
             'clinic_id' => 1,
             'client_id' => 1,
             'collaborator_id' => 1,

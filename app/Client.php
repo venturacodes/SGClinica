@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Client extends Model
 {
-    protected $fillable = ['user_id','name','phone',];
+    protected $fillable = ['name','phone',];
     /**
      * Relationship between Clinics and Client must be many to many
      *
@@ -18,14 +18,4 @@ class Client extends Model
     {
         return $this->belongsToMany(\Dentist\Clinic::class);
     }
-    /**
-     * Relationship between Client and user must be one to one.
-     *
-     * @return void
-     */
-    public function user()
-    {
-        return $this->belongsTo(\Dentist\User::class);
-    }
-
 }

@@ -20,7 +20,7 @@
             @foreach($clinics as $clinic)
                 <tr>
                     <td>{{$clinic->id}}</td>
-                    <td>{{$clinic->clinica}}</td>
+                    <td>{{$clinic->name}}</td>
                     <td>{{$clinic->address->cidade}}/{{\Illuminate\Support\Str::upper($clinic->address->uf)}}</td>
                     <td>{{$clinic->address->logradouro}}, {{ $clinic->address->numero}}, {{$clinic->address->complemento}}</td>
                     <td><div class="tools">

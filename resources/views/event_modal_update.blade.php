@@ -50,8 +50,8 @@
                         <label for="note">Observação</label>
                         <textarea id="update-note" name="note" class="form-control"></textarea>
                     </div>
-                    <input type="hidden" id="start-time" value="">
-                    <input type="hidden" id="end-time" value="">
+                    <input type="hidden" id="update-start" value="">
+                    <input type="hidden" id="update-end" value="">
                     <input type="hidden" id="event-id" value="">
                     <div class="form-inline">
                         <button id="update-modal" class="btn btn-info btn-block">Atualizar</button>
