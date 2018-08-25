@@ -128,8 +128,7 @@
                 $('#title').val("");
                 $('#clinic').val("");
                 $('#collaborator').val("");
-                $('#client').val("");
-                $('#status').val("");
+                $('#client').val(""); 
                 $('#note').val("");
                 $("#event-modal-create").modal();
             },
@@ -139,7 +138,6 @@
                 $('#update-collaborator').val(calEvent.collaborator_id);
                 $('#update-clinic').val(calEvent.clinic_id);
                 $('#update-client').val(calEvent.client_id);
-                $('#update-status').val(calEvent.appointment_status_id);
                 $('#update-note').val(calEvent.note);
                 $('#event-id').val(calEvent.id);
                 $('#update-start').val(calEvent.start.format('YYYY-MM-DD HH:mm'));
@@ -160,7 +158,6 @@
                     +'&clinic_id='+ event.clinic_id
                     +'&client_id='+event.client_id
                     +'&collaborator_id='+event.collaborator_id
-                    +'&appointment_status_id='+event.appointment_status_id
                     +'&note='+event.note,
                     type: "POST",
                     success: function(json) {
@@ -185,7 +182,6 @@
                 collaborator_id: $('#collaborator').val(),
                 clinic_id: $('#clinic').val(),
                 client_id: $('#client').val(),
-                appointment_status_id: $('#status').val(),
                 note: $('#note').val(),
                 start: $('#start').val(),
                 end: $('#end').val()

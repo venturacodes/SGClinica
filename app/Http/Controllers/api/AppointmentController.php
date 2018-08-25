@@ -16,7 +16,7 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-        return new JsonResponse(Appointment::where('clinic_id', session('chosen_clinic')->id)->get());
+        return new JsonResponse(Appointment::all());
     }
     /**
      * function used to create appointments through AJAX Requests from modal_create at fullcalendar.
@@ -30,7 +30,6 @@ class AppointmentController extends Controller
             'clinic_id' => 'required',
             'client_id' => 'required',
             'collaborator_id' => 'required',
-            'appointment_status_id' => 'required',
             'start' => 'required',
             'end' => 'required'
         ]);
@@ -39,10 +38,6 @@ class AppointmentController extends Controller
         $appointment = new Appointment();
         $data['start'] = new Carbon($request->start);
         $data['end'] = new Carbon($request->end);
-        // $already_booked = $appointment->checkIfAlreadyBooked($data['start'], $data['end'],  $data['clinic_id']);
-        // if ($already_booked) {
-        //     return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.'], 500);
-        // }
         $appointment->fill($data);
         $appointment->save();
 
@@ -61,7 +56,6 @@ class AppointmentController extends Controller
             'clinic_id' => 'required',
             'client_id' => 'required',
             'collaborator_id' => 'required',
-            'appointment_status_id' => 'required',
             'start' => 'required',
             'end' => 'required'
         ]);
@@ -70,10 +64,6 @@ class AppointmentController extends Controller
 
         $data['start'] = new Carbon($request->start);
         $data['end'] = new Carbon($request->end);
-        // $already_booked = $appointment->checkIfAlreadyBooked($data['start'], $data['end'],  $data['clinic_id']);
-        // if ($already_booked) {
-        //     return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.'], 500);
-        // }
         $appointment->fill($data);
         $appointment->save();
 
@@ -93,10 +83,6 @@ class AppointmentController extends Controller
         $data['start_time'] = new Carbon($request->start_time);
         $data['end_time'] = new Carbon($request->start_time);
         $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
-        // $already_booked = $appointment->checkIfAlreadyBooked($data['start_time'], $data['end_time'],  $data['clinic_id']);
-        // if ($already_booked) {
-        //     return new JsonResponse(['message' => 'Não foi possivel agendar consulta, horário não disponível.']);
-        // }
         $appointment->prepare($data);
         $appointment->save();
 

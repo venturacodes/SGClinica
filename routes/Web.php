@@ -32,5 +32,4 @@ Route::prefix('clinics')->group(function () {
     Route::get('/{id}/delete', 'Web\ClinicController@destroy')->name('clinic.delete');
     Route::get('/{id}/edit', 'Web\ClinicController@edit')->name('clinic.edit');
     Route::post('/{id}', 'Web\ClinicController@update')->name('clinic.update');
-    Route::get('/choose_clinic', 'Web\ClinicController@chooseClinic')->name('clinic.choose_clinic');
 });

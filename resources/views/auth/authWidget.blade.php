@@ -1,6 +1,6 @@
 <header class="header">
     <a href="{{  route('home') }}" class="logo">
-        Odontotop
+        SGClínica
     </a>
 
     <nav class="navbar navbar-static-top" role="navigation">
@@ -17,9 +17,6 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ route('clinic.choose_clinic') }}">Trocar de Clínica </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -30,10 +27,5 @@
                 @endif
             </ul>
         </div>
-        @if(session('chosen_clinic'))
-            <div class="navbar-right">
-                <a href="#" class="logo" style="width: 350px;">{{session('chosen_clinic')->name}}</a>
-            </div>
-        @endif
     </nav>
 </header>

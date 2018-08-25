@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('UserSeeder');
-        $this->call('AddressSeeder');
-        $this->call('JobsSeeder');
         $this->call('CollaboratorSeeder');
         $this->call('ClinicSeeder');
         $this->call('AppointmentStatusSeeder');

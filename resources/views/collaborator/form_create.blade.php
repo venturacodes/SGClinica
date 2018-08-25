@@ -11,36 +11,6 @@
         <label for="phone">Telefone</label>
         <input type="text" name="phone"  class="form-control">
         @include('user.partial_form_create')
-        <label for="color">Cor do cartão</label>
-        <input type="color" name="color" class="form-control">
-
-        <label for="clinica">Clínica</label>
-        <div class="form form-inline">
-            <select name="clinica" class="form-control">
-                <option value="0" >Selecione uma clínica</option>
-                @foreach($data['clinic'] as $clinics)
-                    @foreach($clinics as $clinic)
-                        <option value="{{$clinic->id}}">{{$clinic->name}}</option>
-                    @endforeach
-                @endforeach
-            </select>
-            <a href="#" id="clinic-create-button" class="btn btn-primary">Minha clinica não está na lista</a>
-        </div>
-
-        <label for="trabalho">Profissão</label>
-        <div class="form form-inline">
-            <select name="trabalho" class="form-control">
-                <option value="0">Selecione uma profissão</option>
-                @foreach($data['jobs'] as $jobs)
-                    @foreach($jobs as $job)
-                        <option value="{{$job->id}}">{{$job->name}}</option>
-                    @endforeach
-                @endforeach
-            </select>
-            <a href="#" id="job-create-button" class="btn btn-primary">Minha profissão não está na lista.</a>
-
-        </div>
-
         <br />
         <input type="submit" value="salvar" class="btn btn-block btn-primary">
     </form>

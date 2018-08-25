@@ -13,39 +13,23 @@
                     <div class="form-group">
                         <label for="title">Título</label>
                         <input type="text" class="form-control" id="update-title" placeholder="Titulo">
-                        <label for="clinica">Clinica</label>
-                        <select class="form-control" id="update-clinic" name="clinica">
-                            <option value="0">Selecione uma clinica</option>
-                            @foreach($data['clinic'] as $clinicas)
-                                @foreach($clinicas as $clinica)
-                                    <option value="{{$clinica->id}}">{{$clinica->name}}</option>
-                                @endforeach
-                            @endforeach
-                        </select>
-                        <label for="collaborator">Funcionário</label>
+                        <label for="collaborator">Médico</label>
                         <select class="form-control" id="update-collaborator" name="collaborator">
-                            <option value="0">Selecione um funcionário</option>
+                            <option value="0">Selecione um médico</option>
                             @foreach($data['collaborators'] as $funcionarios)
                                 @foreach($funcionarios as $funcionario)
                                     <option value="{{$funcionario->id}}">{{$funcionario->name}}</option>
                                 @endforeach
                             @endforeach
                         </select>
-                        <label for="client">Cliente</label>
+                        <label for="client">Paciente</label>
                         <select class="form-control" id="update-client" name="client">
-                            <option value="0">Selecione um cliente</option>
+                            <option value="0">Selecione um paciente</option>
                             @foreach($data['clients'] as $clientes)
                                 @foreach($clientes as $cliente)
                                     <option value="{{$cliente->id}}">{{$cliente->name}}</option>
                                 @endforeach
                             @endforeach
-                        </select>
-                        <label for="status">Situação do Agendamento</label>
-                        <select class="form-control" id="update-status" name="status">
-                            <option value="0">Selecione uma situação</option>
-                            <option value="1">Marcado</option>
-                            <option value="2">Confirmado</option>
-                            <option value="3">Desmarcado</option>
                         </select>
                         <label for="note">Observação</label>
                         <textarea id="update-note" name="note" class="form-control"></textarea>

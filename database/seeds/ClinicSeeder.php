@@ -14,9 +14,6 @@ class ClinicSeeder extends Seeder
            'name'  => 'Clinica Chapecó',
            'phone' =>'2131231231',
            'email'    =>'clinicacha@odontop.com.br',
-           'latitude' =>'12',
-           'longitude'=>'-34',
-           'address_id' => 1,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
@@ -24,9 +21,6 @@ class ClinicSeeder extends Seeder
             'name'  => 'Clinica São Lourenço',
             'phone' =>'312312312',
             'email'    =>'clinicaslo@odontop.com.br',
-            'latitude' =>'32',
-            'longitude'=>'-43',
-            'address_id' => 1,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);

@@ -11,9 +11,6 @@
             <th>#</th>
             <th>Nome</th>
             <th>Telefone</th>
-            <th>Função</th>
-            <th>Clínicas atendidas</th>
-            <th>Cor</th>
             <th>Ferramentas</th>
         </tr>
         </thead>
@@ -25,11 +22,6 @@
                     <td>{{$collaborator->id}}</td>
                     <td>{{$collaborator->name}}</td>
                     <td>{{$collaborator->phone}}</td>
-                    <td>{{$collaborator->job->name}}</td>
-                    <td>@foreach($collaborator->clinics as $clinic)
-                        {{$clinic->clinica}}
-                    @endforeach</td>
-                    <td class="active" style="background: {{$collaborator->color}};"></td>
                     <td><div class="tools">
                             <a href="{{route('collaborator.edit', $collaborator->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
                             <a href="{{route('collaborator.delete', $collaborator->id)}}"><span class="glyphicon glyphicon-remove"></span></a>

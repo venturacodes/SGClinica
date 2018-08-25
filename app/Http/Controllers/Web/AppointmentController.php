@@ -24,7 +24,7 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-        return new JsonResponse(Appointment::where('clinic_id',session('chosen_clinic')->id)->get());
+        return new JsonResponse(Appointment::all());
     }
     /**
      * function used to create appointments through AJAX Requests from modal_create at fullcalendar.

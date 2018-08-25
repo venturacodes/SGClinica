@@ -18,9 +18,7 @@ class CreateClinicsTable extends Migration
             $table->string('name')->unique();
             $table->string('email');
             $table->string('phone');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->integer('address_id');
+            $table->string('address')->default('Chapecó');
             $table->timestamps();
         });
     }

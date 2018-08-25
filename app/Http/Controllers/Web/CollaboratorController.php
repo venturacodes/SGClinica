@@ -5,7 +5,6 @@ namespace Dentist\Http\Controllers\Web;
 use Carbon\Carbon;
 use Dentist\Clinic;
 use Dentist\Collaborator;
-use Dentist\Job;
 use Dentist\Traits\storeUser;
 use Dentist\User;
 use Illuminate\Http\JsonResponse;
@@ -31,10 +30,10 @@ class CollaboratorController extends Controller
      */
     public function create(Request $request)
     {
-        $clinics = Clinic::all('name','id');
-        $jobs = Job::all('name','id');
-        $data = [ 'jobs' => compact('jobs'), 'clinic' => compact('clinics') ];
-        return view('collaborator.form_create', compact('data'));
+        // $clinics = Clinic::all('name','id');
+        // $jobs = Job::all('name','id');
+        // $data = [ 'jobs' => compact('jobs'), 'clinic' => compact('clinics') ];
+        // return view('collaborator.form_create', compact('data'));
     }
     /**
      * Store a new collaborator
@@ -62,7 +61,7 @@ class CollaboratorController extends Controller
 
         $collaborator->save();
 
-        return redirect()->route('collaborator.index')->with('status', 'Funcionario adicionado com sucesso!');
+        return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');
     }
     public function edit(Request $request){
         $collaborator = Collaborator::find($request->id);
@@ -89,13 +88,13 @@ class CollaboratorController extends Controller
 
         $collaborator->save();
 
-        return redirect()->route('collaborator.index')->with('status', 'Funcionario atualizado com sucesso!');
+        return redirect()->route('collaborator.index')->with('status', 'Funcionário atualizado com sucesso!');
     }
     public function destroy(Request $request)
     {
         $collaborator = Collaborator::find($request->id);
         User::destroy($collaborator->user_id);
         Collaborator::destroy($request->id);
-        return redirect()->route('collaborator.index')->with('status', 'Funcionario excluído com sucesso!');
+        return redirect()->route('collaborator.index')->with('status', 'Funcionário excluído com sucesso!');
     }
 }

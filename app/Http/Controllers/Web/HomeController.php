@@ -51,7 +51,6 @@ class HomeController extends Controller
     {
         $collaborator = Collaborator::find($id);
         $collaborator->destroy($id);
-
         return new JsonResponse($collaborator);
     }
     public function clinic()
@@ -64,9 +63,5 @@ class HomeController extends Controller
     {
         $clients = Client::all();
         return view('client.index', compact('clients'));
-    }
-    public function downloadApp()
-    {
-        return view('download_app');
     }
 }
