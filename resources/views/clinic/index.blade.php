@@ -10,8 +10,6 @@
         <tr>
             <th>#</th>
             <th>Nome</th>
-            <th>Cidade</th>
-            <th>Endereço</th>
             <th>Ferramentas</th>
         </tr>
         </thead>
@@ -21,8 +19,6 @@
                 <tr>
                     <td>{{$clinic->id}}</td>
                     <td>{{$clinic->name}}</td>
-                    <td>{{$clinic->address->cidade}}/{{\Illuminate\Support\Str::upper($clinic->address->uf)}}</td>
-                    <td>{{$clinic->address->logradouro}}, {{ $clinic->address->numero}}, {{$clinic->address->complemento}}</td>
                     <td><div class="tools">
                             <a href="{{route('clinic.edit', $clinic->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
                             <a href="{{route('clinic.delete', $clinic->id)}}"><span class="glyphicon glyphicon-remove"></span></a>

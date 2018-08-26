@@ -1,6 +1,6 @@
 @extends('base_form')
 @section('back_button')
-    <a href="{{ route('client.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    <a href="{{ route('clinic.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
 @endsection
 @section('form_title','Cadastrar clínica')
 @section('form_content')
@@ -12,7 +12,6 @@
         <input type="text" name="phone"  class="form-control">
         <label for="email">E-mail</label>
         <input type="email" name="email"  class="form-control">
-        @include('address.partial_form_create')
         <br />
         <input type="submit" value="salvar" class="btn btn-block btn-primary">
     </form>

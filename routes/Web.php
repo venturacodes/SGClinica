@@ -33,3 +33,19 @@ Route::prefix('clinics')->group(function () {
     Route::get('/{id}/edit', 'Web\ClinicController@edit')->name('clinic.edit');
     Route::post('/{id}', 'Web\ClinicController@update')->name('clinic.update');
 });
+Route::prefix('medicines')->group(function () {
+    Route::get('/', 'Web\HomeController@medicine')->name('medicine.index');
+    Route::post('/', 'Web\MedicineController@store')->name('medicine.store');
+    Route::get('/create', 'Web\MedicineController@create')->name('medicine.create');
+    Route::get('/{id}/delete', 'Web\MedicineController@destroy')->name('medicine.delete');
+    Route::get('/{id}/edit', 'Web\MedicineController@edit')->name('medicine.edit');
+    Route::post('/{id}', 'Web\MedicineController@update')->name('medicine.update');
+});
+Route::prefix('receipts')->group(function () {
+    Route::get('/', 'Web\HomeController@receipt')->name('receipt.index');
+    Route::post('/', 'Web\ReceiptController@store')->name('receipt.store');
+    Route::get('/create', 'Web\ReceiptController@create')->name('receipt.create');
+    Route::get('/{id}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
+    Route::get('/{id}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
+    Route::post('/{id}', 'Web\ReceiptController@update')->name('receipt.update');
+});

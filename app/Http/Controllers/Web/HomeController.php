@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Dentist\Appointment;
 use Dentist\Client;
 use Dentist\Clinic;
+use Dentist\Medicine;
 use Dentist\Collaborator;
 use Dentist\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -63,5 +64,10 @@ class HomeController extends Controller
     {
         $clients = Client::all();
         return view('client.index', compact('clients'));
+    }
+    public function medicine()
+    {
+        $medicines = Medicine::all();
+        return view('medicine.index', compact('medicines'));
     }
 }
