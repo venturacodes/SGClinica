@@ -76,7 +76,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Dentist
+                    Sistema de gestão de clínica
                 </div>
             </div>
         </div>
