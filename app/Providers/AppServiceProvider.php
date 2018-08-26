@@ -4,6 +4,7 @@ namespace Dentist\Providers;
 
 use Dentist\Http\Resources\ClinicCollection;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
