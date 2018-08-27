@@ -1,4 +1,5 @@
 <section class="sidebar">
+    <div id="demo" class="collapse">
     <ul class="sidebar-menu">
         <li >
             <a href="{{ route('appointment.show') }}">
@@ -31,4 +32,6 @@
             </a>
         </li>
     </ul>
+    </div>
+   
 </section>

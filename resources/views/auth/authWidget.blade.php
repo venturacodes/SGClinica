@@ -1,8 +1,7 @@
 <header class="header">
-    <a href="{{  route('home') }}" class="logo">
-        SGClínica
+    <a href="#" class="logo" data-toggle="collapse" data-target="#demo">
+        SGClínica Menu
     </a>
-
     <nav class="navbar navbar-static-top" role="navigation">
         <div class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
