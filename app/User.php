@@ -1,6 +1,6 @@
 <?php
 
-namespace Dentist;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -27,7 +27,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo(\Dentist\Role::class, 'id');
+        return $this->belongsTo(\App\Role::class, 'id');
     }
     /**
      * Method that checks if a user is admin or not, useful to give only admin methods.
@@ -55,11 +55,11 @@ class User extends Authenticatable
     }
     public function client()
     {
-            return $this->hasOne(\Dentist\Client::class);
+            return $this->hasOne(\App\Client::class);
     }
     public function clinic()
     {
-        return $this->hasMany(\Dentist\Clinic::class);
+        return $this->hasMany(\App\Clinic::class);
     }
     public function prepare(array $data)
     {

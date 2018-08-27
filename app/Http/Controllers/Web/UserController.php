@@ -1,14 +1,14 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
-use Dentist\Http\Middleware\CheckCustomDentistAuth;
-use Dentist\User;
+use App\Http\Middleware\CheckCustomDentistAuth;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Dentist\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {

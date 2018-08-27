@@ -1,13 +1,13 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
-use Dentist\Address;
-use Dentist\Client;
-use Dentist\User;
+use App\Address;
+use App\Client;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Dentist\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {

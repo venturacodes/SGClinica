@@ -1,6 +1,6 @@
 <?php
 
-namespace Dentist\Http;
+namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Dentist\Http\Middleware\TrimStrings::class,
+        \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -27,12 +27,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'Web' => [
-            \Dentist\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
 //             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Dentist\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -50,10 +50,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'admin' => \Dentist\Http\Middleware\IsAdmin::class,
-        'dentist.auth' => \Dentist\Http\Middleware\CheckCustomDentistAuth::class,
-        'dentist.decode_json_request' => \Dentist\Http\Middleware\RequestJsonReturnsDecodedDataMiddleware::class,
-        'guest' => \Dentist\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \App\Http\Middleware\IsAdmin::class,
+        'dentist.auth' => \App\Http\Middleware\CheckCustomDentistAuth::class,
+        'dentist.decode_json_request' => \App\Http\Middleware\RequestJsonReturnsDecodedDataMiddleware::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

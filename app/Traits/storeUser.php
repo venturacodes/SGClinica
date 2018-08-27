@@ -1,8 +1,8 @@
 <?php
 
-namespace Dentist\Traits;
+namespace App\Traits;
 
-use Dentist\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

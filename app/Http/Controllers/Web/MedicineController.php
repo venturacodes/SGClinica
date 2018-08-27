@@ -1,10 +1,10 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use Dentist\Medicine;
-use Dentist\Http\Controllers\Controller;
+use App\Medicine;
+use App\Http\Controllers\Controller;
 
 class MedicineController extends Controller
 {

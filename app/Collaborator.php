@@ -1,19 +1,19 @@
 <?php
 
-namespace Dentist;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Collaborator extends Model
 {
     public function clinics(){
-        return $this->belongsToMany(\Dentist\Clinic::class);
+        return $this->belongsToMany(\App\Clinic::class);
     }
     public function user(){
-        return $this->belongsTo('Dentist\User');
+        return $this->belongsTo('App\User');
     }
     public function job(){
-        return $this->belongsTo('Dentist\Job');
+        return $this->belongsTo('App\Job');
     }
 
 }

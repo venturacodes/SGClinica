@@ -24,7 +24,7 @@
             "database"
         ],
         "psr-4": {
-            "Dentist\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

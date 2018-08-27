@@ -1,15 +1,15 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
 use Carbon\Carbon;
-use Dentist\Appointment;
-use Dentist\Client;
-use Dentist\Clinic;
-use Dentist\Medicine;
-use Dentist\Collaborator;
-use Dentist\Receipt;
-use Dentist\Http\Controllers\Controller;
+use App\Appointment;
+use App\Client;
+use App\Clinic;
+use App\Medicine;
+use App\Collaborator;
+use App\Receipt;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

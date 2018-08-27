@@ -1,11 +1,11 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
-use Dentist\Appointment;
+use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Dentist\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Dentist\Http\Controllers\api;
+namespace App\Http\Controllers\api;
 
 use Carbon\Carbon;
-use Dentist\Appointment;
+use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Dentist\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller
 {

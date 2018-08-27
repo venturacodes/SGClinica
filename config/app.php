@@ -173,11 +173,11 @@ return [
         /*
          * Application Service Providers...
          */
-        Dentist\Providers\AppServiceProvider::class,
-        Dentist\Providers\AuthServiceProvider::class,
-        // Dentist\Providers\BroadcastServiceProvider::class,
-        Dentist\Providers\EventServiceProvider::class,
-        Dentist\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
         // Dependência full-calendar(https://github.com/maddhatter/laravel-fullcalendar)
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 

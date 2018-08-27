@@ -1,11 +1,11 @@
 <?php
 
-namespace Dentist\Http\Controllers\api;
+namespace App\Http\Controllers\api;
 
-use Dentist\Clinic;
-use Dentist\Collaborator;
-use Dentist\Http\Controllers\Controller;
-use Dentist\Http\Resources\ClinicCollection;
+use App\Clinic;
+use App\Collaborator;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ClinicCollection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

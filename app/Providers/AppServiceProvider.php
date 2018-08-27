@@ -1,8 +1,8 @@
 <?php
 
-namespace Dentist\Providers;
+namespace App\Providers;
 
-use Dentist\Http\Resources\ClinicCollection;
+use App\Http\Resources\ClinicCollection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 

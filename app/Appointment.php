@@ -1,10 +1,10 @@
 <?php
 
-namespace Dentist;
+namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use \Dentist\Clinic as Clinic;
+use \App\Clinic as Clinic;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 

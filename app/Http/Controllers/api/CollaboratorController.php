@@ -1,16 +1,16 @@
 <?php
-namespace Dentist\Http\Controllers\api;
+namespace App\Http\Controllers\api;
 
 use Carbon\Carbon;
-use Dentist\Clinic;
-use Dentist\Collaborator;
-use Dentist\Job;
-use Dentist\Traits\storeUser;
-use Dentist\User;
+use App\Clinic;
+use App\Collaborator;
+use App\Job;
+use App\Traits\storeUser;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Dentist\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class CollaboratorController extends Controller
 {

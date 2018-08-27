@@ -1,13 +1,13 @@
 <?php
 
-namespace Dentist\Http\Controllers\Web;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use Dentist\Receipt;
-use Dentist\Collaborator;
-use Dentist\Medicine;
-use Dentist\Client;
-use Dentist\Http\Controllers\Controller;
+use App\Receipt;
+use App\Collaborator;
+use App\Medicine;
+use App\Client;
+use App\Http\Controllers\Controller;
 
 class ReceiptController extends Controller
 {
