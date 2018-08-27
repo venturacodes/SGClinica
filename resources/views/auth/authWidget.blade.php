@@ -6,7 +6,7 @@
         
     <nav class="navbar navbar-static-top" role="navigation">
         <div class="navbar-right">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="background-color: #448DBA;">
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">Entrar</a></li>
                     <li><a href="{{ route('register') }}">Registrar-se</a></li>
