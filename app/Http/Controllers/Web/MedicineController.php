@@ -51,9 +51,8 @@ class MedicineController extends Controller
      */
     public function edit(Request $request, $id)
     {
-
         $medicine = Medicine::find($id);
-        return view('medicine.form_update', $medicine);
+        return view('medicine.form_update', compact('medicine'));
     }
     /**
      * Updates the Medicine
@@ -70,18 +69,18 @@ class MedicineController extends Controller
 
         $medicine->save();
 
-        return redirect()->route('medicine.index');
+        return redirect()->route('medicine.index')->with('status', 'Medicamento editado com sucesso!');
     }
     /**
      * Removes a Medicine by it's id
      *
      * @return Collection
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $medicine = Medicine::find($id);
         $medicine->delete();
         $medicine->deleted = true;
-        return new JsonResponse($medicine);
+        return redirect()->route('medicine.index')->with('status', 'Medicamento deletado com sucesso!');
     }
 }

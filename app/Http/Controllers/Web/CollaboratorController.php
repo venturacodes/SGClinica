@@ -30,10 +30,7 @@ class CollaboratorController extends Controller
      */
     public function create(Request $request)
     {
-        // $clinics = Clinic::all('name','id');
-        // $jobs = Job::all('name','id');
-        // $data = [ 'jobs' => compact('jobs'), 'clinic' => compact('clinics') ];
-        // return view('collaborator.form_create', compact('data'));
+        return view('collaborator.form_create');
     }
     /**
      * Store a new collaborator

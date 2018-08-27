@@ -46,7 +46,7 @@ class ClientController extends Controller
 
         $client->save();
 
-        return redirect()->route('client.index')->with('status', 'Cliente adicionado com sucesso!');
+        return redirect()->route('client.index')->with('status', 'Paciente adicionado com sucesso!');
     }
     public function store_address(Request $request){
         $address = new Address();
@@ -81,32 +81,21 @@ class ClientController extends Controller
     }
     public function update(Request $request){
 
-        $address = Address::find($client->address_id);
-        $address->cep = $request->cep;
-        $address->uf = $request->uf;
-        $address->cidade = $request->cidade;
-        $address->bairro = $request->bairro;
-        $address->logradouro = $request->logradouro;
-        $address->numero = $request->numero;
-        $address->complemento = $request->complemento;
-
-        $address->save();
+        $client = Client::find($request->id);
 
         $client->name = $request->name;
         $client->phone = $request->phone;
-        $client->address_id = $address->id;
+        $client->email = $request->email;
 
         $client->save();
 
-        return redirect()->route('client.index')->with('status', 'Cliente atualizado com sucesso!');
+        return redirect()->route('client.index')->with('status', 'Paciente atualizado com sucesso!');
     }
     public function destroy(Request $request)
     {
         $client = Client::find($request->id);
-        User::destroy($client->user_id);
-        Address::destroy($client->address_id);
         Client::destroy($request->id);
 
-        return redirect()->route('client.index')->with('status', 'Cliente excluído com sucesso!');
+        return redirect()->route('client.index')->with('status', 'Paciente excluído com sucesso!');
     }
 }

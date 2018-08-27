@@ -76,7 +76,7 @@ class ReceiptController extends Controller
      *
      * @return Collection
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $receipt = Receipt::find($id);
         $receipt->delete();

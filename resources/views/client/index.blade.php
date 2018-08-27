@@ -1,6 +1,6 @@
 @extends('base_index')
 
-@section('index_title','Clientes')
+@section('index_title','Pacientes')
 @section('index_add_button')
     <a href="{{route('client.create')}}" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-plus"></span>&nbsp;Adicionar</a>
 @endsection
@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{$client->id}}</td>
                     <td>{{$client->name}}</td>
-                    <td>{{$client->user->email}}</td>
+                    <td>{{$client->email}}</td>
                     <td>{{$client->phone}}</td>
                     <td><div class="tools">
                             <a href="{{route('client.edit', $client->id)}}"><span class="glyphicon glyphicon-edit"></span></a>

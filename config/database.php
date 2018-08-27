@@ -1,11 +1,12 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// só usa no heroku
+// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+// $host = $url["host"];
+// $username = $url["user"];
+// $password = $url["pass"];
+// $database = substr($url["path"], 1);
 
 return [
 
@@ -20,9 +21,7 @@ return [
     |
     */
 
-
     'default' => env('DB_CONNECTION', 'mysql'),
-
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -49,11 +48,20 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
+            #usa local
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            #usa no heroku
+            /*
             'host' => $host,
             'port' => $port,
             'database' => $database,
             'username' => $username,
             'password' => $password,
+            */
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
