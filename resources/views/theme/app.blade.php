@@ -18,7 +18,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/theme/style.css')}}" />
     <link rel="stylesheet" href="{{asset('css/theme/fullcalendar.min.css')}}"  />
-    <link rel="stylesheet" href="{{asset('css/theme/jasny-bootstrap.min.css')}}"  />
     <link href="{{asset('css/theme/fullcalendar.print.min.css')}}" rel="stylesheet" media="print" />
     @yield('calendar-css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -55,7 +54,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('js/theme/fullcalendar.min.js')}}"></script>
 <script src="{{asset('js/theme/locale/pt-br.js')}}"></script>
-<script src="{{asset('js/theme/jasny-bootstrap.min.js')}}"></script>
 @yield('calendar-js')
 @yield('additional-js')
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
