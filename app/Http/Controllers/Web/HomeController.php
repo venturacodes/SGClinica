@@ -8,6 +8,7 @@ use Dentist\Client;
 use Dentist\Clinic;
 use Dentist\Medicine;
 use Dentist\Collaborator;
+use Dentist\Receipt;
 use Dentist\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -69,5 +70,10 @@ class HomeController extends Controller
     {
         $medicines = Medicine::all();
         return view('medicine.index', compact('medicines'));
+    }
+    public function receipt()
+    {
+        $receipts = Receipt::all();
+        return view('receipt.index', compact('receipts'));
     }
 }

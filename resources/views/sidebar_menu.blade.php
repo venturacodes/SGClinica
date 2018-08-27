@@ -25,5 +25,10 @@
                 <i class="glyphicon glyphicon-asterisk"></i> <span>Medicamentos</span>
             </a>
         </li>
+        <li>
+            <a  href="{{ route('receipt.index') }}">
+                <i class="glyphicon glyphicon-asterisk"></i> <span>Receitas</span>
+            </a>
+        </li>
     </ul>
 </section>

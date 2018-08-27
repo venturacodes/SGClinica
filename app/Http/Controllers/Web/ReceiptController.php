@@ -1,8 +1,13 @@
 <?php
 
-namespace Dentist\Http\Web\Controllers;
+namespace Dentist\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Dentist\Receipt;
+use Dentist\Collaborator;
+use Dentist\Medicine;
+use Dentist\Client;
+use Dentist\Http\Controllers\Controller;
 
 class ReceiptController extends Controller
 {
@@ -10,8 +15,7 @@ class ReceiptController extends Controller
      * Show all Receipts.
      *  @return JsonResponse
      */
-    public function index()
-{
+    public function index(){
         $receipts = Receipt::all();
         return new JsonResponse($receipts);
     }
@@ -20,8 +24,11 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function create(Request $request)
-    {
+    public function create(Request $request){
+        $pacients = Client::all('id', 'name');
+        $medicines = Medicine::all('id', 'generic_name');
+        $collaborators = Collaborator::all('id', 'name');
+        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'pacients' => compact('pacients') ];
         return view('receipt.form_create', compact('data'));
     }
     /**
@@ -47,8 +54,7 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function edit(Request $request, $id)
-    {
+    public function edit(Request $request, $id){
 
         $receipt = Receipt::find($id);
         return view('receipt.form_update', $receipt);
@@ -58,8 +64,7 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $receipt = Medicine::find($id);
         
         $receipt->pacient_id = $request->pacient_id;
@@ -76,8 +81,7 @@ class ReceiptController extends Controller
      *
      * @return Collection
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $receipt = Receipt::find($id);
         $receipt->delete();
         $receipt->deleted = true;
