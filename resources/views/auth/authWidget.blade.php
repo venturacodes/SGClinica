@@ -4,7 +4,7 @@
     </a>
 
         
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" role="navigation" style="background-color: #448DBA;">
         <div class="navbar-right">
             <ul class="nav navbar-nav navbar-right" style="background-color: #448DBA;">
                 @if (Auth::guest())
