@@ -41,11 +41,11 @@ class AppointmentController extends Controller
         $appointments = Appointment::all();
         return view('appointments.next_appointments', compact('appointments')); 
     }
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
         return null;
     }
-    public function destory(Request $request)
+    public function destory(Request $request, $id)
     {
         return null;
     }
