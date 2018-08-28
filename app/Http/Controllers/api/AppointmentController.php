@@ -35,10 +35,10 @@ class AppointmentController extends Controller
         $data = $request->all();
 
         $appointment = new Appointment();
-        $data['start'] = new Carbon($request->start);
-        $data['end'] = new Carbon($request->end);
-        $data['client_id'] = $request->client_id;
-        $data['collaborator_id'] = $request->collaborator_id;
+        $appointment->start = new Carbon($request->start);
+        $appointment->end = new Carbon($request->end);
+        $appointment->client_id = $request->client_id;
+        $appointment->collaborator_id = $request->collaborator_id;
         
         $appointment->save();
 
@@ -59,13 +59,12 @@ class AppointmentController extends Controller
             'start' => 'required',
             'end' => 'required'
         ]);
-        $data = $request->all();
         $appointment = Appointment::find($appointment_id);
 
-        $data['start'] = new Carbon($request->start);
-        $data['end'] = new Carbon($request->end);
-        $data['client_id'] = $request->client_id;
-        $data['collaborator_id'] = $request->collaborator_id;
+        $appointment->start = new Carbon($request->start);
+        $appointment->end = new Carbon($request->end);
+        $appointment->client_id = $request->client_id;
+        $appointment->collaborator_id = $request->collaborator_id;
         
         $appointment->save();
 
