@@ -52,8 +52,8 @@ class AppointmentController extends Controller
         $appointment->title = $request->title;
         $appointment->start = new Carbon($request->start);
         $appointment->end = new Carbon($request->end);
-        $appointment->client_id = $request->client;
-        $appointment->collaborator_id = $request->collaborator;
+        $appointment->client_id = $request->client_id;
+        $appointment->collaborator_id = $request->collaborator_id;
         
         $appointment->save();
 
