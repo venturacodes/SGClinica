@@ -7,7 +7,10 @@ Route::get('/download_app', 'Web\HomeController@downloadApp')->name('home.downlo
 Auth::routes();
 Route::prefix('appointments')->group( function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
+    Route::get('/', 'Web\AppointmentController@nextAppointments')->name('appointment.next_appointments');
     Route::post('/', 'Web\AppointmentController@create')->name('appointment.create');
+    Route::post('/', 'Web\AppointmentController@edit')->name('appointment.edit');
+    Route::post('/', 'Web\AppointmentController@destroy')->name('appointment.delete');
 });
 Route::prefix('collaborators')->group(function () {
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');

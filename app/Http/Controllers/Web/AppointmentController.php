@@ -34,7 +34,20 @@ class AppointmentController extends Controller
      */
     public function create(Request $request)
     {
-        
+
+    }
+    public function nextAppointments(Request $request)
+    {
+        $appointments = Appointment::all();
+        return view('appointments.next_appointments', compact('appointments')); 
+    }
+    public function edit(Request $request)
+    {
+        return null;
+    }
+    public function destory(Request $request)
+    {
+        return null;
     }
     /**
      * Show appointments by it's client_id.
@@ -51,13 +64,5 @@ class AppointmentController extends Controller
     public function showByCollaboratorId($collaborator_id)
     {
         return new JsonResponse(Appointment::where('collaborator_id',$collaborator_id)->get());
-    }
-    /**
-     * Show appointments by it's clinic_id.
-     *  @return JsonResponse
-     */
-    public function showByClinicId($clinic_id)
-    {
-        return new JsonResponse(Appointment::where('clinic_id',$clinic_id)->get());
     }
 }

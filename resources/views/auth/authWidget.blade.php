@@ -9,8 +9,13 @@
                     <li><a href="{{ route('login') }}">Entrar</a></li>
                     <li><a href="{{ route('register') }}">Registrar-se</a></li>
                 @else
-                
-                <li style="background-color: #448DBA;">
+
+        <li style="background-color: #448DBA;">
+            <a href="{{ route('appointment.next_appointments') }}">
+                <i class="glyphicon glyphicon-calendar"></i> <span>Próximos agendamentos</span>
+            </a>
+        </li>        
+        <li style="background-color: #448DBA;">
             <a href="{{ route('report.show') }}">
                 <i class="glyphicon glyphicon-dashboard"></i> <span>Relatórios</span>
             </a>
