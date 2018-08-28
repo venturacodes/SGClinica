@@ -17,7 +17,7 @@
             @foreach($appointments as $appointment)
                 <tr>
                     <td>{{$appointment->id}}</td>
-                    <td>{{$appointment->client->name}}</td>
+                    <td>{{$appointment->id}}</td>
                     <td>{{$appointment->start}}</td>
                     <td>{{$appointment->end}}</td>
                     <td><div class="tools">
