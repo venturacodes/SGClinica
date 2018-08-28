@@ -13,7 +13,7 @@
                         <label for="title">Título</label>
                         <input type="text" class="form-control" id="title" placeholder="Titulo" required>
                         <label for="collaborator">Médico</label>
-                        <select class="form-control" id="collaborator" name="collaborator" required>
+                        <select class="form-control" id="collaborator" name="collaborator_id" required>
                             <option value="0">Selecione um médico</option>
                             @foreach($data['collaborators'] as $funcionarios)
                                 @foreach($funcionarios as $funcionario)
@@ -22,7 +22,7 @@
                             @endforeach
                         </select>
                         <label for="client">Paciente</label>
-                        <select class="form-control" id="client" name="client" style="width: 100%" required>
+                        <select class="form-control" id="client" name="client_id" style="width: 100%" required>
                             <option value="0">Selecione um paciente</option>
                             @foreach($data['clients'] as $clientes)
                                 @foreach($clientes as $cliente)
