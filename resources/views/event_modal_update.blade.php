@@ -23,7 +23,7 @@
                             @endforeach
                         </select>
                         <label for="client">Paciente</label>
-                        <select class="form-control" id="update-client" name="client">
+                        <select class="form-control" id="update-client-id" name="client">
                             <option value="0">Selecione um paciente</option>
                             @foreach($data['clients'] as $clientes)
                                 @foreach($clientes as $cliente)

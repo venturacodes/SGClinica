@@ -128,7 +128,7 @@
                 $('#update-title').val(calEvent.title);
                 $('#update-collaborator').val(calEvent.collaborator_id);
                 $('#update-clinic').val(calEvent.clinic_id);
-                $('#update-client').val(calEvent.client_id);
+                $('#update-client-id').val(calEvent.client_id);
                 $('#update-note').val(calEvent.note);
                 $('#event-id').val(calEvent.id);
                 $('#update-start').val(calEvent.start.format('YYYY-MM-DD HH:mm'));
@@ -208,9 +208,8 @@
             event_obj.start = $('#update-start').val();
             event_obj.end = $('#update-end').val();
             event_obj.clinic_id = $('#update-clinic').val();
-            event_obj.client_id = $('#update-client').val();
+            event_obj.client_id = $('#update-client-id').val();
             event_obj.collaborator_id = $('#update-collaborator').val();
-            event_obj.client_id = $('#update-client').val();
             event_obj.appointment_status_id = $('#update-status').val();
             event_obj.note = $('#update-note').val();
             console.dir(event_obj);
