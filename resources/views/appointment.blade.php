@@ -119,7 +119,7 @@
                 $('#end').val($.fullCalendar.formatDate(end, 'YYYY-MM-DD HH:mm'));
                 $('#title').val("");
                 $('#collaborator').val("");
-                $('#client').val(""); 
+                $('#client-id').val(""); 
                 $('#note').val("");
                 $("#event-modal-create").modal();
             },
@@ -171,7 +171,7 @@
                 // id:  $('#event-id').val(),
                 title: $('#title').val(),
                 collaborator_id: $('#collaborator').val(),
-                client_id: $('#client').val(),
+                client_id: $('#client-id').val(),
                 note: $('#note').val(),
                 start: $('#start').val(),
                 end: $('#end').val()

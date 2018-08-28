@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="{{asset('css/theme/fullcalendar.min.css')}}"  />
     <link href="{{asset('css/theme/fullcalendar.print.min.css')}}" rel="stylesheet" media="print" />
     @yield('calendar-css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 <body class="skin-blue">
 @include('auth.authWidget')
