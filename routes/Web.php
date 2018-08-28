@@ -7,7 +7,7 @@ Route::get('/download_app', 'Web\HomeController@downloadApp')->name('home.downlo
 Auth::routes();
 Route::prefix('appointments')->group( function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
-    Route::get('/', 'Web\AppointmentController@nextAppointments')->name('appointment.next_appointments');
+    Route::get('/nextAppointments', 'Web\AppointmentController@nextAppointments')->name('appointment.next_appointments');
     Route::post('/create', 'Web\AppointmentController@create')->name('appointment.create');
     Route::get('/{id}/edit', 'Web\AppointmentController@edit')->name('appointment.edit');
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');
