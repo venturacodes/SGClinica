@@ -47,8 +47,8 @@ class Appointment extends Model
     {
         $this->start = $data['start'];
         $this->end = $data['end'];
-        $this->client_id = $data['client_id'];
-        $this->collaborator_id = $data['collaborator_id'];
+        $this->client_id = $data['client'];
+        $this->collaborator_id = $data['collaborator'];
         $this->note = $data['note'];
     }
 }

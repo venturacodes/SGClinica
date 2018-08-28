@@ -26,20 +26,14 @@ class AppointmentController extends Controller
      */
     public function create(Request $request)
     {
-        $data = $this->validate(request(), [
-            'client_id' => 'required',
-            'collaborator_id' => 'required',
-            'start' => 'required',
-            'end' => 'required'
-        ]);
         $data = $request->all();
 
         $appointment = new Appointment();
         $appointment->title = $request->title;
         $appointment->start = new Carbon($request->start);
         $appointment->end = new Carbon($request->end);
-        $appointment->client_id = $request->client_id;
-        $appointment->collaborator_id = $request->collaborator_id;
+        $appointment->client_id = $request->client;
+        $appointment->collaborator_id = $request->collaborator;
         
         $appointment->save();
 
@@ -54,18 +48,12 @@ class AppointmentController extends Controller
      */
     public function update($appointment_id, Request $request)
     {
-        $data = $this->validate(request(), [
-            'client_id' => 'required',
-            'collaborator_id' => 'required',
-            'start' => 'required',
-            'end' => 'required'
-        ]);
         $appointment = Appointment::find($appointment_id);
         $appointment->title = $request->title;
         $appointment->start = new Carbon($request->start);
         $appointment->end = new Carbon($request->end);
-        $appointment->client_id = $request->client_id;
-        $appointment->collaborator_id = $request->collaborator_id;
+        $appointment->client_id = $request->client;
+        $appointment->collaborator_id = $request->collaborator;
         
         $appointment->save();
 
