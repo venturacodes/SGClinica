@@ -54,19 +54,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('js/theme/fullcalendar.min.js')}}"></script>
 <script src="{{asset('js/theme/locale/pt-br.js')}}"></script>
-<script src="{{asset('js/theme/jquery-ui-touch-punch023.min.js')}}"></script>
 @yield('calendar-js')
 @yield('additional-js')
-{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#client').select2({
-            language: "pt",
-        });
-    });
-    $.fn.select2.defaults.set("theme", "classic");
-</script>  --}}
-
-
 </body>
 </html>
