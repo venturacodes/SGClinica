@@ -118,7 +118,6 @@
                 $('#start').val($.fullCalendar.formatDate(start, 'YYYY-MM-DD HH:mm'));
                 $('#end').val($.fullCalendar.formatDate(end, 'YYYY-MM-DD HH:mm'));
                 $('#title').val("");
-                $('#clinic').val("");
                 $('#collaborator').val("");
                 $('#client').val(""); 
                 $('#note').val("");
@@ -172,7 +171,6 @@
                 // id:  $('#event-id').val(),
                 title: $('#title').val(),
                 collaborator_id: $('#collaborator').val(),
-                clinic_id: $('#clinic').val(),
                 client_id: $('#client').val(),
                 note: $('#note').val(),
                 start: $('#start').val(),
