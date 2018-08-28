@@ -35,34 +35,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $address = $this->store_address($request);
         $user = $this->store_user($request);
         $client = new Client();
 
         $client->name = $request->name;
         $client->phone = $request->phone;
         $client->user_id = $user->id;
-        $client->address_id = $address->id;
 
         $client->save();
 
         return redirect()->route('client.index')->with('status', 'Paciente adicionado com sucesso!');
-    }
-    public function store_address(Request $request){
-        $address = new Address();
-
-        $address->cep = $request->cep;
-        $address->uf = $request->uf;
-        $address->cidade = $request->cidade;
-        $address->bairro = $request->bairro;
-        $address->logradouro = $request->logradouro;
-        $address->numero = $request->numero;
-        $address->complemento = $request->complemento;
-
-        $address->save();
-
-        return $address;
-
     }
     public function store_user(Request $request){
         $user = new User();

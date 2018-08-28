@@ -19,6 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->integer('clinic_id')->default(1);
             $table->integer('collaborator_id');
             $table->string('title')->nullable(false);
+            $table->boolean('is_done')->default(false);
             $table->dateTime('start');
             $table->dateTime('end');
             $table->string('note')->nullable(true);

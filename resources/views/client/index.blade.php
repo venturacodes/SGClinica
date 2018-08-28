@@ -24,7 +24,8 @@
                     <td>{{$client->email}}</td>
                     <td>{{$client->phone}}</td>
                     <td><div class="tools">
-                            <a href="{{route('client.edit', $client->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="{{route('client.delete', $client->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
+                            <a href="{{route('client.edit', $client->id)}}" alt='editar'><span class="glyphicon glyphicon-edit" ></span></a>
                             <a href="{{route('client.delete', $client->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>
                     </td>

@@ -49,3 +49,4 @@ Route::prefix('receipts')->group(function () {
     Route::get('/{id}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
     Route::post('/{id}', 'Web\ReceiptController@update')->name('receipt.update');
 });
+Route::get('/', 'Web\HomeController@report')->name('report.show');

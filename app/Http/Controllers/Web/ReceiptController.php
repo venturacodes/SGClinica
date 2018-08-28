@@ -29,6 +29,7 @@ class ReceiptController extends Controller
         $medicines = Medicine::all('id', 'generic_name');
         $collaborators = Collaborator::all('id', 'name');
         $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'pacients' => compact('pacients') ];
+        
         return view('receipt.form_create', compact('data'));
     }
     /**

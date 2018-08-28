@@ -1,9 +1,7 @@
 <header class="header">
     <a href="#" class="logo" data-toggle="collapse" data-target="#demo">
-        SGClínica Menu
+        SGClínica
     </a>
-
-        
     <nav class="navbar navbar-static-top" role="navigation" style="background-color: #448DBA;">
         <div class="navbar-right">
             <ul class="nav navbar-nav navbar-right" style="background-color: #448DBA;">
@@ -11,6 +9,12 @@
                     <li><a href="{{ route('login') }}">Entrar</a></li>
                     <li><a href="{{ route('register') }}">Registrar-se</a></li>
                 @else
+                
+                <li style="background-color: #448DBA;">
+            <a href="{{ route('report.show') }}">
+                <i class="glyphicon glyphicon-dashboard"></i> <span>Relatórios</span>
+            </a>
+        </li>
         <li style="background-color: #448DBA;">
             <a href="{{ route('appointment.show') }}">
                 <i class="glyphicon glyphicon-calendar"></i> <span>Agenda</span>
