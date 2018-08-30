@@ -14,7 +14,7 @@
                         <label for="title">Título</label>
                         <input type="text" class="form-control" id="update-title" placeholder="Titulo">
                         <label for="collaborator">Médico</label>
-                        <select class="form-control" id="update-collaborator" name="collaborator">
+                        <select class="form-control" id="update-collaborator" name="collaborator" disabled>
                             <option value="0">Selecione um médico</option>
                             @foreach($data['collaborators'] as $funcionarios)
                                 @foreach($funcionarios as $funcionario)

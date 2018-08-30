@@ -10,6 +10,7 @@
         <tr>
             <th>#</th>
             <th>Nome</th>
+            <th>Função</th>
             <th>Telefone</th>
             <th>Ferramentas</th>
         </tr>
@@ -21,6 +22,7 @@
                 <tr>
                     <td>{{$collaborator->id}}</td>
                     <td>{{$collaborator->name}}</td>
+                    <td>{{$collaborator->user->role->name}}</td>
                     <td>{{$collaborator->phone}}</td>
                     <td><div class="tools">
                             <a href="{{route('collaborator.edit', $collaborator->id)}}"><span class="glyphicon glyphicon-edit"></span></a>

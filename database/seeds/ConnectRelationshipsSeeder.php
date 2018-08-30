@@ -23,19 +23,21 @@ class ConnectRelationshipsSeeder extends Seeder
 		$permissions = Permission::all();
 
 	    /**
-	     * Attach Permissions to Roles
+	 * Attach Permissions to Roles
 	     *
 	     */
-		$roleAdmin = Role::where('name', '=', 'Admin')->first();
+		$roleAdmin = Role::where('name', '=', 'Administrador')->first();
 		foreach ($permissions as $permission) {
 			$roleAdmin->attachPermission($permission);
 		}
-		$roleSecretary = Role::where('name', '=', 'Secretary')->first();
+		$roleSecretary = Role::where('name', '=', 'Secretária')->first();
 		foreach ($permissions as $permission) {
 			$roleSecretary->attachPermission($permission);
 		}
-		$roleDoctor = Role::where('name', '=', 'Doctor')->first();
-		$roleDoctor->attachPermission('');
+		$roleDoctor = Role::where('name', '=', 'Médico')->first();
+		foreach ($permissions as $permission) {
+			$roleDoctor->attachPermission($permission);
+		}
 
     }
 

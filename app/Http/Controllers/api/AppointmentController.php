@@ -32,6 +32,7 @@ class AppointmentController extends Controller
         $appointment->title = $request->title;
         $appointment->start = new Carbon($request->start);
         $appointment->end = new Carbon($request->end);
+        $appointment->note = $request->note;
         $appointment->client_id = $request->client_id;
         $appointment->collaborator_id = $request->collaborator_id;
         
@@ -52,6 +53,7 @@ class AppointmentController extends Controller
         $appointment->title = $request->title;
         $appointment->start = new Carbon($request->start);
         $appointment->end = new Carbon($request->end);
+        $appointment->note = $request->note;
         $appointment->client_id = $request->client_id;
         $appointment->collaborator_id = $request->collaborator_id;
         
@@ -73,6 +75,7 @@ class AppointmentController extends Controller
         $data['start_time'] = new Carbon($request->start_time);
         $data['end_time'] = new Carbon($request->start_time);
         $data['end_time']->addMinutes(Appointment::DEFAULT_DURATION);
+        $appointment->note = $request->note;
         $appointment->prepare($data);
         $appointment->save();
 

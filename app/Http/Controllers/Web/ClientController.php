@@ -27,9 +27,11 @@ class ClientController extends Controller
     public function show(Request $request, $id)
     {
         $client = Client::find($id);
-        $appointments = Appointment::where('client_id', $id)->get();
+        $appointments = Appointment::where([
+                ['client_id','=', $id],
+                ['is_done','=', 1]
+            ])->get();
         $client['appointments'] = compact('appointments');
-        
         
         return view('client.show',compact('client'));
     }

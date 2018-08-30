@@ -11,14 +11,11 @@ Route::prefix('appointments')->group( function () {
     Route::get('/{id}/edit', 'Web\AppointmentController@edit')->name('appointment.edit');
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');
     Route::get('/{id}/delete', 'Web\AppointmentController@destroy')->name('appointment.delete');
-});
-Route::prefix('consulta')->group( function () {
-    Route::get('/{id}/attend_to', 'Web\ConsultaController@attendTo')->name('consulta.attend_to');
-    Route::post('/create', 'Web\ConsultaController@store')->name('consulta.store');
-    Route::get('/{id}/needExams', 'Web\ConsultaController@needExams')->name('consulta.need_exams');
-    Route::get('/{id}/edit', 'Web\ConsultaController@edit')->name('appointment.edit');
-    Route::post('/{id}', 'Web\ConsultaController@update')->name('appointment.update');
-    Route::get('/{id}/delete', 'Web\ConsultaController@destroy')->name('appointment.delete');
+    Route::get('/{id}/attend_to', 'Web\AppointmentController@attendTo')->name('appointment.attend_to');
+    Route::get('/{id}/needExams', 'Web\AppointmentController@needExams')->name('appointment.need_exams');
+    Route::post('/{id}', 'Web\AppointmentController@store')->name('appointment.store');
+    Route::post('/{id}/attachExams', 'Web\AppointmentController@attachExams')->name('appointment.attachExams');
+    
 });
 Route::prefix('collaborators')->group(function () {
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');

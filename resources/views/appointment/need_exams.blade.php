@@ -2,7 +2,7 @@
 
 @section('form_title','2/3 - Consulta em andamento - Exames')
 @section('form_content')
-    <form method="POST" action="{{route('consulta.store')}}">
+    <form method="POST" action="{{route('appointment.attachExams',$appointment->id)}}">
         {{ csrf_field() }}
         <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">

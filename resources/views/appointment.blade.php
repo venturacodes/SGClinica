@@ -70,6 +70,8 @@
 @section('calendar-js')
 <script>
     $(document).ready(function(){
+        $('#search-collaborator').val(1);
+        var selectedCollaborator = $("#search-collaborator").val();
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -101,7 +103,7 @@
 
             eventLimit: true, // allow "more" link when too many events
             events: {
-                url: '/api/appointments/clinic/1'
+                url: '/api/appointments/collaborator/'+selectedCollaborator
             },
             selectable: true,
             editable: true,
@@ -118,9 +120,9 @@
                 $('#start').val($.fullCalendar.formatDate(start, 'YYYY-MM-DD HH:mm'));
                 $('#end').val($.fullCalendar.formatDate(end, 'YYYY-MM-DD HH:mm'));
                 $('#title').val("");
-                $('#collaborator').val("");
+                $('#collaborator').val($('#search-collaborator').val());
                 $('#client-id').val(""); 
-                $('#note').val("");
+                $('#note-text').val("");
                 $("#event-modal-create").modal();
             },
             eventClick: function(calEvent, jsEvent, view) { // PARA EDIÇÃO DE UM
@@ -172,11 +174,10 @@
                 title: $('#title').val(),
                 collaborator_id: $('#collaborator').val(),
                 client_id: $('#client-id').val(),
-                note: $('#note').val(),
+                note: $('#note-text').val(),
                 start: $('#start').val(),
                 end: $('#end').val()
             };
-            console.dir(eventData);
             $.ajax({
                     url: '/api/appointments',
                     data: 'title='+ eventData.title
@@ -253,6 +254,15 @@
             e.preventDefault();
         });
     });
+    $('#search-collaborator').on('change', function(){
+        var events = {
+            url: '/api/appointments/collaborator/'+$(this).val()   
+        }
+        $('#calendar').fullCalendar('removeEventSources');
+        $('#calendar').fullCalendar('addEventSource', events);
+        $('#calendar').fullCalendar('refetchEvents');
+    });
+    
 
 </script>
 @endsection

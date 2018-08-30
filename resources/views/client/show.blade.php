@@ -18,7 +18,7 @@
         <section class="panel">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                 <span class="navbar-brand" href="#">
-                <span>Consultas realizadas</span>
+                <span>Histórico de consultas</span>
                 </span>
             </nav>
             <div class="panel-body table-responsive">

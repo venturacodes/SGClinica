@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Consulta extends Model
+class ExamType extends Model
 {
     //
 }

@@ -36,14 +36,14 @@ class AppointmentController extends Controller
     {
         $appointments = Appointment::all();
 
-        return view('appointments.next_appointments', compact('appointments')); 
+        return view('appointment.next_appointments', compact('appointments')); 
     }
 
     public function edit(Request $request, $id)
     {
         return null;
     }
-    public function destory(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         return null;
     }
@@ -62,5 +62,51 @@ class AppointmentController extends Controller
     public function showByCollaboratorId($collaborator_id)
     {
         return new JsonResponse(Appointment::where('collaborator_id',$collaborator_id)->get());
+    }
+    
+    /**
+     * Inicia uma consulta por parte do médico
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
+    public function attendTo(Request $request, $id)
+    {
+        $appointment = Appointment::find($id);
+
+        return view('appointment.attend_to', compact('appointment')); 
+    }
+    /**
+     * Method responsible for store an appointment by the doctor.
+     *
+     * @return void
+     */
+    public function store(Request $request, $id)
+    {
+        $appointment = Appointment::find($id);
+        $appointment->note = $appointment->note . "\n---------\n" . $request->description;
+        $appointment->save();
+        return redirect()->route('appointment.need_exams', $appointment->id)->with('status', 'Paciente adicionado com sucesso!');
+    }
+    /**
+     * Method responsible for store an appointment by the doctor.
+     *
+     * @return void
+     */
+    public function attachExams(Request $request, $id)
+    {
+        $appointment = Appointment::find($id);
+        dd($appointment);
+        return redirect()->route('appointment.need_exams', $appointment->id)->with('status', 'Paciente adicionado com sucesso!');
+    }
+    public function needExams(Request $request, $id)
+    {
+        $appointment = Appointment::find($id);
+        return view('appointment.need_exams', compact('appointment'));
+    }
+    public function needReceipts(Request $request, $id)
+    {
+        return view('appointment.need_receipts');
     }
 }

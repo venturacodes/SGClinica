@@ -13,7 +13,7 @@
                         <label for="title">Título</label>
                         <input type="text" class="form-control" id="title" placeholder="Titulo" required>
                         <label for="collaborator">Médico</label>
-                        <select class="form-control" id="collaborator" name="collaborator" required>
+                        <select class="form-control" id="collaborator" name="collaborator" disabled>
                             <option value="0">Selecione um médico</option>
                             @foreach($data['collaborators'] as $funcionarios)
                                 @foreach($funcionarios as $funcionario)
@@ -31,7 +31,7 @@
                             @endforeach
                         </select>
                         <label for="note">Observação</label>
-                            <textarea id="note" name="note" class="form-control" required></textarea>
+                            <textarea id="note-text" name="note" class="form-control" required></textarea>
                     </div>
                     <input type="hidden" id="start" value="">
                     <input type="hidden" id="end" value="">

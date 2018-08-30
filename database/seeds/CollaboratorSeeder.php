@@ -12,11 +12,9 @@ class CollaboratorSeeder extends Seeder
     {
         DB::table('collaborators')->insert([
             'user_id' => 1,
-            'job_id' => 1,
             'clinic_id' => 1,
             'name' => 'Bruno da Luz',
             'phone' => '491234-1212',
-            'color' => 'teste',
         ]);
     }
 }
