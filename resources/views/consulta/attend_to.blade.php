@@ -13,6 +13,6 @@
         <label for="description">Descrição do caso</label>
         <textarea name="description" class="form-control"></textarea>
         <br />
-        <input type="submit" value="Próximo 1/3" class="btn btn-block btn-primary">
+        <input type="submit" value="Próximo 2/3" class="btn btn-block btn-primary">
     </form>
 @endsection

@@ -21,6 +21,6 @@
             <option value="0">Selecione um tipo de exame</option>
         </select>
         <br />
-        <input type="submit" value="Próximo 2/3" class="btn btn-block btn-primary">
+        <input type="submit" value="Próximo 3/3" class="btn btn-block btn-primary">
     </form>
 @endsection

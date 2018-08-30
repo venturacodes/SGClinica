@@ -31,6 +31,7 @@ Route::prefix('collaborators')->group(function () {
 Route::prefix('clients')->group(function () {
     Route::get('/', 'Web\HomeController@client')->name('client.index');
     Route::post('/', 'Web\ClientController@store')->name('client.store');
+    Route::get('{id}/show', 'Web\ClientController@show')->name('client.show');
     Route::get('/create', 'Web\ClientController@create')->name('client.create');
     Route::get('/{id}/delete', 'Web\ClientController@destroy')->name('client.delete');
     Route::get('/{id}/edit', 'Web\ClientController@edit')->name('client.edit');

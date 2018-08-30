@@ -26,7 +26,7 @@ class Appointment extends Model
     }
     public function collaborator()
     {
-        return $this->hasOne(Collaborator::class);
+        return $this->belongsTo(Collaborator::class);
     }
     // public function checkIfAlreadyBooked(Carbon $start_time, Carbon $end_time, $clinic_id)
     // {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Address;
 use App\Client;
 use App\User;
+use App\Appointment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,12 +13,25 @@ use App\Http\Controllers\Controller;
 class ClientController extends Controller
 {
     /**
-     * Show all clinic.
+     * Show all client.
      *  @return JsonResponse
      */
     public function index()
     {
         return new JsonResponse(Client::all());
+    }
+    /**
+     * Show a client.
+     *  @return JsonResponse
+     */
+    public function show(Request $request, $id)
+    {
+        $client = Client::find($id);
+        $appointments = Appointment::where('client_id', $id)->get();
+        $client['appointments'] = compact('appointments');
+        
+        
+        return view('client.show',compact('client'));
     }
     /**
      * Creates a new client
