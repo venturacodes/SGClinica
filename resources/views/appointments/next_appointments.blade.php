@@ -17,11 +17,11 @@
             @foreach($appointments as $appointment)
                 <tr>
                     <td>{{$appointment->id}}</td>
-                    <td>{{$appointment->id}}</td>
+                    <td>{{$appointment->client->name}}</td>
                     <td>{{$appointment->start}}</td>
                     <td>{{$appointment->end}}</td>
                     <td><div class="tools">
-                            <a href="{{route('appointment.delete', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
+                            <a href="{{route('consulta.attend_to', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
                             <a href="{{route('appointment.edit', $appointment->id)}}" alt='editar'><span class="glyphicon glyphicon-edit" ></span></a>
                             <a href="{{route('appointment.delete', $appointment->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>

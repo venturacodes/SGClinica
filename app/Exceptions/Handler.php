@@ -44,6 +44,22 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $userLevelCheck = $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
+        $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
+        $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\PermissionDeniedException ||
+        $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\LevelDeniedException;
+
+        if ($userLevelCheck) {
+
+            if ($request->expectsJson()) {
+                return Response::json(array(
+                    'error'    =>  403,
+                    'message'   =>  'Não autorizado!'
+                ), 403);
+            }
+            abort(403, 'Você não tem permissão para acessar esta opção.');
+        }
+
         return parent::render($request, $exception);
     }
 

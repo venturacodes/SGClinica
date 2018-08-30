@@ -4,14 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
     use  Notifiable;
-    const ADMIN_ROLE = 1;
-    const COLLABORATOR_ROLE = 2;
-    const SECRETARY_ROLE = 3;
-    const CLIENT_ROLE = 4;
+    use HasRoleAndPermission;
     /**
      * The attributes that are mass assignable.
      *
@@ -29,30 +27,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\Role::class, 'id');
     }
-    /**
-     * Method that checks if a user is admin or not, useful to give only admin methods.
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        foreach ($this->roles()->get() as $role) {
-            if ($role->name == 'Admin') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    public function isDentist()
-    {
-        foreach ($this->roles()->get() as $role) {
-            if ($role->name == 'Dentista') {
-                return true;
-            }
-        }
-
-        return false;
-    }
     public function client()
     {
             return $this->hasOne(\App\Client::class);
@@ -63,7 +37,6 @@ class User extends Authenticatable
     }
     public function prepare(array $data)
     {
-
         $this->email = $data['email'];
         $this->password = bcrypt($data['password']);
         $this->role_id = $data['role_id'];

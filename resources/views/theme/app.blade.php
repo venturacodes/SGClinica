@@ -53,6 +53,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('js/theme/fullcalendar.min.js')}}"></script>
 <script src="{{asset('js/theme/locale/pt-br.js')}}"></script>
+<script src="{{asset('js/theme/Chart.bundle.min.js')}}"></script>
 @yield('calendar-js')
 @yield('additional-js')
 </body>

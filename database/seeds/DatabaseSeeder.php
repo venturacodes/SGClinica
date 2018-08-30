@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call('AppointmentSeeder');
         $this->call('ClinicCollaboratorSeeder');
         $this->call('ClientSeeder');
+        $this->call('PermissionsTableSeeder');
+        $this->call('RolesTableSeeder');
+        $this->call('ConnectRelationshipsSeeder');
     }
 }

@@ -14,10 +14,6 @@ class AppointmentController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('dentist.decode_json_request');
-    }
     /**
      * Show all users.
      *  @return JsonResponse
@@ -39,8 +35,10 @@ class AppointmentController extends Controller
     public function nextAppointments(Request $request)
     {
         $appointments = Appointment::all();
+
         return view('appointments.next_appointments', compact('appointments')); 
     }
+
     public function edit(Request $request, $id)
     {
         return null;

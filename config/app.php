@@ -162,8 +162,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        // LARAVEL COLLECTIVE
-        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -180,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Dependência full-calendar(https://github.com/maddhatter/laravel-fullcalendar)
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        jeremykenedy\LaravelRoles\RolesServiceProvider::class
 
     ],
 
@@ -229,11 +228,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // Dependência full-calendar(https://github.com/maddhatter/laravel-fullcalendar)
-        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
-        //LARAVEL COLLECTIVE
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

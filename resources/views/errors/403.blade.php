@@ -76,8 +76,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Retornaremos em breve
+                    403!<br />
                 </div>
+                <p>Você não tem permissão para acessar esta página</p>
             </div>
         </div>
     </body>

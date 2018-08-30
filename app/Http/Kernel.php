@@ -50,14 +50,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'admin' => \App\Http\Middleware\IsAdmin::class,
-        'dentist.auth' => \App\Http\Middleware\CheckCustomDentistAuth::class,
-        'dentist.decode_json_request' => \App\Http\Middleware\RequestJsonReturnsDecodedDataMiddleware::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'role' => \jeremykenedy\LaravelRoles\Middleware\VerifyRole::class,
+        'permission' => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
+        'level' => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
     ];
 }

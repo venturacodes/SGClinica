@@ -22,7 +22,7 @@ class Appointment extends Model
 ];
     public function client()
     {
-        return $this->hasOne(Client::class);
+        return $this->belongsTo(Client::class);
     }
     public function collaborator()
     {

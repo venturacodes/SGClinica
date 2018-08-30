@@ -3,7 +3,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'Web\HomeController@index')->name('home');
-Route::get('/download_app', 'Web\HomeController@downloadApp')->name('home.download_app');
 Auth::routes();
 Route::prefix('appointments')->group( function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
@@ -12,6 +11,14 @@ Route::prefix('appointments')->group( function () {
     Route::get('/{id}/edit', 'Web\AppointmentController@edit')->name('appointment.edit');
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');
     Route::get('/{id}/delete', 'Web\AppointmentController@destroy')->name('appointment.delete');
+});
+Route::prefix('consulta')->group( function () {
+    Route::get('/{id}/attend_to', 'Web\ConsultaController@attendTo')->name('consulta.attend_to');
+    Route::post('/create', 'Web\ConsultaController@store')->name('consulta.store');
+    Route::get('/{id}/needExams', 'Web\ConsultaController@needExams')->name('consulta.need_exams');
+    Route::get('/{id}/edit', 'Web\ConsultaController@edit')->name('appointment.edit');
+    Route::post('/{id}', 'Web\ConsultaController@update')->name('appointment.update');
+    Route::get('/{id}/delete', 'Web\ConsultaController@destroy')->name('appointment.delete');
 });
 Route::prefix('collaborators')->group(function () {
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');
