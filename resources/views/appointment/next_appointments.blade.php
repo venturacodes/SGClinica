@@ -18,8 +18,8 @@
                 <tr>
                     <td>{{$appointment->id}}</td>
                     <td>{{$appointment->client->name}}</td>
-                    <td>{{$appointment->start}}</td>
-                    <td>{{$appointment->end}}</td>
+                    <td>{{date('d-m-Y H:i', strtotime($appointment->start))}}</td>
+                    <td>{{date('d-m-Y H:i', strtotime($appointment->end))}}</td>
                     <td><div class="tools">
                             <a href="{{route('appointment.attend_to', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
                             <a href="{{route('appointment.edit', $appointment->id)}}" alt='editar'><span class="glyphicon glyphicon-edit" ></span></a>

@@ -116,6 +116,34 @@
                    $('#event-modal-loading').modal("hide");
                 }
             },
+            eventResize: function(eventResized){
+                console.log(eventResized);
+                if(confirm("Alterando horário do evento de: "+$.fullCalendar.formatDate(eventResized.start, 'HH:mm')+" até "+ $.fullCalendar.formatDate(eventResized.end, 'HH:mm')))
+                {
+                    $.ajax({
+                        url: '/api/appointments/update/'+eventResized.id,
+                        data: 'title='+ eventResized.title
+                        +'&start='+ $.fullCalendar.formatDate(eventResized.start, 'YYYY-MM-DD HH:mm')
+                        +'&end='+ $.fullCalendar.formatDate(eventResized.end, 'YYYY-MM-DD HH:mm')
+                        +'&clinic_id='+ eventResized.clinic_id
+                        +'&client_id='+eventResized.client_id
+                        +'&collaborator_id='+eventResized.collaborator_id
+                        +'&appointment_status_id='+eventResized.appointment_status_id
+                        +'&note='+eventResized.note,
+                        type: "POST",
+                        success: function(json) {
+                            
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            alert(err.message);
+                            revertFunc();
+                        }
+                    });
+                }
+                $('#calendar').fullCalendar('refetchEvents');
+                
+            },
             select: function(start, end) { // PARA CRIAÇÃO DE UM EVENTO.
                 $('#start').val($.fullCalendar.formatDate(start, 'YYYY-MM-DD HH:mm'));
                 $('#end').val($.fullCalendar.formatDate(end, 'YYYY-MM-DD HH:mm'));
