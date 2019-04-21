@@ -7,6 +7,7 @@ Auth::routes();
 Route::prefix('appointments')->group( function () {
     Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
     Route::get('/nextAppointments', 'Web\AppointmentController@nextAppointments')->name('appointment.next_appointments');
+    Route::POST('/search', 'Web\AppointmentController@searchByName')->name('appointment.searchByName');
     Route::post('/create', 'Web\AppointmentController@create')->name('appointment.create');
     Route::get('/{id}/edit', 'Web\AppointmentController@edit')->name('appointment.edit');
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');

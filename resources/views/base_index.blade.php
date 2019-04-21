@@ -5,6 +5,16 @@
             {{ session('status') }}
         </div>
     @endif
+    @if (session('status-alert'))
+        <div class="alert alert-danger">
+            {{ session('status-alert') }}
+        </div>
+    @endif
+    @if (session('status-info'))
+        <div class="alert alert-info">
+            {{ session('status-info') }}
+        </div>
+    @endif
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
     <span class="navbar-brand" href="#">
        @yield('index_title')
@@ -13,12 +23,8 @@
     <section class="panel">
         <header class="panel-heading">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
-                    <button class="btn btn-outline-success my-2 my-sm-0 btn-primary" type="submit">Buscar</button>
-                    @yield('index_add_button')
-                </form>
-
+                @yield('index_search_button')
+                @yield('index_add_button')
             </nav>
         </header>
         <div class="panel-body table-responsive">

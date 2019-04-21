@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Appointment;
+use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -34,7 +35,7 @@ class AppointmentController extends Controller
     }
     public function nextAppointments(Request $request)
     {
-        $appointments = Appointment::all();
+        $appointments = Appointment::orderBy('start')->get();
 
         return view('appointment.next_appointments', compact('appointments')); 
     }
@@ -108,5 +109,19 @@ class AppointmentController extends Controller
     public function needReceipts(Request $request, $id)
     {
         return view('appointment.need_receipts');
+    }
+    public function searchByName(Request $request)
+    {
+        if(!$request->name){
+            $appointments = Appointment::all();
+            return redirect()->route('appointment.next_appointments', compact('appointments'))->with('status-info','Preencha o campo de busca para efetuar uma pesquisa.');
+        }
+        $client = Client::where('name','LIKE', "%{$request->name}%")->first();
+        if(!$client){
+            $appointments = Appointment::all();
+            return redirect()->route('appointment.next_appointments', compact('appointments'))->with('status-info','Paciente não encontrado.');
+        }
+        $appointments = Appointment::where('client_id',$client->id)->get();
+        return view('appointment.next_appointments_filtered', compact('appointments'));        
     }
 }
