@@ -15,6 +15,7 @@ class CreateExamTypesTable extends Migration
     {
         Schema::create('exam_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->timestamps();
         });
     }

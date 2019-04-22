@@ -24,7 +24,7 @@
         <label for="email">E-mail</label>
         <input type="text" name="email" class="form-control" value="{{$collaborator->user->email}}">
         <label for="password">Senha</label>
-        <input type="text" name="password" class="form-control">
+        <input type="password" name="password" class="form-control" placeholder="Digite nova senha">
 
         <br />
         <input type="submit" value="salvar" class="btn btn-block btn-primary">
