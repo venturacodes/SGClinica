@@ -51,26 +51,20 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $this->store_user($request);
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'email' =>'required|unique:clients',
+            'phone'  => 'required',
+        ]);
         $client = new Client();
-
+        $client->clinic_id = 1;
         $client->name = $request->name;
-        $client->phone = $request->phone;
-        $client->user_id = $user->id;
+        $client->phone = $request->phone; 
+        $client->email = $request->email; 
 
         $client->save();
 
         return redirect()->route('client.index')->with('status', 'Paciente adicionado com sucesso!');
-    }
-    public function store_user(Request $request){
-        $user = new User();
-
-        $user->email = $request->email;
-        $user->password = $request->password;
-
-        $user->save();
-
-        return $user;
     }
     public function edit(Request $request){
         $client = Client::find($request->id);
@@ -78,7 +72,11 @@ class ClientController extends Controller
         return view('client.form_update',compact('client'));
     }
     public function update(Request $request){
-
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'email' =>'required|unique:users',
+            'phone'  => 'required',
+        ]);
         $client = Client::find($request->id);
 
         $client->name = $request->name;

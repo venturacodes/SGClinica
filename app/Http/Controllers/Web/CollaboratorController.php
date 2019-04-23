@@ -46,6 +46,7 @@ class CollaboratorController extends Controller
     {
         $this->validate($request, [
             'name'      => 'required|max:255',
+            'email' =>'required|unique:users',
             'phone'  => 'required',
         ]);
         $collaborator = new Collaborator();
@@ -71,8 +72,11 @@ class CollaboratorController extends Controller
         return view('collaborator.form_update',compact('collaborator'), compact('roles'));
     }
     public function update(Request $request){
-        
-        
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'email' =>'required|unique:users',
+            'phone'  => 'required',
+        ]);
         $collaborator = Collaborator::find($request->id);
 
         $collaborator->name = $request->name;

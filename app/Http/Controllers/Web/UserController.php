@@ -42,6 +42,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|unique'
+        ]);
         $User = new User();
         if (User::where('email', '=', $request->email)->exists()) {
             return new JsonResponse(['message'=> 'Usuário já cadastrado com este e-mail.']);
