@@ -25,10 +25,10 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function create(Request $request){
-        $pacients = Client::all('id', 'name');
+        $clients = Client::all('id', 'name');
         $medicines = Medicine::all('id', 'generic_name');
         $collaborators = Collaborator::all('id', 'name');
-        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'pacients' => compact('pacients') ];
+        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'clients' => compact('clients') ];
         
         return view('receipt.form_create', compact('data'));
     }
@@ -41,7 +41,7 @@ class ReceiptController extends Controller
     public function store(Request $request){
         $receipt = new Receipt();
         
-        $receipt->pacient_id = $request->pacient_id;
+        $receipt->client_id = $request->client_id;
         $receipt->medicine_id = $request->medicine_id;
         $receipt->form_of_use = $request->form_of_use;
         $receipt->collaborator_id = $request->collaborator_id;

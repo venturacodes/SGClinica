@@ -74,6 +74,7 @@ class HomeController extends Controller
     public function receipt()
     {
         $receipts = Receipt::all();
+        
         return view('receipt.index', compact('receipts'));
     }
     public function report()

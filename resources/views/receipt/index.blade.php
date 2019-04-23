@@ -21,9 +21,9 @@
             @foreach($receipts as $receipt)
                 <tr>
                     <td>{{$receipt->id}}</td>
-                    <td>{{$receipt->pacient_id}}</td>
-                    <td>{{$receipt->medicine_id}}</td>
-                    <td>{{$receipt->collaborator_id}}</td>
+                    <td>{{$receipt->Client->name}}</td>
+                    <td>{{$receipt->Medicine->generic_name}}</td>
+                    <td>{{$receipt->Collaborator->name}}</td>
                     <td>{{$receipt->form_of_use}}</td>
                     <td><div class="tools">
                             <a href="{{route('receipt.edit', $receipt->id)}}"><span class="glyphicon glyphicon-edit"></span></a>

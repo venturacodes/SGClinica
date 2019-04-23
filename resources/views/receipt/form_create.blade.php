@@ -6,12 +6,12 @@
 @section('form_content')
     <form method="POST" action="{{route('receipt.store')}}">
         {{ csrf_field() }}
-        <label for="pacient_id">Paciente</label>
-        <select class="form-control" id="pacient" name="pacient_id" style="width: 100%" required>
+        <label for="client_id">Paciente</label>
+        <select class="form-control" id="client" name="client_id" style="width: 100%" required>
             <option value="0">Selecione um paciente</option>
-            @foreach($data['pacients'] as $pacients)
-                @foreach($pacients as $pacient)
-                    <option value="{{$pacient->id}}">{{$pacient->name}}</option>
+            @foreach($data['clients'] as $clients)
+                @foreach($clients as $client)
+                    <option value="{{$client->id}}">{{$client->name}}</option>
                 @endforeach
             @endforeach
         </select>
