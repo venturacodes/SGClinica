@@ -39,11 +39,17 @@ class ReceiptController extends Controller
      * @return void
      */
     public function store(Request $request){
+        $this->validate($request, [
+            'client_id'      => 'required',
+            'medicine_id' =>'required',
+            'forma_de_uso'  => 'required',
+            'collaborator_id' => 'required'
+        ]);
         $receipt = new Receipt();
         
         $receipt->client_id = $request->client_id;
         $receipt->medicine_id = $request->medicine_id;
-        $receipt->form_of_use = $request->form_of_use;
+        $receipt->form_of_use = $request->forma_de_uso;
         $receipt->collaborator_id = $request->collaborator_id;
        
         $receipt->save();
