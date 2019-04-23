@@ -3,8 +3,15 @@
         SGClínica
         
     </a>
+
     <nav class="navbar navbar-static-top" role="navigation">
-        
+        @if(!Auth::guest())
+            <div class="navbar-left">
+                    <ul class="nav navbar-nav navbar-left" >
+                        <li><a href="" >Bem vindo, {{Auth::user()->email}}</a></li>
+                    </ul>
+            </div>
+        @endif
         <div class="navbar-right">
             <ul class="nav navbar-nav navbar-right" >
                 @if (Auth::guest())
@@ -13,7 +20,7 @@
                 @else
                     <li class="dropdown" style="background-color: #448DBA;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                             <i class="glyphicon glyphicon-menu-hamburger"></i> <span class="caret"></span>
+                             <i class="glyphicon glyphicon-menu-hamburger"></i><span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
