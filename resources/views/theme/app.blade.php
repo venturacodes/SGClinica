@@ -21,7 +21,7 @@
     <link href="{{asset('css/theme/fullcalendar.print.min.css')}}" rel="stylesheet" media="print" />
     @yield('calendar-css')
 </head>
-<body class="skin-blue">
+<body class="skin-blue sidebar-mini">
 @include('auth.authWidget')
 <div id="app">
     <div class="wrapper row-offcanvas row-offcanvas-left">

@@ -1,6 +1,7 @@
 <header class="header">
     <a href="#" class="logo" data-toggle="collapse" data-target="#demo">
-        SGClínica
+        <span class="logo-mini"><b>P</b>UC</span>
+        <span class="logo-lg"><b>PUC</b>linica</span>
         
     </a>
 

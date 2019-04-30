@@ -54,7 +54,7 @@ class ReceiptController extends Controller
        
         $receipt->save();
 
-        return redirect()->route('receipt.index');
+        return redirect()->route('receipt.index')->with('status','Receita adicionada com sucesso!');
     }
     /**
      * edit the Receipt
@@ -62,9 +62,12 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function edit(Request $request, $id){
-
+        $clients = Client::all('id', 'name');
+        $medicines = Medicine::all('id', 'generic_name');
+        $collaborators = Collaborator::all('id', 'name');
         $receipt = Receipt::find($id);
-        return view('receipt.form_update', $receipt);
+        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'clients' => compact('clients'), 'receipt' => compact('receipt') ];
+        return view('receipt.form_update', compact('data'));
     }
     /**
      * Updates the Receipt
@@ -72,7 +75,7 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function update(Request $request, $id){
-        $receipt = Medicine::find($id);
+        $receipt = Receipt::find($id);
         
         $receipt->pacient_id = $request->pacient_id;
         $receipt->medicine_id = $request->medicine_id;
@@ -81,7 +84,7 @@ class ReceiptController extends Controller
 
         $receipt->save();
 
-        return redirect()->route('receipt.index');
+        return redirect()->route('receipt.index')->with('status','Receita atualizada com sucesso!');
     }
     /**
      * Removes a Receipt by it's id
@@ -92,6 +95,6 @@ class ReceiptController extends Controller
         $receipt = Receipt::find($id);
         $receipt->delete();
         $receipt->deleted = true;
-        return new JsonResponse($receipt);
+        return redirect()->route('receipt.index')->with('status','Receita excluída com sucesso!');
     }
 }
