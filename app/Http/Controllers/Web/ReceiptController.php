@@ -24,13 +24,10 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function create(Request $request){
-        $clients = Client::all('id', 'name');
-        $medicines = Medicine::all('id', 'generic_name');
-        $collaborators = Collaborator::all('id', 'name');
-        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'clients' => compact('clients') ];
-        
-        return view('receipt.form_create', compact('data'));
+    public function create(Request $request){    
+        return view('receipt.form')->with('clients',Client::all('id', 'name'))
+        ->with('medicines', Medicine::all('id', 'generic_name'))
+        ->with('collaborators',Collaborator::all('id', 'name'));
     }
     /**
      * Store a new Receipt
@@ -61,13 +58,11 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function edit(Request $request, $id){
-        $clients = Client::all('id', 'name');
-        $medicines = Medicine::all('id', 'generic_name');
-        $collaborators = Collaborator::all('id', 'name');
-        $receipt = Receipt::find($id);
-        $data = ['collaborators' => compact('collaborators'), 'medicines' => compact('medicines'), 'clients' => compact('clients'), 'receipt' => compact('receipt') ];
-        return view('receipt.form_update', compact('data'));
+    public function edit(Receipt $receipt){
+        return view('receipt.form')->with('clients',Client::all('id', 'name'))
+        ->with('medicines', Medicine::all('id', 'generic_name'))
+        ->with('collaborators',Collaborator::all('id', 'name'))
+        ->with('receipt', $receipt);
     }
     /**
      * Updates the Receipt
@@ -77,9 +72,9 @@ class ReceiptController extends Controller
     public function update(Request $request, $id){
         $receipt = Receipt::find($id);
         
-        $receipt->pacient_id = $request->pacient_id;
+        $receipt->client_id = $request->client_id;
         $receipt->medicine_id = $request->medicine_id;
-        $receipt->form_of_use = $request->form_of_use;
+        $receipt->form_of_use = $request->forma_de_uso;
         $receipt->collaborator_id = $request->collaborator_id;
 
         $receipt->save();

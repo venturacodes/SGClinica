@@ -61,8 +61,8 @@ Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function ()
     Route::get('/', 'Web\HomeController@receipt')->name('receipt.index');
     Route::post('/', 'Web\ReceiptController@store')->name('receipt.store');
     Route::get('/create', 'Web\ReceiptController@create')->name('receipt.create');
-    Route::get('/{id}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
-    Route::get('/{id}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
-    Route::post('/{id}', 'Web\ReceiptController@update')->name('receipt.update');
+    Route::get('/{receipt}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
+    Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
+    Route::post('/{receipt}', 'Web\ReceiptController@update')->name('receipt.update');
 });
 Route::get('/', 'Web\HomeController@report')->name('report.show');

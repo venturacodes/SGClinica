@@ -176,9 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // Dependência full-calendar(https://github.com/maddhatter/laravel-fullcalendar)
-        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-        jeremykenedy\LaravelRoles\RolesServiceProvider::class
+        
+        
 
     ],
 

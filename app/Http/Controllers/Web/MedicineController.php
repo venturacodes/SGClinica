@@ -77,6 +77,9 @@ class MedicineController extends Controller
     public function destroy($id)
     {
         $medicine = Medicine::find($id);
+        if($medicine->receipts->count() > 0){
+            return redirect()->route('medicine.index')->with('status-alert', 'Não é possível deletar o medicamento, pois ele está vinculado a pelo menos uma receita.');
+        }
         $medicine->delete();
         $medicine->deleted = true;
         return redirect()->route('medicine.index')->with('status', 'Medicamento deletado com sucesso!');
