@@ -69,10 +69,18 @@
 
 @section('calendar-js')
 <script>
+    function get_calendar_height() {
+        return $(window).height() - 30;
+    }
     $(document).ready(function(){
+        $(window).resize(function() {
+            $('#calendar').fullCalendar('option', 'height', get_calendar_height());
+        });
+
         $('#search-collaborator').val(1);
         var selectedCollaborator = $("#search-collaborator").val();
         $('#calendar').fullCalendar({
+            height: get_calendar_height,
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -141,7 +149,6 @@
                         }
                     });
                 }
-                $('#calendar').fullCalendar('refetchEvents');
                 
             },
             select: function(start, end) { // PARA CRIAÇÃO DE UM EVENTO.

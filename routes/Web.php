@@ -54,7 +54,7 @@ Route::group(['prefix'=> 'medicines', 'middleware' => 'auth'], function ()
     Route::get('/create', 'Web\MedicineController@create')->name('medicine.create');
     Route::get('/{id}/delete', 'Web\MedicineController@destroy')->name('medicine.delete');
     Route::get('/{id}/edit', 'Web\MedicineController@edit')->name('medicine.edit');
-    Route::post('/{id}', 'Web\MedicineController@update')->name('medicine.update');
+    Route::put('/{id}', 'Web\MedicineController@update')->name('medicine.update');
 });
 Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function () 
 {

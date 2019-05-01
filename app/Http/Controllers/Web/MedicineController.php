@@ -25,7 +25,7 @@ class MedicineController extends Controller
      */
     public function create(Request $request)
     {
-        return view('medicine.form_create', compact('data'));
+        return view('medicine.form', compact('data'));
     }
     /**
      * Store a new Medicine
@@ -34,15 +34,13 @@ class MedicineController extends Controller
      * @return void
      */
     public function store(Request $request){
-        $medicine = new Medicine();
-        
-        $medicine->generic_name = $request->generic_name;
-        $medicine->manufacturer_name = $request->manufacturer_name;
-        $medicine->manufacturer = $request->manufacturer;
-       
-        $medicine->save();
+        Medicine::create([
+            'generic_name' => $request->generic_name,
+            'manufacturer_name' => $request->manufacturer_name,
+            'manufacturer' => $request->manufacturer,
+        ]);
 
-        return redirect()->route('medicine.index');
+        return redirect()->route('medicine.index')->with("status", "Remédico cadastrado com sucesso.");
     }
     /**
      * edit the Medicine
@@ -52,7 +50,7 @@ class MedicineController extends Controller
     public function edit(Request $request, $id)
     {
         $medicine = Medicine::find($id);
-        return view('medicine.form_update', compact('medicine'));
+        return view('medicine.form', compact('medicine'));
     }
     /**
      * Updates the Medicine
