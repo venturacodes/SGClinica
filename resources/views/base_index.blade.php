@@ -1,26 +1,26 @@
 @extends('theme.app')
 @section('content')
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    @if (session('status-alert'))
-        <div class="alert alert-danger">
-            {{ session('status-alert') }}
-        </div>
-    @endif
-    @if (session('status-info'))
-        <div class="alert alert-info">
-            {{ session('status-info') }}
-        </div>
-    @endif
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
     <span class="navbar-brand" href="#">
        @yield('index_title')
     </span>
-    </nav>
+    </nav>  
     <section class="panel">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+            @if (session('status-alert'))
+                <div class="alert alert-danger">
+                    {{ session('status-alert') }}
+                </div>
+            @endif
+            @if (session('status-info'))
+                <div class="alert alert-info">
+                    {{ session('status-info') }}
+                </div>
+            @endif
         <header class="panel-heading">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                 @yield('index_search_button')
