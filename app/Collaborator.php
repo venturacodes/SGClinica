@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collaborator extends Model
 {
-    protected $fillable = ['user_id','clinic_id','name','phone'];
+    protected $fillable = ['user_id','clinic_id','name','phone', 'image'];
 
     public function clinics(){
         return $this->belongsToMany(\App\Clinic::class);

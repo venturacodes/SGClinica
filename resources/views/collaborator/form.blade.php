@@ -4,11 +4,17 @@
 @endsection
 @section('form_title',isset($collaborator) ? 'Editar Funcionário':'Cadastrar Funcionário')
 @section('form_content')
-    <form method="POST" action="{{ isset($collaborator) ? route('collaborator.update', $collaborator->id) : route('collaborator.store')}}">
+    <form method="POST" action="{{ isset($collaborator) ? route('collaborator.update', $collaborator->id) : route('collaborator.store')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @isset($collaborator)
             @method('PUT')
         @endisset
+        @if(isset($collaborator->image))
+        <picture>
+        <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->image)}}" style="width:80px;height:80px; border-radius:50px;"/>
+        </picture>
+        @endif
+        <br />
         <label for="name">Nome</label>
         <input type="text" name="name" class="form-control" value='{{isset($collaborator) ? $collaborator->name : ''}}'>
         <label for="phone">Telefone</label>
@@ -32,6 +38,11 @@
             <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <input type="email" name="email" class="form-control" value="{{ isset($collaborator) ? $collaborator->user->email : ''}}">
         </div>
+        <label for="image">Imagem</label>
+        <div class="input-group">
+            <input type="file" name="image" class="form-control">
+        </div>
+
         
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control" placeholder="Digite nova senha">

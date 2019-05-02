@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Collaborator\storeCollaboratorRequest;
 use App\Http\Requests\Collaborator\updateCollaboratorRequest;
 
@@ -51,9 +52,10 @@ class CollaboratorController extends Controller
             'user_id' => $user->id,
             'name' => $request->name,
             'phone' => $request->phone,
-            'clinic_id' => 1
+            'clinic_id' => 1,
+            'image' => $request->image->store('users'),
         ]);
-
+        
         return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');
     }
     public function edit(Request $request, Collaborator $collaborator){
@@ -82,11 +84,14 @@ class CollaboratorController extends Controller
         
         return redirect()->route('collaborator.index')->with('status', 'Funcionário atualizado com sucesso!');
     }
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        $collaborator = Collaborator::find($request->id);
+        $collaborator = Collaborator::find($id);
+        if(isset($collaborator->image)){
+            Storage::delete($collaborator->image);
+        }
         User::destroy($collaborator->user_id);
-        Collaborator::destroy($request->id);
+        Collaborator::destroy($id);
         return redirect()->route('collaborator.index')->with('status', 'Funcionário excluído com sucesso!');
     }
 }

@@ -32,7 +32,7 @@
     <header class="main-header">
         <a href="#" class="logo" data-toggle="collapse" data-target="#demo">
             <span class="logo-mini"><b>P</b>UC</span>
-            <span class="logo-lg"><b>PUC</b>linica</span>
+            <span class="logo-lg"><b>PUC</b>lnica</span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">

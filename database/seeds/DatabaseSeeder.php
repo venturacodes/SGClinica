@@ -18,9 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ClinicSeeder');
         $this->call('AppointmentSeeder');
         $this->call('ClientSeeder');
-        $this->call('PermissionsTableSeeder');
-        $this->call('RolesTableSeeder');
-        $this->call('ConnectRelationshipsSeeder');
         $this->call('ExamTypeSeeder');
     }
 }

@@ -10,7 +10,6 @@
         <tr>
             <th>#</th>
             <th>Nome</th>
-            <th>Função</th>
             <th>Telefone</th>
             <th>Ferramentas</th>
         </tr>
@@ -20,9 +19,18 @@
 
             @foreach($collaborators as $collaborator)
                 <tr>
-                    <td>{{$collaborator->id}}</td>
+                    <td>
+                    @if(isset($collaborator->image))
+                        <picture>
+                            <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->image)}}" style="width:40px;height:40px; border-radius:50px;"/>
+                        </picture>
+                    @else
+                        <picture>
+                            <img name="avatar" class="img-thumbnail" src="{{URL::asset('img/user.png')}}" style="width:40px;height:40px; border-radius:50px;"/>
+                        </picture>
+                    @endif
+                    </td>
                     <td>{{$collaborator->name}}</td>
-                    <td>{{$collaborator->user->role->name}}</td>
                     <td>{{$collaborator->phone}}</td>
                     <td><div class="tools">
                             <a href="{{route('collaborator.edit', $collaborator->id)}}"><span class="glyphicon glyphicon-edit"></span></a>

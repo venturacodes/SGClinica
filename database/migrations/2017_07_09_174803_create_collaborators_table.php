@@ -19,6 +19,7 @@ class CreateCollaboratorsTable extends Migration
             $table->integer('clinic_id');
             $table->string('name');
             $table->string('phone');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
