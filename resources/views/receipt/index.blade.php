@@ -2,7 +2,7 @@
 
 @section('index_title','Receitas')
 @section('index_add_button')
-    <a href="{{route('receipt.create')}}" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-plus"></span>&nbsp;Adicionar</a>
+    <a href="{{route('receipt.create')}}" class="btn btn-app  pull-right"><i class="fa fa-plus" aria-hidden="true"></i><strong>Adicionar</strong></a>
 @endsection
 @section('index_table_data')
     <table class="table table-hover">

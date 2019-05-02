@@ -1,6 +1,6 @@
 @extends('base_form')
 @section('back_button')
-    <a href="{{ route('receipt.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    <a href="{{ route('receipt.index') }}" class="btn btn-primary a"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 @endsection
 @section('form_title', isset($receipt) ? 'Editar Receita' : 'Cadastrar Receita')
 @section('form_content')

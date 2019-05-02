@@ -89,11 +89,6 @@
         <!-- /.sidebar -->
       </aside>
 <div class="content-wrapper" id="app">
-    <section class="content-header">
-        <h1>
-            Agenda
-        </h1>
-        </section>
         <section class="content container-fluid">
 
             <!--------------------------

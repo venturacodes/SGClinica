@@ -9,8 +9,8 @@ use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\storeClientRequest;
-use App\Http\Requests\updateClientRequest;
+use App\Http\Requests\Client\storeClientRequest;
+use App\Http\Requests\Client\updateClientRequest;
 
 class ClientController extends Controller
 {

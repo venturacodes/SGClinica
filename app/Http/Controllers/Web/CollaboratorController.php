@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Web;
 
-use Carbon\Carbon;
+use App\Role;
+use App\User;
 use App\Clinic;
+use Carbon\Carbon;
 use App\Collaborator;
 use App\Traits\storeUser;
-use App\User;
-use App\Role;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Collaborator\storeCollaboratorRequest;
+use App\Http\Requests\Collaborator\updateCollaboratorRequest;
 
 class CollaboratorController extends Controller
 {
@@ -31,57 +33,42 @@ class CollaboratorController extends Controller
      */
     public function create(Request $request)
     {
-        $roles = Role::where([
+        return view('collaborator.form')->with('roles',Role::where([
             ['slug','!=','admin'],
             ['slug','!=','unverified']
-            ])->get();
-        return view('collaborator.form_create', compact('roles'));
+            ])->get());
     }
     /**
      * Store a new collaborator
      * @var Request $request
      * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(storeCollaboratorRequest $request)
     {
-        $this->validate($request, [
-            'name'      => 'required|max:255',
-            'email' =>'required|unique:users',
-            'phone'  => 'required',
-        ]);
-        $collaborator = new Collaborator();
         $user = $this->store_user($request);
-
-        $collaborator->user_id = $user->id;
-
-        $collaborator->name = $request->name;
-        $collaborator->phone = $request->phone;
-        $collaborator->clinic_id = 1;
-
-        $collaborator->save();
+        
+        Collaborator::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'clinic_id' => 1
+        ]);
 
         return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');
     }
-    public function edit(Request $request, $id){
+    public function edit(Request $request, Collaborator $collaborator){
         $roles = Role::where([
             ['slug','!=','admin'],
             ['slug','!=','unverified']
             ])->get();
-        $collaborator = Collaborator::find($id);
         
-        return view('collaborator.form_update',compact('collaborator'), compact('roles'));
+        return view('collaborator.form')->with('collaborator', $collaborator)->with('roles', $roles);
     }
-    public function update(Request $request){
-        $this->validate($request, [
-            'name'      => 'required|max:255',
-            'email' =>'required|unique:users',
-            'phone'  => 'required',
-        ]);
-        $collaborator = Collaborator::find($request->id);
-
+    public function update(updateCollaboratorRequest $request, $id)
+    {
+        $collaborator = Collaborator::findorFail($id);
         $collaborator->name = $request->name;
         $collaborator->phone = $request->phone;
-        $collaborator->updated_at = Carbon::now();
 
         $collaborator->save();
 

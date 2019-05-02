@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Clinic;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeClientRequest extends FormRequest
+class updateClinicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class storeClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|max:255',
-            'email' =>'required|unique:clients',
-            'phone'  => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required'
         ];
     }
 }

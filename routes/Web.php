@@ -24,9 +24,9 @@ Route::group(['prefix'=> 'collaborators', 'middleware' => 'auth'], function ()
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');
     Route::post('/', 'Web\CollaboratorController@store')->name('collaborator.store');
     Route::get('/create', 'Web\CollaboratorController@create')->name('collaborator.create');
-    Route::get('/{id}/delete', 'Web\CollaboratorController@destroy')->name('collaborator.delete');
-    Route::get('/{id}/edit', 'Web\CollaboratorController@edit')->name('collaborator.edit');
-    Route::post('/{id}', 'Web\CollaboratorController@update')->name('collaborator.update');
+    Route::get('/{collaborator}/delete', 'Web\CollaboratorController@destroy')->name('collaborator.delete');
+    Route::get('/{collaborator}/edit', 'Web\CollaboratorController@edit')->name('collaborator.edit');
+    Route::put('/{collaborator}', 'Web\CollaboratorController@update')->name('collaborator.update');
 });
 Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function () 
 {
@@ -43,9 +43,9 @@ Route::group(['prefix'=> 'clinics', 'middleware' => 'auth'], function ()
     Route::get('/', 'Web\HomeController@clinic')->name('clinic.index');
     Route::get('/create', 'Web\ClinicController@create')->name('clinic.create');
     Route::post('/', 'Web\ClinicController@store')->name('clinic.store');
-    Route::get('/{id}/delete', 'Web\ClinicController@destroy')->name('clinic.delete');
-    Route::get('/{id}/edit', 'Web\ClinicController@edit')->name('clinic.edit');
-    Route::post('/{id}', 'Web\ClinicController@update')->name('clinic.update');
+    Route::get('/{clinic}/delete', 'Web\ClinicController@destroy')->name('clinic.delete');
+    Route::get('/{clinic}/edit', 'Web\ClinicController@edit')->name('clinic.edit');
+    Route::put('/{clinic}', 'Web\ClinicController@update')->name('clinic.update');
 });
 Route::group(['prefix'=> 'medicines', 'middleware' => 'auth'], function () 
 {
@@ -65,4 +65,7 @@ Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function ()
     Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
     Route::post('/{receipt}', 'Web\ReceiptController@update')->name('receipt.update');
 });
-Route::get('/', 'Web\HomeController@report')->name('report.show');
+Route::group(['prefix'=> 'reports', 'middleware' => 'auth'], function () 
+{
+    Route::get('/', 'Web\HomeController@report')->name('report.show');
+});

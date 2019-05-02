@@ -19,6 +19,6 @@ class Clinic extends Model
         return $this->hasOne('App\Collaborator');
     }
     protected $fillable = [
-        'name', 'address',
+        'name', 'email', 'phone', 'address'
     ];
 }
