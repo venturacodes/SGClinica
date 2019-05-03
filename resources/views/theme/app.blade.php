@@ -94,19 +94,12 @@
         <!-- /.sidebar -->
       </aside>
 <div class="content-wrapper" id="app">
-        <section class="content container-fluid">
-
-            <!--------------------------
-                | Your Page Content Here |
-                -------------------------->
-                @yield('content')
-            </section>
-            <!-- /.content -->
+  <section class="content container-fluid">
+    @yield('content')
+  </section>
  </div>
  <footer class="main-footer">
-    
-    <!-- Default to the left -->
-    <strong>Acadêmico: Arthur Alves Venturin </strong><a href="https://github.com/ArthurVenturin"><i class="fa fa-github" aria-hidden="true"></i>Github</a> 
+    <strong>Acadêmico: Arthur Alves Venturin </strong><a href="https://github.com/ArthurVenturin"><i class="fab fa-github-square" aria-hidden="true"></i>Github</a> 
 </footer>
 </div>
 
