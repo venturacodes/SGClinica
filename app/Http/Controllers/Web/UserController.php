@@ -45,12 +45,15 @@ class UserController extends Controller
         $this->validate($request, [
             'email' => 'required|unique'
         ]);
-        $User = new User();
         if (User::where('email', '=', $request->email)->exists()) {
             return new JsonResponse(['message'=> 'Usuário já cadastrado com este e-mail.']);
         }
-        $User->prepare($request);
-        $User->save();
+        
+        User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'image' => $request->image->store('users'),
+        ]);
 
         return new JsonResponse($User);
     }
@@ -59,11 +62,14 @@ class UserController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $User = User::find($id);
-        $User->prepare($request);
-        $User->save();
+
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->role_id = $data['role_id'];
+
+        $user->save();
 
         return new JsonResponse($User);
     }

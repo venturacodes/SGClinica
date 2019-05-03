@@ -19,12 +19,9 @@
         <input type="text" name="name" class="form-control" value='{{isset($collaborator) ? $collaborator->name : ''}}'>
         <label for="phone">Telefone</label>
         <div class="input-group">
-                <span class="input-group-addon">
-                        <i class="fa fa-phone"></i>
-                </span>
-                <input type="text" name="phone"  class="form-control" data-inputmask='"mask": "(099) 99999-9999"' data-mask value='{{ isset($collaborator) ? $collaborator->phone : ''}}' >
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            <input type="text" name="phone"  class="form-control" data-inputmask='"mask": "(099) 99999-9999"' data-mask value='{{ isset($collaborator) ? $collaborator->phone : ''}}' >
         </div>
-        
         
         <label for="email">Especialidade</label>
         <select class="form-control" id="role-id" name="role_id" required>

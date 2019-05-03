@@ -20,9 +20,9 @@
             @foreach($collaborators as $collaborator)
                 <tr>
                     <td>
-                    @if(isset($collaborator->image))
+                    @if(isset($collaborator->user->image))
                         <picture>
-                            <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->image)}}" style="width:40px;height:40px; border-radius:50px;"/>
+                            <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->user->image)}}" style="width:40px;height:40px; border-radius:50px;"/>
                         </picture>
                     @else
                         <picture>

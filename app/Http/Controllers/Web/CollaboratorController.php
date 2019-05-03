@@ -53,7 +53,6 @@ class CollaboratorController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'clinic_id' => 1,
-            'image' => $request->image->store('users'),
         ]);
         
         return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');

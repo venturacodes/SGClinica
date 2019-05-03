@@ -1,19 +1,24 @@
 @extends('base_index')
 @section('index_title','Meus próximos agendamentos')
 @section('index_search_button')
-<form class="form-inline" method="POST" action="{{route('appointment.searchByName')}}">
+<form method="POST" action="{{route('appointment.searchByName')}}">
     {{ csrf_field() }}
-    <input class="form-control" type="text" placeholder="Buscar" name="name">
-    <button class="btn btn-outline-success btn-primary" type="submit">Buscar por Nome</button>
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+        </span>
+    </div>
 </form>
 @endsection
 @section('index_table_data')
+    
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Nome do paciente</th>
+            <th>Nome</th>
             <th>Período da consulta</th>
-            <th>Ferramentas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -23,9 +28,8 @@
                     <td>{{$appointment->client->name}}</td>
                     <td>{{date('d/m/Y H:i', strtotime($appointment->start))}} até {{date('H:i', strtotime($appointment->end))}}</td>
                     <td><div class="tools">
-                            <a href="{{route('appointment.attend_to', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
-                            <a href="{{route('appointment.edit', $appointment->id)}}" alt='editar'><span class="glyphicon glyphicon-edit" ></span></a>
-                            <a href="{{route('appointment.delete', $appointment->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{{route('appointment.attend_to', $appointment->id)}}" class="btn"><i class="fas fa-heartbeat"></i></a>
+                            <a href="{{route('appointment.delete', $appointment->id)}}" class="btn"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </div>
                     </td>
                 </tr>

@@ -17,7 +17,7 @@
     
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/dist/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/dist/css/skins/skin-blue.min.css') }}">
@@ -55,12 +55,16 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ URL::asset('js/adminlte/dist/img/user2-160x160.jpg') }}"class="img-circle" alt="User Image">
+                @if(isset(Auth::user()->image))
+                  <img src="{{asset('storage/'.Auth::user()->image)}}" class="img-circle" alt="User Image">
+                @else
+                  <img src="{{asset('img/user.png')}}"class="img-circle" alt="User Image">
+                @endif
             </div>
             <div class="pull-left info">
               <p>Arthur Alves Venturin</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <p><strong>{{Auth::user()->role->name}}</strong></p>
             </div>
           </div>
     
@@ -69,16 +73,16 @@
             <li class="header">Minhas Ações</li>
             <!-- Optionally, you can add icons to the links -->
           <li ><a href="{{ route('appointment.next_appointments') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Meus próximos agendamentos</span></a></li>
-            <li ><a href="{{ route('appointment.show') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Minha Agenda</span></a></li>
+            <li ><a href="{{ route('appointment.show') }}"><i class="fa fa-calendar-alt" aria-hidden="true"></i> <span>Minha Agenda</span></a></li>
             <li><a href="{{ route('client.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Meus pacientes</span></a></li>
             <li><a href="{{ route('collaborator.index') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Médicos da clínica</span></a></li>
-            <li><a href="{{ route('clinic.index') }}"><i class="fa fa-hospital-o" aria-hidden="true"></i> <span>Minhas clínicas</span></a></li>
-            <li><a href="{{ route('report.show') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Meus relatórios</span></a></li>
-            <li><a href="{{ route('medicine.index') }}"><i class="fa fa-medkit" aria-hidden="true"></i><span>Medicamentos cadastrados</span></a></li>
-            <li><a href="{{ route('receipt.index') }}"><i class="fa fa-stethoscope" aria-hidden="true"></i> <span>Receitas cadastradas</span></a></li>
+            <li><a href="{{ route('clinic.index') }}"><i class="fa fa-hospital" aria-hidden="true"></i> <span>Minhas clínicas</span></a></li>
+            <li><a href="{{ route('report.show') }}"><i class="fa fa-chart-bar" aria-hidden="true"></i> <span>Meus relatórios</span></a></li>
+            <li><a href="{{ route('medicine.index') }}"><i class="fa fa-capsules" aria-hidden="true"></i><span>Medicamentos cadastrados</span></a></li>
+            <li><a href="{{ route('receipt.index') }}"><i class="fa fa-receipt" aria-hidden="true"></i> <span>Receitas cadastradas</span></a></li>
             <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>Sair </a>
+                            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>Sair </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
