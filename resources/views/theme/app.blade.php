@@ -17,6 +17,7 @@
     
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('js/adminlte/dist/css/AdminLTE.min.css') }}">
@@ -62,9 +63,9 @@
                 @endif
             </div>
             <div class="pull-left info">
-              <p>Arthur Alves Venturin</p>
+            <p>{{explode('@',Auth::user()->email)[0]}}</p>
               <!-- Status -->
-            <p><strong>{{Auth::user()->role->name}}</strong></p>
+            <p><strong>{{isset(Auth::user()->role) ? Auth::user()->role->name : ''}}</strong></p>
             </div>
           </div>
     

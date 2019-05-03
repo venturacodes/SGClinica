@@ -13,7 +13,7 @@
             <th>Nome do medicamento</th>
             <th>Nome do médico</th>
             <th>Forma de uso</th>
-            <th>Ferramentas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -26,8 +26,8 @@
                     <td>{{$receipt->Collaborator->name}}</td>
                     <td>{{$receipt->form_of_use}}</td>
                     <td><div class="tools">
-                            <a href="{{route('receipt.edit', $receipt->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="{{route('receipt.delete', $receipt->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{{route('receipt.edit', $receipt->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('receipt.delete', $receipt->id)}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>

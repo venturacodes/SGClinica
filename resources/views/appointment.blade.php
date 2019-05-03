@@ -60,6 +60,20 @@
 @endsection
 
 @section('content')
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
+            <span class="navbar-brand" href="#">
+                Minha agenda
+            </span>
+        </nav>
+        
+        <input type="hidden" id="is_admin" 
+        @if(Auth::user()->role_id == 1)
+        value="1"
+        @else
+        value="0"
+        @endif
+        >
+        
         @include('event_partial_search')
         <div id='calendar'></div>
         @include('event_modal_create')
@@ -78,6 +92,11 @@
         return $(window).height() - 30;
     }
     $(document).ready(function(){
+        if($("#is_admin").val() == 0){
+            $("#search-collaborator").prop('disabled', 'disabled');
+        }else{
+            $("#search-collaborator").prop('disabled', false);
+        }
         $(window).resize(function() {
             $('#calendar').fullCalendar('option', 'height', get_calendar_height());
         });

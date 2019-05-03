@@ -12,7 +12,7 @@
             <th>Nome genérico</th>
             <th>Nome de fábrica</th>
             <th>Fabricante</th>
-            <th>Ferramentas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -24,8 +24,8 @@
                     <td>{{$medicine->manufacturer_name}}</td>
                     <td>{{$medicine->manufacturer}}</td>
                     <td><div class="tools">
-                            <a href="{{route('medicine.edit', $medicine->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="{{route('medicine.delete', $medicine->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{{route('medicine.edit', $medicine->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('medicine.delete', $medicine->id)}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>

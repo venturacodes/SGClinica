@@ -11,7 +11,7 @@
             <th>#</th>
             <th>Nome</th>
             <th>Telefone</th>
-            <th>Ferramentas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -33,8 +33,8 @@
                     <td>{{$collaborator->name}}</td>
                     <td>{{$collaborator->phone}}</td>
                     <td><div class="tools">
-                            <a href="{{route('collaborator.edit', $collaborator->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="{{route('collaborator.delete', $collaborator->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{{route('collaborator.edit', $collaborator->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('collaborator.delete', $collaborator->id)}}"><i class="fas fa-trash"></i></a>
                         </div></td>
                 </tr>
             @endforeach

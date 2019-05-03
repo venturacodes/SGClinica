@@ -10,7 +10,7 @@
         <tr>
             <th>#</th>
             <th>Nome</th>
-            <th>Ferramentas</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -20,8 +20,8 @@
                     <td>{{$clinic->id}}</td>
                     <td>{{$clinic->name}}</td>
                     <td><div class="tools">
-                            <a href="{{route('clinic.edit', $clinic->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="{{route('clinic.delete', $clinic->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{{route('clinic.edit', $clinic->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('clinic.delete', $clinic->id)}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>
