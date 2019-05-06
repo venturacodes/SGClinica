@@ -42,7 +42,7 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        return view('client.form_create');
+        return view('client.form');
     }
     /**
      * Store a new client
@@ -61,7 +61,7 @@ class ClientController extends Controller
         return redirect()->route('client.index')->with('status', 'Paciente adicionado com sucesso!');
     }
     public function edit(Request $request){
-        return view('client.form_update')->with('client', Client::findOrFail($request->id));
+        return view('client.form')->with('client', Client::findOrFail($request->id));
     }
     public function update(updateClientRequest $request){
 

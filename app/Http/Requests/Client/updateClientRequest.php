@@ -26,7 +26,7 @@ class updateClientRequest extends FormRequest
         return [
             'name'      => 'required|max:255',
             'email' =>'required',
-            'phone'  => 'required|regex:/(01)[0-9]{9}/',
+            'phone'  => 'required',
         ];
     }
 }

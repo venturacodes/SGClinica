@@ -20,7 +20,7 @@
         <label for="phone">Telefone</label>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-            <input type="text" name="phone"  class="form-control" data-inputmask='"mask": "(099) 99999-9999"' data-mask value='{{ isset($collaborator) ? $collaborator->phone : ''}}' >
+            <input type="text" name="phone"  class="form-control" data-inputmask='"mask": "(099) 9999-9999"' data-mask value='{{ isset($collaborator) ? $collaborator->phone : ''}}' >
         </div>
         
         <label for="email">Especialidade</label>

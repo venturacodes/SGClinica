@@ -36,7 +36,7 @@ Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function ()
     Route::get('/create', 'Web\ClientController@create')->name('client.create');
     Route::get('/{id}/delete', 'Web\ClientController@destroy')->name('client.delete');
     Route::get('/{id}/edit', 'Web\ClientController@edit')->name('client.edit');
-    Route::post('/{id}', 'Web\ClientController@update')->name('client.update');
+    Route::put('/{id}', 'Web\ClientController@update')->name('client.update');
 });
 Route::group(['prefix'=> 'clinics', 'middleware' => 'auth'], function () 
 {
