@@ -249,12 +249,19 @@
                     +'&note='+eventData.note,
                     type: "POST",
                     success: function(json) {
+                        jQuery.each(json.errors, function(key, value){
+                  			jQuery('.alert-danger').show();
+                  			jQuery('.alert-danger').append('<p>'+value+'</p>');
+                  		});
                         eventData.id = json.id;
                         $('#calendar').fullCalendar('renderEvent', eventData, true);
                         $('#event-modal-create').modal("hide");
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        var err = eval("(" + xhr.responseText + ")");
+                        jQuery.each(xhr.errors, function(key, value){
+                  			jQuery('.alert-danger').show();
+                  			jQuery('.alert-danger').append('<p>'+value+'</p>');
+                  		});
                         
                     }
                 });
