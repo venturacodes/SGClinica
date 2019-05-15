@@ -24,6 +24,13 @@ class AppointmentController extends Controller
         return new JsonResponse(Appointment::all());
     }
     /**
+     * 
+     */
+    public function show(Appointment $appointment)
+    {
+        return view('appointment.show')->with('appointment',$appointment);
+    }
+    /**
      * function used to create appointments through AJAX Requests from modal_create at fullcalendar.
      *
      * @param Request $request

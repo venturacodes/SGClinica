@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\User;
 use App\Client;
 use App\Address;
+use App\Receipt;
 use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -29,11 +30,9 @@ class ClientController extends Controller
     public function show(Request $request, $id)
     {
         $client = Client::findOrFail($id);
-        $appointments = Appointment::where([
-            'client_id' => $id,
-            'is_done' => true
-        ])->get();
-        return view('client.show')->with('client',$client)->with('appointments', $appointments);
+        
+        return view('client.show')
+        ->with('client',$client);
     }
     /**
      * Creates a new client

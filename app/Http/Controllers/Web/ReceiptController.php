@@ -20,6 +20,17 @@ class ReceiptController extends Controller
         return new JsonResponse($receipts);
     }
     /**
+     * Show  Receipt.
+     *  @return JsonResponse
+     */
+    public function show(Receipt $receipt){
+        return view('receipt.show')
+        ->with('receipt', $receipt)
+        ->with('clients', Client::all())
+        ->with('medicines', Medicine::all())
+        ->with('collaborators',Collaborator::all());
+    }
+    /**
      * Creates a new Receipts
      * @var Request $request
      * @return JsonResponse

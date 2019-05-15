@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                             <li class=dropdown-item>
-                                <a href="{{ route('appointment.show') }}">
+                                <a href="{{ route('appointment.agenda') }}">
                                     <i class="glyphicon glyphicon-calendar"></i> <span>Minha agenda</span>
                                 </a>
                             </li>

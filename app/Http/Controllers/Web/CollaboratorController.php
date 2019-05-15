@@ -48,12 +48,17 @@ class CollaboratorController extends Controller
     {
         $user = $this->store_user($request);
         
-        Collaborator::create([
+        $collaborator = Collaborator::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'phone' => $request->phone,
             'clinic_id' => 1,
         ]);
+
+        if(isset($request->signature)){
+            $collaborator->signature = $request->signature->store('signatures');
+            $collaborator->save();
+        }
         
         return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');
     }
@@ -70,6 +75,11 @@ class CollaboratorController extends Controller
         $collaborator = Collaborator::findorFail($id);
         $collaborator->name = $request->name;
         $collaborator->phone = $request->phone;
+
+        if(isset($request->signature)){
+            $collaborator->signature = $request->signature->store('signatures');
+            $collaborator->save();
+        }
 
         $collaborator->save();
 
@@ -88,6 +98,9 @@ class CollaboratorController extends Controller
         $collaborator = Collaborator::find($id);
         if(isset($collaborator->user->image)){
             Storage::delete($collaborator->user->image);
+        }
+        if(isset($collaborator->signature)){
+            Storage::delete($collaborator->signature);
         }
         User::destroy($collaborator->user_id);
         Collaborator::destroy($id);

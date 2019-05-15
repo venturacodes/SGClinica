@@ -6,12 +6,13 @@ Route::get('/home', 'Web\HomeController@index')->name('home');
 Auth::routes();
 Route::group(['prefix'=> 'appointments', 'middleware' => 'auth'], function () 
 {
-    Route::get('/', 'Web\HomeController@appointment')->name('appointment.show');
+    Route::get('/', 'Web\HomeController@appointment')->name('appointment.agenda');
     Route::get('/nextAppointments', 'Web\AppointmentController@nextAppointments')->name('appointment.next_appointments');
     Route::post('/search', 'Web\AppointmentController@searchByName')->name('appointment.searchByName');
     Route::post('/create', 'Web\AppointmentController@create')->name('appointment.create');
     Route::get('/{id}/edit', 'Web\AppointmentController@edit')->name('appointment.edit');
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');
+    Route::get('/{appointment}', 'Web\AppointmentController@show')->name('appointment.show');
     Route::get('/{id}/delete', 'Web\AppointmentController@destroy')->name('appointment.delete');
     Route::get('/{id}/attend_to', 'Web\AppointmentController@attendTo')->name('appointment.attend_to');
     Route::get('/{id}/needExams', 'Web\AppointmentController@needExams')->name('appointment.need_exams');
@@ -64,6 +65,7 @@ Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function ()
     Route::get('/{receipt}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
     Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
     Route::post('/{receipt}', 'Web\ReceiptController@update')->name('receipt.update');
+    Route::get('/{receipt}', 'Web\ReceiptController@show')->name('receipt.show');
 });
 Route::group(['prefix'=> 'reports', 'middleware' => 'auth'], function () 
 {

@@ -40,6 +40,10 @@
             <input type="file" name="image" class="form-control">
         </div>
 
+        <label for="signature">Assinatura</label>
+        <div class="input-group">
+            <input type="file" name="signature" class="form-control">
+        </div>
         
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control" placeholder="Digite nova senha">

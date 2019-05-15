@@ -19,27 +19,19 @@
             <h3>Histórico de consultas</h3>  
             </nav>
             <div class="panel-body table-responsive">
-            @forelse($appointments as $appointment)
+            @forelse($client->appointments as $appointment)
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Finalidade</th>
-                        <th>Médico responsável</th>
-                        <th>Data da consulta</th>
-                        <th>Horário inicio e fim da consulta</th>
-                        <th>Observação</th>
+                        <th>Data e hora da consulta</th>
+                        <th>Detalhamento</th>
                     </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td>{{$appointment->title}}</td>
-                                <td>{{$appointment->collaborator->name}}</td>
-                                <td>{{date('d/m/Y', strtotime($appointment->start))}}</td>
-                                <td>{{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
-                                <td>{{$appointment->note}}</td>
-                            </tr>
-
-                        
+                        <tr>
+                            <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
+                        <td><a href="{{route('appointment.show', $appointment->id)}}">Ver</a></td>
+                        </tr>
                     </tbody>
                 </table>
             @empty
@@ -49,10 +41,29 @@
         </section>
         <section class="panel">
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-            
-               <h3>Exames solicitados</h3>
-               <strong>Falta fazer</strong>
+            <h3>Receitas solicitadas</h3>
         </nav>
+            @forelse($client->receipts as $receipt)
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Médico que solicitou</th>
+                        <th>Forma de uso</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>          
+                            <td>{{$receipt->medicine->generic_name}}</td>
+                            <td>{{$receipt->collaborator->name}}</td>
+                            <td><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            @empty
+                <strong>Nenhuma receita cadastrada para esse paciente</strong>
+            @endforelse
+        
     </section>
     </form>
 @endsection
