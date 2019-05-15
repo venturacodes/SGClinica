@@ -7,6 +7,7 @@ use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\storeAppointmentRequest;
 
 class AppointmentController extends Controller
 {
@@ -24,21 +25,16 @@ class AppointmentController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request)
+    public function create(storeAppointmentRequest $request)
     {
-        $data = $request->all();
-
-        $appointment = new Appointment();
-        $appointment->title = $request->title;
-        $appointment->start = new Carbon($request->start);
-        $appointment->end = new Carbon($request->end);
-        $appointment->note = $request->note;
-        $appointment->client_id = $request->client_id;
-        $appointment->collaborator_id = $request->collaborator_id;
-        
-        $appointment->save();
-
-
+        $appointment = Appointment::create([
+            'title' => $request->title,
+            'start' => new Carbon($request->start),
+            'end'  => new Carbon($request->end),
+            'note' => $request->note,
+            'client_id' => $request->client_id,
+            'collaborator_id' => $request->collaborator_id
+        ]); 
         return new JsonResponse($appointment);
     }
      /**

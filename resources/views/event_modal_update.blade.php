@@ -8,6 +8,21 @@
                 <h4 class="modal-title">Atualizar agendamento</h4>
             </div>
             <div class="modal-body">
+                    @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    @if (session('status-alert'))
+                        <div class="alert alert-danger">
+                            {{ session('status-alert') }}
+                        </div>
+                    @endif
+                    @if (session('status-info'))
+                        <div class="alert alert-info">
+                            {{ session('status-info') }}
+                        </div>
+                    @endif
                 <form role="form" id="form-modal">
                     {{ csrf_field() }}
                     <div class="form-group">

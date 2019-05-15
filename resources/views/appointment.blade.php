@@ -251,14 +251,15 @@
                     success: function(json) {
                         eventData.id = json.id;
                         $('#calendar').fullCalendar('renderEvent', eventData, true);
+                        $('#event-modal-create').modal("hide");
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         var err = eval("(" + xhr.responseText + ")");
-                        alert(err.message);
+                        
                     }
                 });
 
-            $('#event-modal-create').modal("hide");
+            
         });
         $('#update-modal').click(function(e){ // ATUALIZACAO DE EVENTO
             e.preventDefault();

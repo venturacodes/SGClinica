@@ -86,8 +86,8 @@ class CollaboratorController extends Controller
     public function destroy(Request $request, $id)
     {
         $collaborator = Collaborator::find($id);
-        if(isset($collaborator->image)){
-            Storage::delete($collaborator->image);
+        if(isset($collaborator->user->image)){
+            Storage::delete($collaborator->user->image);
         }
         User::destroy($collaborator->user_id);
         Collaborator::destroy($id);

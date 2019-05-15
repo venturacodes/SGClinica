@@ -52,7 +52,6 @@ class UserController extends Controller
         User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => $request->image->store('users'),
         ]);
 
         return new JsonResponse($User);

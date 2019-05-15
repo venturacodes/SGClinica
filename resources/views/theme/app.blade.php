@@ -83,7 +83,7 @@
             <li><a href="{{ route('receipt.index') }}"><i class="fa fa-receipt" aria-hidden="true"></i> <span>Receitas cadastradas</span></a></li>
             <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>Sair </a>
+                            <i class="fa fa-sign-out-alt" aria-hidden="true"></i><span>Sair</span> </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
