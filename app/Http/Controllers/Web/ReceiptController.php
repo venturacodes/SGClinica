@@ -26,9 +26,11 @@ class ReceiptController extends Controller
         $data = [
             'title' =>  'Medicamento: '.$receipt->medicine->generic_name,
             'heading' => "Clínica: ".$receipt->collaborator->clinic->name,
-            'collaborator_name' => " Médico: " . $receipt->collaborator->name,
+            'collaborator_name' => $receipt->collaborator->name,
             'collaborator_signature' => $receipt->collaborator->signature,
-            'content' => 'teste'
+            'medicine_name' => $receipt->medicine->generic_name,
+            'receipt_period' => $receipt->period,
+            'receipt_quantity' => $receipt->quantity,
         ];
         $pdf = PDF::loadView('receipt.receipt_pdf', $data);
         return $pdf->download($receipt->medicine->generic_name.'.pdf');

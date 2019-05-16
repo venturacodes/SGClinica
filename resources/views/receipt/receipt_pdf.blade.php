@@ -5,18 +5,24 @@
 </head>
 <body>
   <h1>{{ $heading}}</h1>
-  <h3>{{$collaborator_name}}</h3>
+  <h3>{{"Médico Responsável: ".$collaborator_name}}</h3>
   
   <table width="100%" style="width:100%" border="0">
       <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td><p>{{$medicine_name}}</p></td>
+        <td>............................................</td>
+      <td><p>{{$receipt_quantity}}</p></td>
+        <td><p>{{$receipt_period}}</p></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       <td><img src="{{public_path('storage/'.$collaborator_signature)}}" style="width:40px;height:40px;"/></td>
+      </tr>
+      <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+      <td>{{$collaborator_name}}</td>
       </tr>
     </table>
 </body>

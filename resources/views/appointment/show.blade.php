@@ -1,7 +1,4 @@
 @extends('base_form')
-@section('back_button')
-    <a href="{{ URL::previous() }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
-@endsection
 @section('form_title', 'Detalhes agendamento')
 @section('form_content')
 

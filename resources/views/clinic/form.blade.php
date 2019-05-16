@@ -1,8 +1,4 @@
 @extends('base_form')
-
-@section('back_button')
-    <a href="{{ route('clinic.index') }}" class="btn btn-primary a"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-@endsection
 @section('form_title', isset($clinic) ? 'Editar Clínica' : 'Cadastrar Clínica')
 
 @section('form_content')

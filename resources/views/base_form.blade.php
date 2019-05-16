@@ -3,7 +3,7 @@
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
 
             <span class="navbar-brand" href="#">
-                @yield('back_button')
+                <a href="{{ URL::previous() }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
                <span>@yield('form_title')</span>
             </span>
 

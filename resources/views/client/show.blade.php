@@ -1,6 +1,6 @@
 @extends('base_form')
 @section('back_button')
-    <a href="{{ route('client.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    <a href="{{ URL::previous() }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
 @endsection
 @section('form_title','Verificar paciente')
 @section('form_content')
@@ -12,11 +12,10 @@
         <input type="text" name="phone"  class="form-control" value="{{$client->phone}}" disabled>
         <label for="email">E-mail</label>
         <input type="text" name="email"  class="form-control" value="{{$client->email}}" disabled>
-        <label for="email">E-mail</label>
-        <input type="text" name="email"  class="form-control" value="{{$client->email}}" disabled>
         <section class="panel">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-            <h3>Histórico de consultas</h3>  
+            <h3>Histórico de consultas</h3>
+            <a href="{{route('appointment.agenda')}}" class="btn btn-primary">Agendar nova consulta</a>  
             </nav>
             <div class="panel-body table-responsive">
             @forelse($client->appointments as $appointment)
@@ -24,7 +23,7 @@
                     <thead>
                     <tr>
                         <th>Data e hora da consulta</th>
-                        <th>Detalhamento</th>
+                        <th>Detalhes</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,24 +40,24 @@
         </section>
         <section class="panel">
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-            <h3>Receitas solicitadas</h3>
+            <h3>Receitas solicitadas</h3><a href="{{route('receipt.create')}}" class="btn btn-primary">Receitar novo medicamento</a>
         </nav>
             @forelse($client->receipts as $receipt)
                 <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>Medicamento</th>
-                        <th>Médico que solicitou</th>
-                        <th>Forma de uso</th>
-                        <th>Download receita</th>
+                        <th>Responsável</th>
+                        <th>Detalhes</th>
+                        <th>Download</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>          
                             <td>{{$receipt->medicine->generic_name}}</td>
                             <td>{{$receipt->collaborator->name}}</td>
-                            <td><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
-                            <td><a href="{{route('receipt.pdf', $receipt->id)}}"><p>Ver</p></a></td>
+                            <td style="text-align:center"><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
+                            <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

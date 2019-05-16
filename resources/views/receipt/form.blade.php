@@ -1,7 +1,4 @@
 @extends('base_form')
-@section('back_button')
-    <a href="{{ route('receipt.index') }}" class="btn btn-primary a"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-@endsection
 @section('form_title', isset($receipt) ? 'Editar Receita' : 'Cadastrar Receita')
 @section('form_content')
     <form method="POST" action="{{isset($receipt) ? route('receipt.update', $receipt->id) : route('receipt.store')}}">

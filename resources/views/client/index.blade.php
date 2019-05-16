@@ -8,10 +8,9 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>#</th>
             <th>Nome</th>
-            <th>E-mail</th>
             <th>Telefone</th>
+            <th>Detalhes</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -19,12 +18,11 @@
         @isset($clients)
             @foreach($clients as $client)
                 <tr>
-                    <td>{{$client->id}}</td>
                     <td>{{$client->name}}</td>
-                    <td>{{$client->email}}</td>
                     <td>{{$client->phone}}</td>
-                    <td><div class="tools">
-                            <a href="{{route('client.show', $client->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
+                    <td style="text-align:center"><a href="{{route('client.show', $client->id)}}"><span class="glyphicon glyphicon-th-list"></span></a></td>
+                    <td style="text-align:center"><div class="tools">
+                            
                             <a href="{{route('client.edit', $client->id)}}" alt='editar'><i class="fas fa-edit"></i></a>
                             <a href="{{route('client.delete', $client->id)}}"><i class="fas fa-trash"></i></a>
                         </div>

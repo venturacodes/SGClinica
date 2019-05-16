@@ -1,7 +1,4 @@
 @extends('base_form')
-@section('back_button')
-    <a href="{{ route('collaborator.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
-@endsection
 @section('form_title',isset($collaborator) ? 'Editar Funcionário':'Cadastrar Funcionário')
 @section('form_content')
     <form method="POST" action="{{ isset($collaborator) ? route('collaborator.update', $collaborator->id) : route('collaborator.store')}}" enctype="multipart/form-data">

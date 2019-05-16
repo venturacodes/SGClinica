@@ -1,7 +1,4 @@
 @extends('base_form')
-@section('back_button')
-    <a href="{{ route('medicine.index') }}" class="btn btn-primary a"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-@endsection
 @section('form_title', isset($medicine) ? 'Editar Medicamento' : 'Cadastrar Medicamento')    
 @section('form_content')
     <form method="POST" action="{{ isset($medicine)? route('medicine.update', $medicine->id) : route('medicine.store') }}">

@@ -1,7 +1,4 @@
 @extends('base_form')
-@section('back_button')
-    <a href="{{ route('client.index') }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
-@endsection
 @section('form_title',isset($client) ? 'Editar paciente' : 'Cadastrar paciente')
 @section('form_content')
 
