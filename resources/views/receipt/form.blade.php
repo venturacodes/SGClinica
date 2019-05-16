@@ -27,9 +27,13 @@
                 <option @if(isset($receipt)) @if($receipt->collaborator_id == $collaborator->id) selected @endif @endif value="{{$collaborator->id}}">{{$collaborator->name}}</option>
             @endforeach
         </select>
-        <label for="forma_de_uso">Forma de uso</label>
-        <textarea name="forma_de_uso"  class="form-control">{{isset($receipt) ? $receipt->form_of_use : ''}}</textarea>
+        <label for="period">Periodo de tempo</label>
+        <input type="text" placeholder="Ex: 2x ao dia de 8 em 8 horas" name="period"  class="form-control" value="{{isset($receipt) ? $receipt->period : ''}}">
+        <label for="quantity">Quantidade</label>
+        <input type="text" placeholder="Ex: 2mg" name="quantity"  class="form-control" value="{{isset($receipt) ? $receipt->quantity : ''}}">
+        <label for="form_of_use">Forma de uso</label>
+        <textarea name="form_of_use" class="form-control">{{isset($receipt) ? $receipt->form_of_use : ''}}</textarea>
         <br />
-        <input type="submit" value="salvar" class="btn btn-block btn-primary">
+        <input type="submit" value="salvar" class=" btn btn-block btn-primary">
     </form>
 @endsection

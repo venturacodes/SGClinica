@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Receipt extends Model
 {
-    protected $fillable = ['client_id', 'medicine_id','collaborator_id', 'form_of_use'];
+    protected $fillable = ['client_id', 'medicine_id','collaborator_id', 'form_of_use', 'period', 'quantity'];
     
     public function Client(){
         return $this->belongsTo(\App\Client::class);

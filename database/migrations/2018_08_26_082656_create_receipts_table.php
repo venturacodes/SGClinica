@@ -18,7 +18,9 @@ class CreateReceiptsTable extends Migration
             $table->integer("client_id");
             $table->integer("medicine_id");
             $table->integer("collaborator_id");
-            $table->string("form_of_use");
+            $table->string("quantity");
+            $table->string("period");
+            $table->text("form_of_use");
             $table->timestamps();
         });
     }

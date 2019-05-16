@@ -50,6 +50,7 @@
                         <th>Medicamento</th>
                         <th>Médico que solicitou</th>
                         <th>Forma de uso</th>
+                        <th>Download receita</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,6 +58,7 @@
                             <td>{{$receipt->medicine->generic_name}}</td>
                             <td>{{$receipt->collaborator->name}}</td>
                             <td><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
+                            <td><a href="{{route('receipt.pdf', $receipt->id)}}"><p>Ver</p></a></td>
                         </tr>
                     </tbody>
                 </table>

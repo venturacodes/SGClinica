@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
-use App\Receipt;
-use App\Collaborator;
-use App\Medicine;
+use PDF;
 use App\Client;
+use App\Receipt;
+use App\Medicine;
+use App\Collaborator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\storeReceiptRequest;
 
 class ReceiptController extends Controller
 {
@@ -18,6 +20,18 @@ class ReceiptController extends Controller
     public function index(){
         $receipts = Receipt::all();
         return new JsonResponse($receipts);
+    }
+
+    public function generatePDF(Receipt $receipt){
+        $data = [
+            'title' =>  'Medicamento: '.$receipt->medicine->generic_name,
+            'heading' => "Clínica: ".$receipt->collaborator->clinic->name,
+            'collaborator_name' => " Médico: " . $receipt->collaborator->name,
+            'collaborator_signature' => $receipt->collaborator->signature,
+            'content' => 'teste'
+        ];
+        $pdf = PDF::loadView('receipt.receipt_pdf', $data);
+        return $pdf->download($receipt->medicine->generic_name.'.pdf');
     }
     /**
      * Show  Receipt.
@@ -36,7 +50,8 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function create(Request $request){    
-        return view('receipt.form')->with('clients',Client::all('id', 'name'))
+        return view('receipt.form')
+        ->with('clients',Client::all('id', 'name'))
         ->with('medicines', Medicine::all('id', 'generic_name'))
         ->with('collaborators',Collaborator::all('id', 'name'));
     }
@@ -46,22 +61,17 @@ class ReceiptController extends Controller
      * @param Request $request
      * @return void
      */
-    public function store(Request $request){
-        $this->validate($request, [
-            'client_id'      => 'required',
-            'medicine_id' =>'required',
-            'forma_de_uso'  => 'required',
-            'collaborator_id' => 'required'
-        ]);
-        $receipt = new Receipt();
+    public function store(storeReceiptRequest $request){ 
         
-        $receipt->client_id = $request->client_id;
-        $receipt->medicine_id = $request->medicine_id;
-        $receipt->form_of_use = $request->forma_de_uso;
-        $receipt->collaborator_id = $request->collaborator_id;
+        Receipt::create([
+            'client_id' => $request->client_id,
+            'medicine_id' => $request->medicine_id,
+            'collaborator_id' => $request->collaborator_id,
+            'form_of_use' => $request->form_of_use,
+            'period' => $request->period,
+            'quantity' => $request->quantity,
+        ]);
        
-        $receipt->save();
-
         return redirect()->route('receipt.index')->with('status','Receita adicionada com sucesso!');
     }
     /**

@@ -59,6 +59,7 @@ Route::group(['prefix'=> 'medicines', 'middleware' => 'auth'], function ()
 });
 Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function () 
 {
+    Route::get('/pdf/{receipt}', 'Web\ReceiptController@generatePDF')->name('receipt.pdf');
     Route::get('/', 'Web\HomeController@receipt')->name('receipt.index');
     Route::post('/', 'Web\ReceiptController@store')->name('receipt.store');
     Route::get('/create', 'Web\ReceiptController@create')->name('receipt.create');
@@ -66,6 +67,7 @@ Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function ()
     Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
     Route::post('/{receipt}', 'Web\ReceiptController@update')->name('receipt.update');
     Route::get('/{receipt}', 'Web\ReceiptController@show')->name('receipt.show');
+    
 });
 Route::group(['prefix'=> 'reports', 'middleware' => 'auth'], function () 
 {
