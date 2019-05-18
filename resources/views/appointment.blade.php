@@ -116,7 +116,7 @@
                 start: '08:00', // a start time (10am in this example)
                 end: '19:00', // an end time (6pm in this example)
             },
-            // firstDay: moment().day(),
+            firstDay: moment().day(),
             minTime: "08:00:00",
             maxTime: "20:00:00",
             defaultView: window.mobilecheck() ? "agendaDay" : "agendaWeek",
@@ -182,10 +182,10 @@
                 $('#collaborator').val($('#search-collaborator').val());
                 $('#client-id').val(""); 
                 $('#note-text').val("");
+                console.dir($("#event-modal-create"));
                 $("#event-modal-create").modal();
             },
             eventClick: function(calEvent, jsEvent, view) { // PARA EDIÇÃO DE UM
-                console.dir(calEvent);
                 $('#update-title').val(calEvent.title);
                 $('#update-collaborator').val(calEvent.collaborator_id);
                 $('#update-clinic').val(calEvent.clinic_id);

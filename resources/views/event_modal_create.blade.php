@@ -7,8 +7,6 @@
                 <h4 class="modal-title">Novo agendamento</h4>
             </div>
             <div class="modal-body">
-                    @include('form_status')
-                    @include('form_errors')
                 <form role="form" id="form-modal">
                     {{ csrf_field() }}
                     <div class="form-group">

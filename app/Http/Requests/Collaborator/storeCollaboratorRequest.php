@@ -27,6 +27,12 @@ class storeCollaboratorRequest extends FormRequest
             'name'      => 'required|max:255',
             'email' =>'required|unique:users',
             'phone'  => 'required',
+            'signature' => 'image'
+        ];
+    }
+    public function messages(){
+        return [
+            'signature.image' => 'O campo assinatura deve conter uma imagem.'
         ];
     }
 }

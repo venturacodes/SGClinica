@@ -13,7 +13,7 @@ class CollaboratorSeeder extends Seeder
         DB::table('collaborators')->insert([
             'user_id' => 1,
             'clinic_id' => 1,
-            'name' => 'Bruno da Luz',
+            'name' => 'Arthur Alves Venturin',
             'phone' => '491234-1212',
         ]);
     }
