@@ -10,16 +10,14 @@ class AppointmentPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view the appointment.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Appointment  $appointment
-     * @return mixed
-     */
-    public function view(User $user, Appointment $appointment)
+    public function onlyAboveDoctor(User $user)
     {
-        //
+        return $user->role->level > 1;
+    }
+
+    public function doctor(User $user)
+    {
+        return $user->role->level == 1;
     }
 
     /**

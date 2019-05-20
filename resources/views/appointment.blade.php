@@ -67,15 +67,15 @@
         </nav>
         
         <input type="hidden" id="is_admin" 
-        @if(Auth::user()->role_id == 1)
+        {{-- Level 3 is ADMIN --}}
+        @if(Auth::user()->role->level == 3)
         value="1"
         @else
         value="0"
         @endif
         >
-        
-        @include('event_partial_search')
-        <div id='calendar'></div>
+       @include('event_partial_search')
+       <div id='calendar'></div>
         @include('event_modal_create')
         @include('event_modal_update')
         @include('event_modal_loading')
@@ -249,10 +249,12 @@
                     +'&note='+eventData.note,
                     type: "POST",
                     success: function(json) {
-                        jQuery.each(json.errors, function(key, value){
-                  			jQuery('.alert-danger').show();
-                  			jQuery('.alert-danger').append('<p>'+value+'</p>');
-                  		});
+                        if(json.errors){
+                            jQuery.each(json.errors, function(key, value){
+                  			    jQuery('.alert-danger').show();
+                  			    jQuery('.alert-danger').append('<p>'+value+'</p>');
+                  		    });
+                        }
                         eventData.id = json.id;
                         $('#calendar').fullCalendar('renderEvent', eventData, true);
                         $('#event-modal-create').modal("hide");

@@ -41,7 +41,7 @@ class AppointmentController extends Controller
 
     }
     public function nextAppointments(Request $request)
-    {
+    {        
         $appointments = Appointment::orderBy('start')->get();
 
         return view('appointment.next_appointments', compact('appointments')); 
@@ -49,11 +49,11 @@ class AppointmentController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return null;
+        return ;
     }
     public function destroy(Request $request, $id)
     {
-        return null;
+        return ;
     }
     /**
      * Show appointments by it's client_id.

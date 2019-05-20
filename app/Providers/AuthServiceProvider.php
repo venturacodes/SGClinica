@@ -5,6 +5,8 @@ namespace App\Providers;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Appointment;
+use App\Policies\AppointmentPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        Appointment::class => AppointmentPolicy::class,
     ];
 
     /**
