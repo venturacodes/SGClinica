@@ -116,7 +116,7 @@
                 start: '08:00', // a start time (10am in this example)
                 end: '19:00', // an end time (6pm in this example)
             },
-            firstDay: moment().day(),
+            // firstDay: moment().day(),
             minTime: "08:00:00",
             maxTime: "20:00:00",
             defaultView: window.mobilecheck() ? "agendaDay" : "agendaWeek",

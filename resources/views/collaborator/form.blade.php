@@ -22,7 +22,7 @@
         
         <label for="email">Especialidade</label>
         <select class="form-control" id="role-id" name="role_id" required>
-            <option value="0">Selecione uma especialidade</option>
+            <option value="">Selecione uma especialidade</option>
                 @foreach($roles as $role)
                     <option @if(isset($collaborator)) @if($role->name == $collaborator->user->role->name) selected @endif @endif value="{{$role->id}}">{{$role->name}}</option>
                 @endforeach

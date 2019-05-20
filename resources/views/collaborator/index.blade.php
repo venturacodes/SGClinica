@@ -22,7 +22,7 @@
                     <td>
                     @if(isset($collaborator->user->image))
                         <picture>
-                            <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->user->image)}}" style="width:40px;height:40px; border-radius:50px;"/>
+                            <img name="avatar" class="img-thumbnail rounded float-left" src="{{asset('storage/'.$collaborator->user->image)}}" style="width:40px;height:40px; border-radius:50px;"/>
                         </picture>
                     @else
                         <picture>

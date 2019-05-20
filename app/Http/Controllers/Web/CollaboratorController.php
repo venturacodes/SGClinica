@@ -75,21 +75,25 @@ class CollaboratorController extends Controller
         $collaborator = Collaborator::findorFail($id);
         $collaborator->name = $request->name;
         $collaborator->phone = $request->phone;
-
+        $collaborator->user->email = $request->email;
+        $collaborator->user->role_id =  $request->role_id;
         if(isset($request->signature)){
+            if($collaborator->signature){
+                Storage::delete($collaborator->signature);
+            }
             $collaborator->signature = $request->signature->store('signatures');
-            $collaborator->save();
         }
-
-        $collaborator->save();
-
-        $user = User::where('id','=',$collaborator->user_id)->first();
-        $user->email = $request->email;
-        $user->role_id = $request->role_id;
+        if(isset($request->image)){
+            if($collaborator->user->image){
+                Storage::delete($collaborator->user->image);
+            }
+            $collaborator->user->image = $request->image->store('users');
+        }
         if(isset($request->password)){
-            $user->password = bcrypt($request->password);
+            $collaborator->user->password = bcrypt($request->password);
         }
-        $user->save();
+        $collaborator->save();
+        $collaborator->user->save();
         
         return redirect()->route('collaborator.index')->with('status', 'Funcionário atualizado com sucesso!');
     }
