@@ -6,11 +6,6 @@
         @isset($collaborator)
             @method('PUT')
         @endisset
-        @if(isset($collaborator->image))
-        <picture>
-        <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->image)}}" style="width:80px;height:80px; border-radius:50px;"/>
-        </picture>
-        @endif
         <br />
         <label for="name">Nome</label>
         <input type="text" name="name" class="form-control" value='{{isset($collaborator) ? $collaborator->name : ''}}'>
@@ -32,11 +27,20 @@
             <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
             <input type="email" name="email" class="form-control" value="{{ isset($collaborator) ? $collaborator->user->email : ''}}">
         </div>
-        <label for="image">Imagem</label>
+        @isset($collaborator->user->image)
+            <picture>
+                <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->user->image)}}" style="width:80px;height:80px; border-radius:50px;"/>
+            </picture>
+        @endisset
+        <label for="image">Avatar</label>
         <div class="input-group">
             <input type="file" name="image" class="form-control">
         </div>
-
+        @isset($collaborator->signature)
+            <picture>
+                <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->signature)}}" style="width:80px;height:80px; border-radius:50px;"/>
+            </picture>
+        @endisset
         <label for="signature">Assinatura</label>
         <div class="input-group">
             <input type="file" name="signature" class="form-control">
