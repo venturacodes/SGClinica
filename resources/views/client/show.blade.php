@@ -40,33 +40,36 @@
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
             <h3>Receitas solicitadas</h3><a href="{{route('receipt.create', $client->id)}}" class="btn btn-primary">Receitar novo medicamento</a>
         </nav>
-            @forelse($client->receipts as $receipt)
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Medicamento</th>
-                        <th>Responsável</th>
-                        <th>Detalhes</th>
-                        <th>Download</th>
+            
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Responsável</th>
+                    <th>Detalhes</th>
+                    <th>Download</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($client->receipts as $receipt)
+        
+                    <tr>          
+                        <td>{{$receipt->medicine->generic_name}}</td>
+                        <td>{{$receipt->collaborator->name}}</td>
+                        <td style="text-align:center"><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
+                        <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td>
                     </tr>
-                    </thead>
-                    <tbody>
-                        <tr>          
-                            <td>{{$receipt->medicine->generic_name}}</td>
-                            <td>{{$receipt->collaborator->name}}</td>
-                            <td style="text-align:center"><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
-                            <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            @empty
-                <strong>Nenhuma receita cadastrada para esse paciente</strong>
-            @endforelse
+                @empty
+                    <strong>Nenhuma receita cadastrada para esse paciente</strong>
+                @endforelse                    
+            </tbody>
+            </table>
+            
             <section class="panel">
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                     <h3>Exames solicitados</h3><a href="{{route('exam.create', $client->id)}}" class="btn btn-primary">Solicitar novo exame</a>
                 </nav>
-                    @forelse($client->exams as $exam)
+                    
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -77,22 +80,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>          
-                                    <td>{{$exam->name}}</td>
-                                    <td>{{$exam->collaborator->name}}</td>
-                                    @if($exam->status == 0)
-                                        <td><a href="#" class="btn btn-primary">Entregar</a></td>
-                                    @else
-                                        <td>{{$exam->status}}</td
-                                    @endif
-                                    
-                                    {{-- <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td> --}}
-                                </tr>
+                                @forelse($client->exams as $exam)
+                                    <tr>          
+                                        <td>{{$exam->name}}</td>
+                                        <td>{{$exam->collaborator->name}}</td>
+                                        @if($exam->status == 0)
+                                            <td><a href="#" class="btn btn-primary">Entregar</a></td>
+                                        @else
+                                            <td>{{$exam->status}}</td
+                                        @endif
+                                        
+                                        {{-- <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td> --}}
+                                    </tr>
+                                @empty
+                                    <strong>Nenhuma receita cadastrada para esse paciente</strong>
+                                @endforelse
                             </tbody>
                         </table>
-                    @empty
-                        <strong>Nenhuma receita cadastrada para esse paciente</strong>
-                    @endforelse
+                   
         
     </section>
     </form>
