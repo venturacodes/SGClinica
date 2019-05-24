@@ -56,8 +56,5 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'role' => \jeremykenedy\LaravelRoles\Middleware\VerifyRole::class,
-        'permission' => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
-        'level' => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
     ];
 }

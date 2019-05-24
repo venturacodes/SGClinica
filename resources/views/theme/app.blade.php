@@ -74,12 +74,24 @@
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Minhas Ações</li>
             <!-- Optionally, you can add icons to the links -->
-          <li ><a href="{{ route('appointment.next_appointments') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Próximos agendamentos</span></a></li>
-            <li ><a href="{{ route('appointment.agenda') }}"><i class="fa fa-calendar-alt" aria-hidden="true"></i> <span>Minha Agenda</span></a></li>
-            <li><a href="{{ route('client.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Meus pacientes</span></a></li>
-            <li><a href="{{ route('collaborator.index') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Médicos da clínica</span></a></li>
-            <li><a href="{{ route('report.show') }}"><i class="fa fa-chart-bar" aria-hidden="true"></i> <span>Meus relatórios</span></a></li>
-            <li><a href="{{ route('medicine.index') }}"><i class="fa fa-capsules" aria-hidden="true"></i><span>Medicamentos cadastrados</span></a></li>
+            @if(Auth::user()->role->level == 4)
+              <li ><a href="{{ route('appointment.next_appointments') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Próximos agendamentos</span></a></li>
+            @endcannot
+            @if(Auth::user()->role->level > 1)
+              <li ><a href="{{ route('appointment.agenda') }}"><i class="fa fa-calendar-alt" aria-hidden="true"></i> <span>Minha Agenda</span></a></li>
+            @endcan
+            @if(Auth::user()->role->level > 0)
+              <li><a href="{{ route('client.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Meus pacientes</span></a></li>
+            @endcan
+            @if(in_array(Auth::user()->role->level,[4]))
+              <li><a href="{{ route('collaborator.index') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Cadastro de funcionários</span></a></li>
+            @endcan
+            @if(Auth::user()->role->level > 2)
+              <li><a href="{{ route('report.show') }}"><i class="fa fa-chart-bar" aria-hidden="true"></i> <span>Meus relatórios</span></a></li>
+            @endcan
+            @if(in_array(Auth::user()->role->level,[1,4]))
+              <li><a href="{{ route('medicine.index') }}"><i class="fa fa-capsules" aria-hidden="true"></i><span>Medicamentos cadastrados</span></a></li>
+            @endcan
             <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out-alt" aria-hidden="true"></i><span>Sair</span> </a>

@@ -2,11 +2,17 @@
 
 namespace App\Providers;
 
+use App\Client;
+use App\Medicine;
+use App\Appointment;
+use App\Collaborator;
+use App\Policies\ClientPolicy;
 use Laravel\Passport\Passport;
+use App\Policies\MedicinePolicy;
+use App\Policies\AppointmentPolicy;
+use App\Policies\CollaboratorPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Appointment;
-use App\Policies\AppointmentPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,6 +23,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Appointment::class => AppointmentPolicy::class,
+        Collaborator::class => CollaboratorPolicy::class,
+        Medicine::class => MedicinePolicy::class,
+        Client::class => ClientPolicy::class
     ];
 
     /**

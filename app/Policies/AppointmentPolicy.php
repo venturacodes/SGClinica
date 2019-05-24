@@ -10,14 +10,29 @@ class AppointmentPolicy
 {
     use HandlesAuthorization;
 
-    public function onlyAboveDoctor(User $user)
+    /**
+     * level 1 é medico
+     */
+    public function seeNextAppointments(User $user)
     {
-        return $user->role->level > 1;
+        die('to aqui');
+        return auth()->user()->role->level == 1;
     }
 
-    public function doctor(User $user)
+    /**
+     * Acima de 1 são secretaria, Gestor and Admin
+     */
+    public function seeAgendas(User $user)
     {
-        return $user->role->level == 1;
+        die('to aqui');
+        return auth()->user()->role->level > 1;
+    }
+    /**
+     * Acima de 2 são Gestor and Admin
+     */
+    public function seeReports(User $user)
+    {
+        return $user->role->level > 2;
     }
 
     /**

@@ -12,6 +12,7 @@ trait storeUser
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => $request->role_id
         ]);
         if(isset($request->image)){
             $user->image = $request->image->store('users');
