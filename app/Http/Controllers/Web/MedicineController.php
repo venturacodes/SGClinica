@@ -84,4 +84,21 @@ class MedicineController extends Controller
         $medicine->deleted = true;
         return redirect()->route('medicine.index')->with('status', 'Medicamento deletado com sucesso!');
     }
+    public function searchByName(Request $request)
+    {
+        if(!$request->name){
+            return redirect()->route('medicine.index')
+            ->with('medicines',Medicine::paginate(3))
+            ->with('status-info','Preencha o campo de busca para efetuar uma pesquisa.');
+        }
+        $medicine = Medicine::where('generic_name','LIKE', "%{$request->name}%")->first();
+        if(!$medicine){
+            return redirect()->route('medicine.index')
+            ->with('medicines',Medicine::paginate(3))
+            ->with('status-info','Medicamento não encontrado.');
+        }
+        return view('medicine.index_filtered')
+        ->with('medicines',Medicine::where('generic_name','LIKE',"%{$request->name}%")->paginate(3))
+        ->with('filtered_content', $request->name);        
+    }
 }

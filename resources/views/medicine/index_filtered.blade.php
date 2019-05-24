@@ -1,19 +1,10 @@
 @extends('base_index')
-
 @section('index_title','Medicamentos')
 @section('index_search_button')
-<form method="POST" action="{{route('medicine.searchByName')}}">
+<form class="form-inline" method="GET" action="{{route('medicine.index')}}">
     {{ csrf_field() }}
-    <div class="input-group">
-        <input type="text" name="name" class="form-control" placeholder="Buscar">
-        <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-        </span>
-    </div>
+<button class="btn btn-outline-success my-2 my-sm-0 btn-primary" type="submit">Remover filtro nome genérico parecido com {{$filtered_content}}</button>
 </form>
-@endsection
-@section('index_add_button')
-    <a href="{{route('medicine.create')}}" class="btn btn-app  pull-right"><i class="fa fa-plus" aria-hidden="true"></i><strong>Adicionar</strong></a>
 @endsection
 @section('index_table_data')
     <table class="table table-hover">

@@ -19,4 +19,8 @@ class Client extends Model
     {
         return $this->hasMany(Receipt::class);
     }
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
 }

@@ -74,14 +74,12 @@
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Minhas Ações</li>
             <!-- Optionally, you can add icons to the links -->
-          <li ><a href="{{ route('appointment.next_appointments') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Meus próximos agendamentos</span></a></li>
+          <li ><a href="{{ route('appointment.next_appointments') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Próximos agendamentos</span></a></li>
             <li ><a href="{{ route('appointment.agenda') }}"><i class="fa fa-calendar-alt" aria-hidden="true"></i> <span>Minha Agenda</span></a></li>
             <li><a href="{{ route('client.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Meus pacientes</span></a></li>
             <li><a href="{{ route('collaborator.index') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Médicos da clínica</span></a></li>
-            <li><a href="{{ route('clinic.index') }}"><i class="fa fa-hospital" aria-hidden="true"></i> <span>Minhas clínicas</span></a></li>
             <li><a href="{{ route('report.show') }}"><i class="fa fa-chart-bar" aria-hidden="true"></i> <span>Meus relatórios</span></a></li>
             <li><a href="{{ route('medicine.index') }}"><i class="fa fa-capsules" aria-hidden="true"></i><span>Medicamentos cadastrados</span></a></li>
-            <li><a href="{{ route('receipt.index') }}"><i class="fa fa-receipt" aria-hidden="true"></i> <span>Receitas cadastradas</span></a></li>
             <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out-alt" aria-hidden="true"></i><span>Sair</span> </a>

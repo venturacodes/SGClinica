@@ -23,8 +23,9 @@
             @endif
         <header class="panel-heading">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-                @yield('index_search_button')
                 @yield('index_add_button')
+                @yield('index_search_button')
+                
             </nav>
         </header>
         <div class="panel-body table-responsive">

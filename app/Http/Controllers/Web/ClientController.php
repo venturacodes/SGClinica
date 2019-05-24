@@ -80,4 +80,21 @@ class ClientController extends Controller
 
         return redirect()->route('client.index')->with('status', 'Paciente excluído com sucesso!');
     }
+    public function searchByName(Request $request)
+    {
+        if(!$request->name){
+            return redirect()->route('client.index')
+            ->with('clients',Client::paginate(3))
+            ->with('status-info','Preencha o campo de busca para efetuar uma pesquisa.');
+        }
+        $client = Client::where('name','LIKE', "%{$request->name}%")->first();
+        if(!$client){
+            return redirect()->route('client.index')
+            ->with('clients',Client::paginate(3))
+            ->with('status-info','Paciente não encontrado.');
+        }
+        return view('client.index_filtered')
+        ->with('clients',Client::where('name','LIKE',"%{$request->name}%")->paginate(3))
+        ->with('filtered_content', $request->name);        
+    }
 }

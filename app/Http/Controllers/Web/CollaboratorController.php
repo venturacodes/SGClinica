@@ -110,4 +110,21 @@ class CollaboratorController extends Controller
         Collaborator::destroy($id);
         return redirect()->route('collaborator.index')->with('status', 'Funcionário excluído com sucesso!');
     }
+    public function searchByName(Request $request)
+    {
+        if(!$request->name){
+            return redirect()->route('collaborator.index')
+            ->with('collaborators',Collaborator::paginate(3))
+            ->with('status-info','Preencha o campo de busca para efetuar uma pesquisa.');
+        }
+        $collaborator = Collaborator::where('name','LIKE', "%{$request->name}%")->first();
+        if(!$collaborator){
+            return redirect()->route('collaborator.index')
+            ->with('collaborators',Collaborator::paginate(3))
+            ->with('status-info','Funcionário não encontrado.');
+        }
+        return view('collaborator.index_filtered')
+        ->with('collaborators',Collaborator::where('name','LIKE',"%{$request->name}%")->paginate(3))
+        ->with('filtered_content', $request->name);        
+    }
 }

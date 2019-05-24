@@ -28,6 +28,8 @@ Route::group(['prefix'=> 'collaborators', 'middleware' => 'auth'], function ()
     Route::get('/{collaborator}/delete', 'Web\CollaboratorController@destroy')->name('collaborator.delete');
     Route::get('/{collaborator}/edit', 'Web\CollaboratorController@edit')->name('collaborator.edit');
     Route::put('/{collaborator}', 'Web\CollaboratorController@update')->name('collaborator.update');
+    Route::post('/search', 'Web\CollaboratorController@searchByName')->name('collaborator.searchByName');
+    Route::get('/search', 'Web\CollaboratorController@searchByName');
 });
 Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function () 
 {
@@ -38,6 +40,8 @@ Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function ()
     Route::get('/{id}/delete', 'Web\ClientController@destroy')->name('client.delete');
     Route::get('/{id}/edit', 'Web\ClientController@edit')->name('client.edit');
     Route::put('/{id}', 'Web\ClientController@update')->name('client.update');
+    Route::post('/search', 'Web\ClientController@searchByName')->name('client.searchByName');
+    Route::get('/search', 'Web\ClientController@searchByName');
 });
 Route::group(['prefix'=> 'clinics', 'middleware' => 'auth'], function () 
 {
@@ -56,17 +60,31 @@ Route::group(['prefix'=> 'medicines', 'middleware' => 'auth'], function ()
     Route::get('/{id}/delete', 'Web\MedicineController@destroy')->name('medicine.delete');
     Route::get('/{id}/edit', 'Web\MedicineController@edit')->name('medicine.edit');
     Route::put('/{id}', 'Web\MedicineController@update')->name('medicine.update');
+    Route::post('/search', 'Web\MedicineController@searchByName')->name('medicine.searchByName');
+    Route::get('/search', 'Web\MedicineController@searchByName');
 });
 Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function () 
 {
     Route::get('/pdf/{receipt}', 'Web\ReceiptController@generatePDF')->name('receipt.pdf');
     Route::get('/', 'Web\HomeController@receipt')->name('receipt.index');
     Route::post('/', 'Web\ReceiptController@store')->name('receipt.store');
-    Route::get('/create', 'Web\ReceiptController@create')->name('receipt.create');
+    Route::get('/create/client/{client}', 'Web\ReceiptController@create')->name('receipt.create');
     Route::get('/{receipt}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
     Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');
     Route::post('/{receipt}', 'Web\ReceiptController@update')->name('receipt.update');
     Route::get('/{receipt}', 'Web\ReceiptController@show')->name('receipt.show');
+    
+});
+Route::group(['prefix'=> 'exams', 'middleware' => 'auth'], function () 
+{
+    Route::get('/pdf/{exam}', 'Web\ExamController@generatePDF')->name('exam.pdf');
+    Route::get('/', 'Web\HomeController@exam')->name('exam.index');
+    Route::post('/', 'Web\ExamController@store')->name('exam.store');
+    Route::get('/create/client/{client}', 'Web\ExamController@create')->name('exam.create');
+    Route::get('/{exam}/delete', 'Web\ExamController@destroy')->name('exam.delete');
+    Route::get('/{exam}/edit', 'Web\ExamController@edit')->name('exam.edit');
+    Route::post('/{exam}', 'Web\ExamController@update')->name('exam.update');
+    Route::get('/{exam}', 'Web\ExamController@show')->name('exam.show');
     
 });
 Route::group(['prefix'=> 'reports', 'middleware' => 'auth'], function () 

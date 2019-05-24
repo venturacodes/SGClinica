@@ -89,7 +89,8 @@
         return check;
     };
     function get_calendar_height() {
-        return $(window).height() - 30;
+        console.log($(window).height() - 50);
+        return $(window).height() - 350;
     }
     $(document).ready(function(){
         if($("#is_admin").val() == 0){

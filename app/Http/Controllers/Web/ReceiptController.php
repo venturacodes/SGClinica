@@ -51,9 +51,9 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function create(Request $request){    
+    public function create(Request $request, Client $client){    
         return view('receipt.form')
-        ->with('clients',Client::all('id', 'name'))
+        ->with('client', $client)
         ->with('medicines', Medicine::all('id', 'generic_name'))
         ->with('collaborators',Collaborator::all('id', 'name'));
     }
@@ -74,7 +74,7 @@ class ReceiptController extends Controller
             'quantity' => $request->quantity,
         ]);
        
-        return redirect()->route('receipt.index')->with('status','Receita adicionada com sucesso!');
+        return redirect()->route('client.show', $request->client_id)->with('status','Receita adicionada com sucesso!');
     }
     /**
      * edit the Receipt

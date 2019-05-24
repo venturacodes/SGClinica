@@ -1,25 +1,16 @@
 @extends('base_index')
-
 @section('index_title','Pacientes')
 @section('index_search_button')
-<form method="POST" action="{{route('client.searchByName')}}">
+<form class="form-inline" method="GET" action="{{route('client.index')}}">
     {{ csrf_field() }}
-    <div class="input-group">
-        <input type="text" name="name" class="form-control" placeholder="Buscar">
-        <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-        </span>
-    </div>
+<button class="btn btn-outline-success my-2 my-sm-0 btn-primary" type="submit">Remover filtro nome parecido com {{$filtered_content}}</button>
 </form>
-@endsection
-@section('index_add_button')
-    <a href="{{route('client.create')}}" class="btn btn-app  pull-right"><i class="fa fa-plus" aria-hidden="true"></i><strong>Adicionar</strong></a>
 @endsection
 @section('index_table_data')
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Nome</th>
+            <th>Nome do paciente</th>
             <th>Telefone</th>
             <th>Detalhes</th>
             <th>Ações</th>
@@ -33,14 +24,12 @@
                     <td>{{$client->phone}}</td>
                     <td style="text-align:center"><a href="{{route('client.show', $client->id)}}"><span class="glyphicon glyphicon-th-list"></span></a></td>
                     <td style="text-align:center"><div class="tools">
-
                             <a href="{{route('client.edit', $client->id)}}" alt='editar'><i class="fas fa-edit"></i></a>
                             <a href="{{route('client.delete', $client->id)}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>
             @endforeach
-            
         @endisset
         </tbody>
     </table>

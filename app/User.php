@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Collaborator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
@@ -26,13 +27,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\Role::class);
     }
-    public function client()
-    {
-            return $this->hasOne(\App\Client::class);
-    }
+    // public function client()
+    // {
+    //         return $this->hasOne(\App\Client::class);
+    // }
     public function clinic()
     {
         return $this->hasMany(\App\Clinic::class);
+    }
+    public function collaborator(){
+        return $this->hasOne(Collaborator::class);
     }
     public function prepare(array $data)
     {

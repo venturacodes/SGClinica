@@ -47,7 +47,7 @@ class HomeController extends Controller
     }
     public function collaborator()
     {
-        return view('collaborator.index', ['collaborators' => Collaborator::all() ]);
+        return view('collaborator.index')->with('collaborators', Collaborator::paginate(3));
     }
     public function collaboratorDestroy($id)
     {
@@ -57,25 +57,25 @@ class HomeController extends Controller
     }
     public function clinic()
     {
-
-        $clinics = Clinic::all();
-        return view('clinic.index', compact('clinics'));
+        return view('clinic.index')->with('clinics',Clinic::paginate(3));
     }
     public function client()
     {
-        $clients = Client::all();
-        return view('client.index', compact('clients'));
+        return view('client.index')->with('clients',Client::paginate(3));
     }
     public function medicine()
     {
-        $medicines = Medicine::all();
-        return view('medicine.index', compact('medicines'));
+        return view('medicine.index')->with('medicines',Medicine::paginate(3));
     }
     public function receipt()
+    { 
+        return view('receipt.index')->with('receipts', Receipt::paginate(3));
+    }
+    public function exam()
     {
-        $receipts = Receipt::all();
+        $exams = Exam::all();
         
-        return view('receipt.index', compact('receipts'));
+        return view('exam.index')->with('exams', $exams);
     }
     public function report()
     {
