@@ -11,4 +11,8 @@ class Role extends Model
     public function users(){
         return $this->hasMany(\App\User::class);
     }
+
+    public static function getRoleIdForDoctor(){
+        return self::first()->id;
+    }
 }

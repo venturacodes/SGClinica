@@ -23,7 +23,7 @@ Route::group(['prefix'=> 'appointments', 'middleware' => 'auth'], function ()
 Route::group(['prefix'=> 'collaborators', 'middleware' => 'auth'], function () 
 {
     Route::get('/', 'Web\HomeController@collaborator')->name('collaborator.index');
-    Route::post('/', 'Web\CollaboratorController@store')->name('collaborator.store');
+    Route::post('/store', 'Web\CollaboratorController@store')->name('collaborator.store');
     Route::get('/create', 'Web\CollaboratorController@create')->name('collaborator.create');
     Route::get('/{collaborator}/delete', 'Web\CollaboratorController@destroy')->name('collaborator.delete');
     Route::get('/{collaborator}/edit', 'Web\CollaboratorController@edit')->name('collaborator.edit');
