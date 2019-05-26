@@ -1,17 +1,14 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
-use Carbon\Carbon;
-use Dentist\Appointment;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AppointmentTest extends TestCase
+class CollaboratorTest extends TestCase
 {
-
-        /**
+    /**
      * A basic feature test example.
      *
      * @return void

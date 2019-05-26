@@ -15,7 +15,6 @@ class AppointmentPolicy
      */
     public function seeNextAppointments(User $user)
     {
-        die('to aqui');
         return auth()->user()->role->level == 1;
     }
 
@@ -24,7 +23,6 @@ class AppointmentPolicy
      */
     public function seeAgendas(User $user)
     {
-        die('to aqui');
         return auth()->user()->role->level > 1;
     }
     /**

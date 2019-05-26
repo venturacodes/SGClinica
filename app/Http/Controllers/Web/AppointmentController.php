@@ -42,9 +42,10 @@ class AppointmentController extends Controller
     }
     public function nextAppointments(Request $request)
     {        
-        $appointments = Appointment::orderBy('start')->get();
-
-        return view('appointment.next_appointments', compact('appointments')); 
+        $this->authorize('seeNextAppointments', Appointment::class);
+        
+        return view('appointment.next_appointments')
+        ->with('appointments',Appointment::orderBy('start')->get()); 
     }
 
     public function edit(Request $request, $id)
@@ -81,9 +82,8 @@ class AppointmentController extends Controller
      */
     public function attendTo(Request $request, $id)
     {
-        $appointment = Appointment::find($id);
-
-        return view('appointment.attend_to', compact('appointment')); 
+        return view('appointment.attend_to')
+        ->with('appointment', Appointment::find($id)); 
     }
     /**
      * Method responsible for store an appointment by the doctor.
@@ -104,21 +104,25 @@ class AppointmentController extends Controller
      */
     public function attachExams(Request $request, $id)
     {
+        $this->authorize('seeNextAppointments', Appointment::class);
         $appointment = Appointment::find($id);
         dd($appointment);
         return redirect()->route('appointment.need_exams', $appointment->id)->with('status', 'Paciente adicionado com sucesso!');
     }
     public function needExams(Request $request, $id)
     {
+        $this->authorize('seeNextAppointments', Appointment::class);
         $appointment = Appointment::find($id);
         return view('appointment.need_exams', compact('appointment'));
     }
     public function needReceipts(Request $request, $id)
     {
+        $this->authorize('seeNextAppointments', Appointment::class);
         return view('appointment.need_receipts');
     }
     public function searchByName(Request $request)
     {
+        $this->authorize('seeNextAppointments', Appointment::class);
         if(!$request->name){
             $appointments = Appointment::all();
             return redirect()->route('appointment.next_appointments', compact('appointments'))->with('status-info','Preencha o campo de busca para efetuar uma pesquisa.');

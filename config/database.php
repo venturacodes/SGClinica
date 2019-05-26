@@ -39,7 +39,14 @@ return [
     */
 
     'connections' => [
-
+        'testing' => [
+            'driver'=> env('DB_TEST_DRIVER'),
+            'host' => env('DB_TEST_HOST', '127.0.0.1'),
+            'port' => env('DB_TEST_PORT', '3306'),
+            'database' => env('DB_TEST_DATABASE', 'test'),
+            'username' => env('DB_TEST_USERNAME', ''),
+            'password' => env('DB_TEST_PASSWORD', ''),
+        ],
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
