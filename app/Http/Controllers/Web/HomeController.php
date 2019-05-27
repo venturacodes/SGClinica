@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Web;
 
-use Carbon\Carbon;
-use App\Appointment;
+use App\User;
 use App\Client;
 use App\Clinic;
-use App\Medicine;
-use App\Collaborator;
 use App\Receipt;
-use App\Http\Controllers\Controller;
+use App\Medicine;
+use Carbon\Carbon;
+use App\Appointment;
+use App\Collaborator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -31,23 +32,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clinics = Clinic::all('name', 'id');
-        $collaborators = Collaborator::all('name', 'id');
-        $clients = Client::all('name', 'id');
-        $data = [ 'clinic' => compact('clinics'), 'collaborators' => compact('collaborators'), 'clients' => compact('clients') ];
-        return view('appointment', compact('data'));
+        return view('appointment')
+        ->with('clinics',Clinic::all('name', 'id'))
+        ->with('collaborators', Collaborator::with('user:id,role_id')->where('user:role_id', 3)->get())
+        ->with('clients', Client::all('name','id'));
     }
     public function appointment()
     {
-        $clinics = Clinic::all('name', 'id');
-        $collaborators = Collaborator::all('name', 'id');
-        $clients = Client::all('name', 'id');
-        $data = [ 'clinic' => compact('clinics'), 'collaborators' => compact('collaborators'), 'clients' => compact('clients') ];
-        return view('appointment', compact('data'));
+        $collaborators = collect();
+        foreach(User::with('collaborator')->where('role_id', 4)->get() as $user){
+            $collaborators->push($user->collaborator);
+        }   
+        return view('appointment')
+        ->with('clinics',Clinic::all('name', 'id'))
+        ->with('collaborators', $collaborators)
+        ->with('clients', Client::all('name','id'));
     }
     public function collaborator()
     {
-        return view('collaborator.index')->with('collaborators', Collaborator::paginate(3));
+        return view('collaborator.index')
+        ->with('collaborators', Collaborator::paginate(3));
     }
     public function collaboratorDestroy($id)
     {
@@ -57,25 +61,30 @@ class HomeController extends Controller
     }
     public function clinic()
     {
-        return view('clinic.index')->with('clinics',Clinic::paginate(3));
+        return view('clinic.index')
+        ->with('clinics',Clinic::paginate(3));
     }
     public function client()
     {
-        return view('client.index')->with('clients',Client::paginate(3));
+        return view('client.index')
+        ->with('clients',Client::paginate(3));
     }
     public function medicine()
     {
-        return view('medicine.index')->with('medicines',Medicine::paginate(3));
+        return view('medicine.index')
+        ->with('medicines',Medicine::paginate(3));
     }
     public function receipt()
     { 
-        return view('receipt.index')->with('receipts', Receipt::paginate(3));
+        return view('receipt.index')
+        ->with('receipts', Receipt::paginate(3));
     }
     public function exam()
     {
         $exams = Exam::all();
         
-        return view('exam.index')->with('exams', $exams);
+        return view('exam.index')
+        ->with('exams', $exams);
     }
     public function report()
     {

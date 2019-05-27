@@ -27,7 +27,6 @@
         </thead>
         <tbody>
         @isset($collaborators)
-
             @foreach($collaborators as $collaborator)
                 <tr>
                     <td>

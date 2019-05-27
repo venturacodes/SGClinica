@@ -68,7 +68,8 @@
         
         <input type="hidden" id="is_admin" 
         {{-- Level 3 is ADMIN --}}
-        @if(Auth::user()->role->level == 3)
+        
+        @if(Auth::user()->role->level > 1)
         value="1"
         @else
         value="0"
@@ -89,7 +90,6 @@
         return check;
     };
     function get_calendar_height() {
-        console.log($(window).height() - 50);
         return $(window).height() - 350;
     }
     $(document).ready(function(){
@@ -102,8 +102,7 @@
             $('#calendar').fullCalendar('option', 'height', get_calendar_height());
         });
 
-        $('#search-collaborator').val(1);
-        var selectedCollaborator = $("#search-collaborator").val();
+        
         $('#calendar').fullCalendar({
             height: get_calendar_height,
             header: {
@@ -135,9 +134,6 @@
             navLinks: true, // can click day/week names to navigate views
 
             eventLimit: true, // allow "more" link when too many events
-            events: {
-                url: '/api/appointments/collaborator/'+selectedCollaborator
-            },
             selectable: true,
             editable: true,
             selectHelper: false,
@@ -150,7 +146,6 @@
                 }
             },
             eventResize: function(eventResized){
-                console.log(eventResized);
                 if(confirm("Confirma troca de horário de agendamento para início "+$.fullCalendar.formatDate(eventResized.start, 'HH:mm')+" até "+ $.fullCalendar.formatDate(eventResized.end, 'HH:mm')))
                 {
                     $.ajax({

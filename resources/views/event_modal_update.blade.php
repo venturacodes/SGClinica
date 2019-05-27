@@ -31,20 +31,16 @@
                         <label for="collaborator">Médico</label>
                         <select class="form-control" id="update-collaborator" name="collaborator" disabled>
                             <option value="0">Selecione um médico</option>
-                            @foreach($data['collaborators'] as $funcionarios)
-                                @foreach($funcionarios as $funcionario)
-                                    <option value="{{$funcionario->id}}">{{$funcionario->name}}</option>
+                                @foreach($collaborators as $collaborator)
+                                    <option value="{{$collaborator->id}}">{{$collaborator->name}}</option>
                                 @endforeach
-                            @endforeach
                         </select>
                         <label for="client">Paciente</label>
                         <select class="form-control" id="update-client-id" name="client">
                             <option value="0">Selecione um paciente</option>
-                            @foreach($data['clients'] as $clientes)
-                                @foreach($clientes as $cliente)
-                                    <option value="{{$cliente->id}}">{{$cliente->name}}</option>
+                                @foreach($clients as $client)
+                                    <option value="{{$client->id}}">{{$client->name}}</option>
                                 @endforeach
-                            @endforeach
                         </select>
                         <label for="note">Observação</label>
                         <textarea id="update-note" name="note" class="form-control"></textarea>
