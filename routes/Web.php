@@ -34,7 +34,7 @@ Route::group(['prefix'=> 'collaborators', 'middleware' => 'auth'], function ()
 Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function () 
 {
     Route::get('/', 'Web\HomeController@client')->name('client.index');
-    Route::post('/', 'Web\ClientController@store')->name('client.store');
+    Route::post('/store', 'Web\ClientController@store')->name('client.store');
     Route::get('{id}/show', 'Web\ClientController@show')->name('client.show');
     Route::get('/create', 'Web\ClientController @create')->name('client.create');
     Route::get('/{id}/delete', 'Web\ClientController@destroy')->name('client.delete');
@@ -55,7 +55,7 @@ Route::group(['prefix'=> 'clinics', 'middleware' => 'auth'], function ()
 Route::group(['prefix'=> 'medicines', 'middleware' => 'auth'], function () 
 {
     Route::get('/', 'Web\HomeController@medicine')->name('medicine.index');
-    Route::post('/', 'Web\MedicineController@store')->name('medicine.store');
+    Route::post('/store', 'Web\MedicineController@store')->name('medicine.store');
     Route::get('/create', 'Web\MedicineController@create')->name('medicine.create');
     Route::get('/{id}/delete', 'Web\MedicineController@destroy')->name('medicine.delete');
     Route::get('/{id}/edit', 'Web\MedicineController@edit')->name('medicine.edit');
@@ -67,7 +67,7 @@ Route::group(['prefix'=> 'receipts', 'middleware' => 'auth'], function ()
 {
     Route::get('/pdf/{receipt}', 'Web\ReceiptController@generatePDF')->name('receipt.pdf');
     Route::get('/', 'Web\HomeController@receipt')->name('receipt.index');
-    Route::post('/', 'Web\ReceiptController@store')->name('receipt.store');
+    Route::post('/store', 'Web\ReceiptController@store')->name('receipt.store');
     Route::get('/create/client/{client}', 'Web\ReceiptController@create')->name('receipt.create');
     Route::get('/{receipt}/delete', 'Web\ReceiptController@destroy')->name('receipt.delete');
     Route::get('/{receipt}/edit', 'Web\ReceiptController@edit')->name('receipt.edit');

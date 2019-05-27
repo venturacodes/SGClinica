@@ -52,7 +52,7 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function create(Request $request, Client $client){    
-        return view('receipt.form')
+        return view('receipt.forme')
         ->with('client', $client)
         ->with('medicines', Medicine::all('id', 'generic_name'))
         ->with('collaborators',Collaborator::all('id', 'name'));
