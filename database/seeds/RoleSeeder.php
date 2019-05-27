@@ -12,6 +12,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
+            'id' => 1,
             'name' => 'Administrador',
             'slug' => 'admin',
             'description' => 'Role used by user administrator',
@@ -20,6 +21,7 @@ class RoleSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()
         ]);
         DB::table('roles')->insert([
+            'id' => 2,
             'name' => 'Gestor',
             'slug' => 'man',
             'description' => 'Role used by user Manager',
@@ -28,6 +30,7 @@ class RoleSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()
         ]);
         DB::table('roles')->insert([
+            'id' => 3,
             'name' => 'Secretária',
             'slug' => 'sec',
             'description' => "Role used by the secretary can see doctor's agenda",
@@ -36,6 +39,7 @@ class RoleSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()
         ]);
         DB::table('roles')->insert([
+            'id' => 4,
             'name' => 'Médico',
             'slug' => 'doc',
             'description' => 'Role used by user doctor in general, most basic role in system, besides guest.',
