@@ -11,6 +11,7 @@ class CollaboratorSeeder extends Seeder
     public function run()
     {
         DB::table('collaborators')->insert([
+            'id' => 1,
             'user_id' => 1,
             'clinic_id' => 1,
             'name' => 'Arthur Alves Venturin',
