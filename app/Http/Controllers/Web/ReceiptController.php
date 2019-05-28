@@ -24,16 +24,10 @@ class ReceiptController extends Controller
 
     public function generatePDF(Receipt $receipt){
         $data = [
-            'title' =>  'Medicamento: '.$receipt->medicine->generic_name,
-            'heading' => "Clínica: ".$receipt->collaborator->clinic->name,
-            'collaborator_name' => $receipt->collaborator->name,
-            'collaborator_signature' => $receipt->collaborator->signature,
-            'medicine_name' => $receipt->medicine->generic_name,
-            'receipt_period' => $receipt->period,
-            'receipt_quantity' => $receipt->quantity,
+            'receipt' => $receipt,
         ];
         $pdf = PDF::loadView('receipt.receipt_pdf', $data);
-        return $pdf->download($receipt->medicine->generic_name.'.pdf');
+        return $pdf->download('Receita.pdf');
     }
     /**
      * Show  Receipt.
@@ -52,7 +46,7 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function create(Request $request, Client $client){    
-        return view('receipt.forme')
+        return view('receipt.form')
         ->with('client', $client)
         ->with('medicines', Medicine::all('id', 'generic_name'))
         ->with('collaborators',Collaborator::all('id', 'name'));
@@ -69,9 +63,6 @@ class ReceiptController extends Controller
             'client_id' => $request->client_id,
             'medicine_id' => $request->medicine_id,
             'collaborator_id' => $request->collaborator_id,
-            'form_of_use' => $request->form_of_use,
-            'period' => $request->period,
-            'quantity' => $request->quantity,
         ]);
        
         return redirect()->route('client.show', $request->client_id)->with('status','Receita adicionada com sucesso!');

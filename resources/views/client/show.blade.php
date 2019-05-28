@@ -44,18 +44,13 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Medicamento</th>
-                    <th>Responsável</th>
                     <th>Detalhes</th>
                     <th>Download</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse($client->receipts as $receipt)
-        
                     <tr>          
-                        <td>{{$receipt->medicine->generic_name}}</td>
-                        <td>{{$receipt->collaborator->name}}</td>
                         <td style="text-align:center"><a href="{{route('receipt.show', $receipt->id)}}"><p>Ver</p></a></td>
                         <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td>
                     </tr>
