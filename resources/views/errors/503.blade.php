@@ -70,7 +70,6 @@
                 <div class="top-right links">
                     <?php Auth::logout(); ?>
                     <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Registrar-se</a>
                 </div>
             @endif
 

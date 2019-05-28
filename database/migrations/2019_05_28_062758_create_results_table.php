@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReceiptsTable extends Migration
+class CreateResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateReceiptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer("client_id");
-            $table->integer("medicine_id");
-            $table->integer("collaborator_id");
+        Schema::create('results', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('collaborator_id');
+            $table->integer('client_id');
+            $table->string('result');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateReceiptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receipts');
+        Schema::dropIfExists('results');
     }
 }

@@ -32,9 +32,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $collaborators = collect();
+        foreach(User::with('collaborator')->where('role_id', 4)->get() as $user){
+            $collaborators->push($user->collaborator);
+        }
         return view('appointment')
         ->with('clinics',Clinic::all('name', 'id'))
-        ->with('collaborators', Collaborator::with('user:id,role_id')->where('user:role_id', 3)->get())
+        ->with('collaborators', $collaborators)
         ->with('clients', Client::all('name','id'));
     }
     public function appointment()

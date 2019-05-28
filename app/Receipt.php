@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\PrescriptMedicine;
 use Illuminate\Database\Eloquent\Model;
 
 class Receipt extends Model
@@ -14,7 +15,7 @@ class Receipt extends Model
     public function Collaborator(){
         return $this->belongsTo(\App\Collaborator::class);
     }
-    public function Medicine(){
-        return $this->belongsTo(\App\Medicine::class);
-    }        
+    public function PrescriptMedicines(){
+        return $this->belongsToMany(PrescriptMedicine::class,'receipt_prescript_medicine');
+    }      
 }

@@ -44,7 +44,6 @@
                 <ul class="nav navbar-nav navbar-right" >
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">Entrar</a></li>
-                        <li><a href="{{ route('register') }}">Registrar-se</a></li>
                     @endif
                 </ul>
             </div>
