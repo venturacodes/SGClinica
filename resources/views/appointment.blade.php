@@ -65,7 +65,7 @@
                 Minha agenda
             </span>
         </nav>
-        
+        <input type="hidden" id="collaborator_id" value="{{auth()->user()->collaborator->id}}">
         <input type="hidden" id="is_admin" 
         {{-- Level 3 is ADMIN --}}
         
@@ -94,6 +94,8 @@
     }
     $(document).ready(function(){
         if($("#is_admin").val() == 0){
+            $('#search-collaborator').val($('#collaborator_id').val());
+            $('#search-collaborator').trigger('change');
             $("#search-collaborator").prop('disabled', 'disabled');
         }else{
             $("#search-collaborator").prop('disabled', false);
@@ -117,6 +119,7 @@
                 end: '19:00', // an end time (6pm in this example)
             },
             // firstDay: moment().day(),
+            events: '/api/appointments/collaborator/'+$('#search-collaborator').val(),
             minTime: "08:00:00",
             maxTime: "20:00:00",
             defaultView: window.mobilecheck() ? "agendaDay" : "agendaWeek",

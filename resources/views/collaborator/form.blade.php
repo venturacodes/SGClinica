@@ -14,14 +14,15 @@
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
             <input type="text" name="phone"  class="form-control" data-inputmask='"mask": "(099) 9999-9999"' data-mask value='{{ isset($collaborator) ? $collaborator->phone : ''}}' >
         </div>
-        
-        <label for="email">Especialidade</label>
-        <select class="form-control" id="role-id" name="role_id" required>
-            <option value="">Selecione uma especialidade</option>
-                @foreach($roles as $role)
-                    <option @if(isset($collaborator)) @if($role->name == $collaborator->user->role->name) selected @endif @endif value="{{$role->id}}">{{$role->name}}</option>
-                @endforeach
-        </select>
+        @if(auth()->user()->role->level == 4)
+            <label for="email">Especialidade</label>
+            <select class="form-control" id="role-id" name="role_id" required>
+                <option value="">Selecione uma especialidade</option>
+                    @foreach($roles as $role)
+                        <option @if(isset($collaborator)) @if($role->name == $collaborator->user->role->name) selected @endif @endif value="{{$role->id}}">{{$role->name}}</option>
+                    @endforeach
+            </select>
+        @endif
         <label for="email">E-mail</label>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
@@ -36,18 +37,19 @@
         <div class="input-group">
             <input type="file" name="image" class="form-control">
         </div>
-        @isset($collaborator->signature)
-            <picture>
-                <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->signature)}}" style="width:80px;height:80px; border-radius:50px;"/>
-            </picture>
-        @endisset
-        <label for="signature">Assinatura</label>
-        <div class="input-group">
-            <input type="file" name="signature" class="form-control">
-        </div>
-        <label for="name">Número de CRM(Cons. Regional de Medicina)</label>
-        <input type="text" name="crm" placeholder="Em branco se não for médico" class="form-control" value='{{isset($collaborator) ? $collaborator->crm : ''}}'>
-        
+        @if(auth()->user()->role->level == 1)
+            @isset($collaborator->signature)
+                <picture>
+                    <img name="avatar" class="img-thumbnail" src="{{asset('storage/'.$collaborator->signature)}}" style="width:80px;height:80px; border-radius:50px;"/>
+                </picture>
+            @endisset
+            <label for="signature">Assinatura</label>
+            <div class="input-group">
+                <input type="file" name="signature" class="form-control">
+            </div>
+            <label for="name">Número de CRM(Cons. Regional de Medicina)</label>
+            <input type="text" name="crm" placeholder="Em branco se não for médico" class="form-control" value='{{isset($collaborator) ? $collaborator->crm : ''}}'>
+        @endif    
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control" placeholder="Digite nova senha">
 

@@ -12,10 +12,10 @@ class ClientSeeder extends Seeder
     public function run()
     {
         DB::table('clients')->insert([
-            'email' => 'joaozinhodopastel@gmail.com',
+            'email' => 'paciente@paciente.com',
             'clinic_id'=> 1,
-            'name' => 'Joãozinho',
-            'phone' => '33237502',
+            'name' => 'Paciente',
+            'phone' => '33232323',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
@@ -28,9 +28,9 @@ class ClientSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()
         ]);
         DB::table('clients')->insert([
-            'email' => 'bruno@gmail.com',
+            'email' => 'arthur.alves.venturin@gmail.com',
             'clinic_id'=> 1,
-            'name' => 'Bruno da Luz',
+            'name' => 'Arthur Alves Venturin',
             'phone' => '999999999',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()

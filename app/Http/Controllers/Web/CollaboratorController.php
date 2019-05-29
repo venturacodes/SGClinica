@@ -80,7 +80,10 @@ class CollaboratorController extends Controller
         $collaborator->name = $request->name;
         $collaborator->phone = $request->phone;
         $collaborator->user->email = $request->email;
-        $collaborator->user->role_id =  $request->role_id;
+        if($request->role_id){
+            $collaborator->user->role_id =  $request->role_id;
+            $collaborator->save();
+        }
         if(isset($request->crm)){
             $collaborator->crm = $request->crm;
             $collaborator->save();
@@ -103,7 +106,7 @@ class CollaboratorController extends Controller
         $collaborator->save();
         $collaborator->user->save();
         
-        return redirect()->route('collaborator.index')->with('status', 'Funcionário atualizado com sucesso!');
+        return redirect()->route('collaborator.edit', $id)->with('status', 'Funcionário atualizado com sucesso!');
     }
     public function destroy(Request $request, $id)
     {
