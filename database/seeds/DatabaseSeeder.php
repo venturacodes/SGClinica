@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call('AppointmentSeeder');
         $this->call('ClientSeeder');
         $this->call('ExamTypeSeeder');
+        $this->call('MedicineSeeder');
     }
 }

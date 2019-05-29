@@ -15,12 +15,13 @@
         </select>
         <label for="name">Nome</label>
         <input type="text" name="name" class="form-control" value="{{ isset($exam) ? $exam->name : ''}}">
-        <input type="hidden" name="client_id" value="{{$client->id}}" />
+        <input type="hidden" name="client_id" value="{{isset($exam) ? $exam->client->id : $client->id}}" />
         <input type="hidden" name="collaborator_id" value="{{auth()->user()->id}}" />
         <br />
         {{-- Médico solicitante(collaborator_id) será o usuário logado --}}
         {{-- Paciente selecionado(client_id) será o usuário selecionado no index anterior --}}
         @isset($exam)
+            <label for="file">Exame digitalizado</label>
             <input type="file" name="file" class="form-control" value="{{ isset($exam) ? $exam->file : ''}}">
         @endisset
         <br />

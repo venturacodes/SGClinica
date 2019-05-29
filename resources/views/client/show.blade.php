@@ -70,7 +70,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Solicitado por</th>
-                                <th>Entregue</th>
+                                <th>Estado atual</th>
                                 <th>Ações</th>
                             </tr>
                             </thead>
@@ -79,10 +79,17 @@
                                     <tr>          
                                         <td>{{$exam->name}}</td>
                                         <td>{{$exam->collaborator->name}}</td>
+                                        {{-- Exam a entregar --}}
                                         @if($exam->status == 0)
-                                            <td><a href="#" class="btn btn-primary">Entregar</a></td>
-                                        @else
-                                            <td>{{$exam->status}}</td
+                                            <td><a href="{{route('exam.edit',$exam->id)}}" class="btn btn-info">Pendente de entrega</a></td>
+                                        @endif
+                                        {{-- Exame entregue --}}
+                                        @if($exam->status == 1)
+                                            <td><a href="{{route('exam.evaluate',$exam->id)}}" class="btn btn-primary">Pendente de avaliação</a></td>
+                                        @endif
+                                        {{-- Exame avaliado pronto para ser encaminhado para o paciente --}}
+                                        @if($exam->status == 2)
+                                            <td><a href="{{route('exam.edit',$exam->id)}}" class="btn btn-primary">Entregar resultado ao paciente</a></td>
                                         @endif
                                         
                                         {{-- <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"><i class="fa fa-download"></i></a></td> --}}
