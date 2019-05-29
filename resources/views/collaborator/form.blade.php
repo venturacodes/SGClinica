@@ -45,6 +45,8 @@
         <div class="input-group">
             <input type="file" name="signature" class="form-control">
         </div>
+        <label for="name">Número de CRM(Cons. Regional de Medicina)</label>
+        <input type="text" name="crm" placeholder="Em branco se não for médico" class="form-control" value='{{isset($collaborator) ? $collaborator->crm : ''}}'>
         
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control" placeholder="Digite nova senha">

@@ -50,11 +50,14 @@ class CollaboratorController extends Controller
         
         $collaborator = Collaborator::create([
             'user_id' => $user->id,
+            'clinic_id' => 1,
             'name' => $request->name,
             'phone' => $request->phone,
-            'clinic_id' => 1,
         ]);
-
+        if(isset($request->crm)){
+            $collaborator->crm = $request->crm;
+            $collaborator->save();
+        }
         if(isset($request->signature)){
             $collaborator->signature = $request->signature->store('signatures');
             $collaborator->save();
@@ -63,10 +66,11 @@ class CollaboratorController extends Controller
         return redirect()->route('collaborator.index')->with('status', 'Funcionário adicionado com sucesso!');
     }
     public function edit(Request $request, Collaborator $collaborator){
-        $roles = Role::where([
-            ['slug','!=','admin'],
-            ['slug','!=','unverified']
-            ])->get();
+        if($collaborator->user->role->level != 4){
+            $roles = Role::where('slug','!=','admin')->get();
+        }else{
+            $roles = Role::all();
+        }
         
         return view('collaborator.form')->with('collaborator', $collaborator)->with('roles', $roles);
     }
@@ -77,6 +81,10 @@ class CollaboratorController extends Controller
         $collaborator->phone = $request->phone;
         $collaborator->user->email = $request->email;
         $collaborator->user->role_id =  $request->role_id;
+        if(isset($request->crm)){
+            $collaborator->crm = $request->crm;
+            $collaborator->save();
+        }
         if(isset($request->signature)){
             if($collaborator->signature){
                 Storage::delete($collaborator->signature);

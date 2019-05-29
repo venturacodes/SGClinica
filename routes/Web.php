@@ -36,7 +36,7 @@ Route::group(['prefix'=> 'clients', 'middleware' => 'auth'], function ()
     Route::get('/', 'Web\HomeController@client')->name('client.index');
     Route::post('/store', 'Web\ClientController@store')->name('client.store');
     Route::get('{id}/show', 'Web\ClientController@show')->name('client.show');
-    Route::get('/create', 'Web\ClientController @create')->name('client.create');
+    Route::get('/create', 'Web\ClientController@create')->name('client.create');
     Route::get('/{id}/delete', 'Web\ClientController@destroy')->name('client.delete');
     Route::get('/{id}/edit', 'Web\ClientController@edit')->name('client.edit');
     Route::put('/{id}', 'Web\ClientController@update')->name('client.update');
@@ -84,8 +84,15 @@ Route::group(['prefix'=> 'exams', 'middleware' => 'auth'], function ()
     Route::get('/{exam}/delete', 'Web\ExamController@destroy')->name('exam.delete');
     Route::get('/{exam}/edit', 'Web\ExamController@edit')->name('exam.edit');
     Route::post('/{exam}', 'Web\ExamController@update')->name('exam.update');
-    Route::get('/{exam}', 'Web\ExamController@show')->name('exam.show');
-    
+    Route::get('/{exam}', 'Web\ExamController@show')->name('exam.show'); 
+});
+Route::group(['prefix'=> 'medicine_prescription', 'middleware' => 'auth'], function () 
+{
+    Route::post('/store/receipt/{receipt}', 'Web\MedicinePrescriptionController@store')->name('medicinePrescription.store');
+    Route::get('/create/receipt/{receipt}', 'Web\MedicinePrescriptionController@create')->name('medicinePrescription.create');
+    Route::get('/{receipt}/{prescript_medicine}/delete', 'Web\MedicinePrescriptionController@destroy')->name('medicinePrescription.delete');
+    Route::get('/{receipt}/{prescript_medicine}/edit', 'Web\MedicinePrescriptionController@edit')->name('medicinePrescription.edit');
+    Route::put('/{receipt}/{prescript_medicine}/update', 'Web\MedicinePrescriptionController@update')->name('medicinePrescription.update');
 });
 Route::group(['prefix'=> 'reports', 'middleware' => 'auth'], function () 
 {

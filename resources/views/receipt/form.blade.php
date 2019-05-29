@@ -3,13 +3,12 @@
 @section('form_content')
     <form method="POST" action="{{isset($receipt) ? route('receipt.update', $receipt->id) : route('receipt.store')}}">
         {{ csrf_field() }}
-        <label for="client_id">Paciente</label>
+        <label for="client">Paciente</label>
         <input type="text" name="client"  class="form-control" value="{{isset($client->name) ? $client->name : ''}}" disabled>
-        <input type="hidden" name="client_id" value="{{isset($client->id) ? $client->id : ''}}">   
-        <label for="collaborator_id">Médico solicitante</label>
-        <select class="form-control" id="client" name="collaborator_id" style="width: 100%" required >
-            <option value="{{auth()->user()->id}}" selected>{{auth()->user()->collaborator->name}}</option>
-        </select>
+        <input type="hidden" name="client_id" value="{{isset($client->id) ? $client->id : ''}}">  
+        <label for="collaborator">Médico solicitante</label>
+        <input type="text" name="collaborator"  class="form-control" value="{{isset(auth()->user()->collaborator->name) ? auth()->user()->collaborator->name : ''}}" disabled>
+        <input type="hidden" name="collaborator_id" value="{{isset(auth()->user()->id) ? auth()->user()->id : ''}}">   
         <label for="medicine_id">Medicamento</label>
         <select class="form-control" id="medicine" name="medicine_id" style="width: 100%" required>
             <option value="">Selecione um medicamento</option>

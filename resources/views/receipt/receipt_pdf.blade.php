@@ -23,7 +23,6 @@
           <img src="{{public_path('storage/'.$receipt->collaborator->signature)}}" 
           style="width:40px;height:40px;"/>
           @endisset
-          <hr></hr>
         </td>
         </tr>
       @empty
@@ -42,8 +41,19 @@
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-    <td>{{$receipt->collaborator->name}}</td>
-    </tr>
+        <td><hr></hr></td>
+        
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>{{$receipt->collaborator->name}}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>{{"CRM: ".$receipt->collaborator->crm}}</td>
+      </tr>
     </table>
 </body>
 </body>

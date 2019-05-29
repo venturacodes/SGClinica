@@ -7,7 +7,9 @@ use App\Client;
 use App\Receipt;
 use App\Medicine;
 use App\Collaborator;
+use App\PrescriptMedicine;
 use Illuminate\Http\Request;
+use App\ReceiptPrescriptMedicine;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\storeReceiptRequest;
 
@@ -45,7 +47,7 @@ class ReceiptController extends Controller
      * @var Request $request
      * @return JsonResponse
      */
-    public function create(Request $request, Client $client){    
+    public function create(Request $request, Client $client){  
         return view('receipt.form')
         ->with('client', $client)
         ->with('medicines', Medicine::all('id', 'generic_name'))
@@ -58,12 +60,17 @@ class ReceiptController extends Controller
      * @return void
      */
     public function store(storeReceiptRequest $request){ 
-        
-        Receipt::create([
+        $receipt = Receipt::create([
             'client_id' => $request->client_id,
-            'medicine_id' => $request->medicine_id,
-            'collaborator_id' => $request->collaborator_id,
+            'collaborator_id' => auth()->user()->collaborator->id,
         ]);
+        $prescript_medicine = PrescriptMedicine::create([
+            'medicine_id'=>$request->medicine_id,
+            'period' => $request->period,
+            'quantity' => $request->quantity,
+            'form_of_use'=>$request->form_of_use
+        ]);
+        ReceiptPrescriptMedicine::create(['prescript_medicine_id'=>$prescript_medicine->id,'receipt_id'=> $receipt->id]);
        
         return redirect()->route('client.show', $request->client_id)->with('status','Receita adicionada com sucesso!');
     }
@@ -73,9 +80,7 @@ class ReceiptController extends Controller
      * @return JsonResponse
      */
     public function edit(Receipt $receipt){
-        return view('receipt.form')->with('clients',Client::all('id', 'name'))
-        ->with('medicines', Medicine::all('id', 'generic_name'))
-        ->with('collaborators',Collaborator::all('id', 'name'))
+        return view('receipt.form')
         ->with('receipt', $receipt);
     }
     /**

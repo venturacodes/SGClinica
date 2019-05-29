@@ -25,7 +25,7 @@ class MedicineController extends Controller
      */
     public function create(Request $request)
     {
-        return view('medicine.form', compact('data'));
+        return view('medicine.form');
     }
     /**
      * Store a new Medicine
