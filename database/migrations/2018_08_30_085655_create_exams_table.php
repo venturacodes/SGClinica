@@ -18,7 +18,7 @@ class CreateExamsTable extends Migration
             $table->integer('client_id');
             $table->integer('collaborator_id');
             $table->integer('exam_type_id');
-            $table->string('name');
+            $table->text('note')->nullable();
             $table->integer('status')->default(0);
             $table->string('file')->nullable();
             $table->timestamps();

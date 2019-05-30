@@ -18,7 +18,7 @@ class CreateResultsTable extends Migration
             $table->integer('collaborator_id');
             $table->integer('exam_id');
             $table->integer('client_id');
-            $table->string('result');
+            $table->text('result');
             $table->timestamps();
         });
     }

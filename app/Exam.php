@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
-    protected $fillable = ['client_id', 'collaborator_id', 'exam_type_id', 'name', 'file'];
+    protected $fillable = ['client_id', 'collaborator_id', 'exam_type_id', 'note', 'file'];
 
     public function client()
     {

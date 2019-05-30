@@ -6,6 +6,7 @@ use App\Exam;
 use App\Client;
 use App\Result;
 use App\ExamType;
+use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\storeExamRequest;
@@ -22,13 +23,21 @@ class ExamController extends Controller
     {
         return Exam::all();
     }
+
+    public function generatePDF(Exam $exam){
+        $data = [
+            'exam' => $exam,
+        ];
+        $pdf = PDF::loadView('exam.exam_pdf', $data);
+        return $pdf->download('Resultado_exame.pdf');
+    }
     public function store(storeExamRequest $request)
     {
         $exam = Exam::create([
             'client_id' => $request->client_id,
             'collaborator_id' => $request->collaborator_id,
             'exam_type_id' => $request->exam_type_id,
-            'name' => $request->name,
+            'note' => $request->note,
         ]);
         if(isset($request->file)){
             $exam->file = $request->file->store('exams');
@@ -84,7 +93,7 @@ class ExamController extends Controller
         $exam->client_id = $request->client_id;
         $exam->collaborator_id = $request->collaborator_id;
         $exam->exam_type_id = $request->exam_type_id;
-        $exam->name = $request->name;
+        $exam->note = $request->note;
 
         if(isset($request->file)){
             $exam->file = $request->file->store('exams');

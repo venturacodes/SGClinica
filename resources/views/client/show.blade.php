@@ -105,7 +105,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Nome</th>
+                                <th>Tipo de exame</th>
                                 <th>Solicitado por</th>
                                 <th>Estado atual</th>
                                 <th>Ações</th>
@@ -114,7 +114,7 @@
                             <tbody>
                                 @foreach($client->exams as $exam)
                                     <tr>          
-                                        <td>{{$exam->name}}</td>
+                                        <td>{{$exam->examType->title}}</td>
                                         <td>{{$exam->collaborator->name}}</td>
                                         {{-- Exam a entregar --}}
                                         @if($exam->status == 0)
@@ -144,7 +144,7 @@
                                         <td><p>Resultado obtido</p></td>
                                         @if(auth()->user()->role->level == 1)
                                             <td>
-                                                <a href="{{route('exam.edit',$exam->id)}}" class="btn btn-success">Entregar exame ao paciente</a>
+                                                <a href="{{route('exam.pdf',$exam->id)}}" class="btn btn-success">Entregar exame ao paciente</a>
                                                 <a href="{{route('exam.delete', $exam->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         @else
