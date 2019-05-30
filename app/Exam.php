@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Client;
+use App\Result;
+use App\ExamType;
+use App\Collaborator;
 use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
@@ -19,5 +23,8 @@ class Exam extends Model
     public function examType()
     {
         return $this->belongsTo(ExamType::class);
+    }
+    public function result(){
+        return $this->hasOne(Result::class);
     }
 }

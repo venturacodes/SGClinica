@@ -4,7 +4,7 @@
 
             <span class="navbar-brand" href="#">
                 <a href="{{ route('client.show',$receipt->client_id) }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
-               <span>Visualizar receita</span>
+               <span>Preescrever medicamento em receita</span>
             </span>
 
     </nav>

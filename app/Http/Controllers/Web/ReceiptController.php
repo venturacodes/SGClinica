@@ -107,8 +107,13 @@ class ReceiptController extends Controller
      */
     public function destroy($id){
         $receipt = Receipt::find($id);
-        $receipt->delete();
+        if(isset($receipt->PrescriptMedicines)){
+            $receipt->PrescriptMedicines()->delete();
+            $receipt->PrescriptMedicines()->detach();
+           
+        }
+        $receipt->delete(); 
         $receipt->deleted = true;
-        return redirect()->route('receipt.index')->with('status','Receita excluída com sucesso!');
+        return redirect()->route('client.show',$receipt->client_id)->with('status','Receita excluída com sucesso!');
     }
 }

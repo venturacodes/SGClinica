@@ -1,6 +1,6 @@
 @extends('base_form')
 
-@section('form_title','Verificar paciente')
+@section('form_title','Visualizar paciente')
 @section('form_content')
     <form method="POST" action="{{route('client.store')}}">
         {{ csrf_field() }}
@@ -23,13 +23,16 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            @foreach($client->appointments as $appointment)
+           
                     <tbody>
+                    @foreach($client->appointments as $appointment)
                         @if(auth()->user()->role->level == 1)
                             @if($appointment->collaborator_id == auth()->user()->collaborator->id)
                             <tr>
                                 <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
-                                <td><a href="{{route('appointment.show', $appointment->id)}}">Ver</a></td>
+                                <td>
+                                    <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-block btn-primary">Detalhes</a>
+                                </td>
                             </tr>
                             @endif
                         @else
@@ -38,9 +41,10 @@
                                 <td><a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-block btn-primary">Detalhes</a></td>
                             </tr>
                         @endif
+                        @endforeach
                     </tbody>
                 </table>
-            @endforeach
+           
             </div>
         </section>
         <section class="panel">
@@ -68,7 +72,7 @@
                                 <td style="text-align:center">{{$receipt->collaborator->name}}</td>         
                                 <td style="text-align:center">
                                     <a href="{{route('receipt.show', $receipt->id)}}" class="btn  btn-primary"><i class="fa fa-plus"></i><i class="fas fa-capsules"></i></a>
-                                    <a href="{{route('receipt.show', $receipt->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="{{route('receipt.delete', $receipt->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                                 <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"  class="btn btn-block btn-primary"><i class="fa fa-download"></i></a></td>
                             </tr>
@@ -115,14 +119,22 @@
                                         {{-- Exam a entregar --}}
                                         @if($exam->status == 0)
                                             <td><p>Pendente de entrega</p></td>
-                                            <td><a href="{{route('exam.edit',$exam->id)}}" class="btn btn-block btn-info">Entregar</a></td>
+                                            <td>
+                                                <a href="{{route('exam.edit',$exam->id)}}" class="btn  btn-info">Entregar</a>
+                                                <a href="{{route('exam.delete', $exam->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                            
                                         @endif
                                         {{-- Exame entregue --}}
                                         @if($exam->status == 1)
                                         {{-- Somente médicos podem avaliar pacientes --}}
                                             <td><p>Pendente de avaliação médica</p></td>
                                             @if(auth()->user()->role->level == 1)
-                                                <td><a href="{{route('exam.evaluate',$exam->id)}}" class="btn btn-block btn-primary">Avaliar</a></td>
+                                                <td>
+                                                <a href="{{route('exam.evaluate',$exam->id)}}" class="btn btn-primary">Avaliar</a>
+                                                <a href="{{route('exam.delete', $exam->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                                
                                             @else
                                                 <td>Sem ações para este usuário</td>
                                             @endif
@@ -131,7 +143,10 @@
                                         @if($exam->status == 2)
                                         <td><p>Resultado obtido</p></td>
                                         @if(auth()->user()->role->level == 1)
-                                            <td><a href="{{route('exam.edit',$exam->id)}}" class="btn btn-primary">Entregar exame ao paciente</a></td>
+                                            <td>
+                                                <a href="{{route('exam.edit',$exam->id)}}" class="btn btn-success">Entregar exame ao paciente</a>
+                                                <a href="{{route('exam.delete', $exam->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
+                                            </td>
                                         @else
                                             <td>Sem ações para este usuário</td>
                                         @endif

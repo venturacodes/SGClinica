@@ -63,10 +63,13 @@ class ExamController extends Controller
     public function destroy($id)
     {
         $exam = Exam::find($id);
+        if(isset($exam->result)){
+            $exam->result()->delete();
+        }
         $exam->delete();
         $exam->deleted = true;
 
-        return redirect()->route('exam.index')->with('status', 'Exame excluído com sucesso!');
+        return redirect()->route('client.show',$exam->client_id)->with('status', 'Exame excluído com sucesso!');
     }
     public function edit(Exam $exam)
     {

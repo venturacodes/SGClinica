@@ -37,6 +37,7 @@ class CollaboratorSeeder extends Seeder
             'clinic_id' => 1,
             'name' => 'Médico da clínica',
             'phone' => '491234-1212',
+            'crm' => 'SC37119',
         ]);
     }
 }
