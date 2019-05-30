@@ -40,19 +40,19 @@
       @endforelse
       <tr>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td><hr></hr></td>
+        <td>&nbsp;</td>
         
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>{{$receipt->collaborator->name}}</td>
+        <td>&nbsp;</td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>{{"CRM: ".$receipt->collaborator->crm}}</td>
+        <td>&nbsp;</td>
       </tr>
     </table>
 </body>

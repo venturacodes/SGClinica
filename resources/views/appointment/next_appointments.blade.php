@@ -28,7 +28,7 @@
                     <td>{{$appointment->client->name}}</td>
                     <td>{{date('d/m/Y H:i', strtotime($appointment->start))}} até {{date('H:i', strtotime($appointment->end))}}</td>
                     <td><div class="tools">
-                            <a href="{{route('appointment.attend_to', $appointment->id)}}"><i class="fas fa-heartbeat"></i></a>
+                            <a href="{{route('appointment.attendTo', $appointment->id)}}"><i class="fas fa-heartbeat"></i></a>
                             <a href="{{route('appointment.delete', $appointment->id)}}" ><i class="fas fa-trash"></i></a>
                         </div>
                     </td>

@@ -2,7 +2,7 @@
 
 @section('form_title','1/3 - Consulta em andamento - Inicial ')
 @section('form_content')
-    <form method="POST" action="{{route('appointment.store', $appointment->id)}}">
+    <form method="POST" action="{{route('appointment.add_description', $appointment->id)}}">
         {{ csrf_field() }}
         <label for="start">Horário de inicio</label>
         <input type="text" name="start" class="form-control" value="{{date('d/m/Y H:i', strtotime($appointment->start))}}" disabled>

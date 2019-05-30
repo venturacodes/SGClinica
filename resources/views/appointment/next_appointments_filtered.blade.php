@@ -26,7 +26,7 @@
                     <td>{{date('H:i', strtotime($appointment->start))}}</td>
                     <td>{{date('H:i', strtotime($appointment->end))}}</td>
                     <td><div class="tools">
-                            <a href="{{route('appointment.attend_to', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
+                            <a href="{{route('appointment.attendTo', $appointment->id)}}"><span class="glyphicon glyphicon-th-list"></span></a>
                             <a href="{{route('appointment.edit', $appointment->id)}}" alt='editar'><span class="glyphicon glyphicon-edit" ></span></a>
                             <a href="{{route('appointment.delete', $appointment->id)}}"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>

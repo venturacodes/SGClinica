@@ -1,7 +1,11 @@
 @extends('base_form')
 @section('form_title', isset($receipt) ? 'Editar Receita' : 'Cadastrar Receita')
 @section('form_content')
-    <form method="POST" action="{{isset($receipt) ? route('receipt.update', $receipt->id) : route('receipt.store')}}">
+    @if(isset($flag_redirect))
+        <form method="POST" action="{{ isset($receipt)? route('appointment.updateReceipt', $appointment->id) : route('appointment.storeReceipt', $appointment->id) }}" enctype="multipart/form-data">
+    @else
+        <form method="POST" action="{{isset($receipt) ? route('receipt.update', $receipt->id) : route('receipt.store')}}">
+    @endif
         {{ csrf_field() }}
         <label for="client">Paciente</label>
         <input type="text" name="client"  class="form-control" value="{{isset($client->name) ? $client->name : ''}}" disabled>

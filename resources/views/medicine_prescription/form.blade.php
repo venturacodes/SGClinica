@@ -1,17 +1,7 @@
-@extends('theme.app')
-@section('content')
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-
-            <span class="navbar-brand" href="#">
-                <a href="{{ route('client.show',$receipt->client_id) }}" class="btn btn-primary a"><span class="glyphicon glyphicon-arrow-left"></span></a>
-               <span>Preescrever medicamento em receita</span>
-            </span>
-
-    </nav>
+@extends('base_form')
+@section('form_title', isset($receipt) ? 'Editar Medicamento' : 'Cadastrar Medicamento')
+@section('form_content')
     <section class="panel">
-        <div class="panel-heading">
-
-        </div>
         <div class="panel-body table-responsive">
             <div class="form-group">
                 @include('form_status')

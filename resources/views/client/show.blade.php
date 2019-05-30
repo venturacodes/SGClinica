@@ -12,7 +12,7 @@
         <input type="text" name="email"  class="form-control" value="{{$client->email}}" disabled>
         <section class="panel">
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-            <h3>Histórico de consultas</h3>
+            <h3>Agendamentos em aberto</h3>
             <a href="{{route('appointment.agenda')}}" class="btn btn-block btn-primary">Agendar nova consulta</a>  
             </nav>
             <div class="panel-body table-responsive">
@@ -26,22 +26,69 @@
            
                     <tbody>
                     @foreach($client->appointments as $appointment)
-                        @if(auth()->user()->role->level == 1)
-                            @if($appointment->collaborator_id == auth()->user()->collaborator->id)
-                            <tr>
-                                <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
-                                <td>
-                                    <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-block btn-primary">Detalhes</a>
-                                </td>
-                            </tr>
+                        @if($appointment == false)
+                            @if(auth()->user()->role->level == 1)
+                                @if($appointment->collaborator_id == auth()->user()->collaborator->id)
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
+                                    <td>
+                                        <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
+                                        <a href="{{route('appointment.attendTo', $appointment->id)}}" class="btn btn-primary">Atender</a>
+                                    </td>
+                                </tr>
+                                @endif
+                            @else
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
+                                    <td>
+                                        <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
+                                        <a href="{{route('appointment.attendTo', $appointment->id)}}" class="btn btn-primary">Atender</a>
+                                    </td>
+                                </tr>
                             @endif
-                        @else
-                            <tr>
-                                <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
-                                <td><a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-block btn-primary">Detalhes</a></td>
-                            </tr>
                         @endif
-                        @endforeach
+                    @endforeach
+                   
+                    </tbody>
+                </table>
+           
+            </div>
+        </section>
+        <section class="panel">
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
+            <h3>Histórico de consultas realizadas</h3> 
+            </nav>
+            <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Data e hora da consulta</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+           
+                    <tbody>
+                    @foreach($client->appointments as $appointment)
+                        @if($appointment == true)
+                            @if(auth()->user()->role->level == 1)
+                                @if($appointment->collaborator_id == auth()->user()->collaborator->id)
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
+                                    <td>
+                                        <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
+                                    </td>
+                                </tr>
+                                @endif
+                            @else
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
+                                    <td>
+                                        <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endif
+                    @endforeach
                     </tbody>
                 </table>
            
@@ -49,10 +96,7 @@
         </section>
         <section class="panel">
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
-            <h3>Receitas solicitadas</h3>
-            @if(auth()->user()->role->level == 1)
-            <a href="{{route('receipt.create', $client->id)}}" class="btn btn-block btn-primary">Receitar novo medicamento</a>
-            @endif
+            <h3>Histórico de medicamentos preescritos</h3>
         </nav> 
             <table class="table table-hover">
                 <thead>
@@ -60,7 +104,6 @@
                     <th>Criado em</th>
                     <th>Medico solicitante</th>
                     <th>Ações</th>
-                    <th>Download</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,25 +111,22 @@
                     @if(auth()->user()->role->level == 1)
                         @if($receipt->collaborator_id == auth()->user()->collaborator->id)
                             <tr> 
-                                <td style="text-align:center">{{date('d/m/Y',strtotime($receipt->created_at))}}</td>   
-                                <td style="text-align:center">{{$receipt->collaborator->name}}</td>         
-                                <td style="text-align:center">
-                                    <a href="{{route('receipt.show', $receipt->id)}}" class="btn  btn-primary"><i class="fa fa-plus"></i><i class="fas fa-capsules"></i></a>
-                                    <a href="{{route('receipt.delete', $receipt->id)}}" class="btn  btn-danger"><i class="fas fa-trash"></i></a>
+                                <td >{{date('d/m/Y',strtotime($receipt->created_at))}}</td>   
+                                <td >{{$receipt->collaborator->name}}</td>         
+                                <td >
+                                    <a href="{{route('receipt.pdf', $receipt->id)}}"  class="btn btn-primary"><i class="fa fa-download"></i></a>
+                                    <a href="{{route('receipt.delete', $receipt->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
-                                <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"  class="btn btn-block btn-primary"><i class="fa fa-download"></i></a></td>
                             </tr>
                         @endif
                     @else
                         <tr> 
-                            <td style="text-align:center">{{date('d/m/Y',strtotime($receipt->created_at))}}</td>   
-                            <td style="text-align:center">{{$receipt->collaborator->name}}</td>
-                                    
-                            <td style="text-align:center">
-                                Sem ações
+                            <td>{{date('d/m/Y',strtotime($receipt->created_at))}}</td>   
+                            <td>{{$receipt->collaborator->name}}</td>
+                            <td >
+                                <a href="{{route('receipt.pdf', $receipt->id)}}"  class="btn btn-primary"><i class="fa fa-download"></i></a>
+                                <a href="{{route('receipt.delete', $receipt->id)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
-                            
-                            <td style="text-align:center"><a href="{{route('receipt.pdf', $receipt->id)}}"  class="btn btn-block btn-primary"><i class="fa fa-download"></i></a></td>
                         </tr>
                     @endif
                 @endforeach                    
@@ -97,9 +137,6 @@
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                     
                     <h3>Exames solicitados</h3>
-                    @if(auth()->user()->role->level == 1)
-                    <a href="{{route('exam.create', $client->id)}}" class="btn btn-block btn-primary">Solicitar novo exame</a>
-                    @endif
                 </nav>
                     
                         <table class="table table-hover">
@@ -107,12 +144,12 @@
                             <tr>
                                 <th>Tipo de exame</th>
                                 <th>Solicitado por</th>
-                                <th>Estado atual</th>
+                                <th>Estado</th>
                                 <th>Ações</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($client->exams as $exam)
+                            @foreach($client->exams as $exam)
                                     <tr>          
                                         <td>{{$exam->examType->title}}</td>
                                         <td>{{$exam->collaborator->name}}</td>

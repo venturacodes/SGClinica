@@ -40,7 +40,8 @@ class ReceiptController extends Controller
         ->with('receipt', $receipt)
         ->with('clients', Client::all())
         ->with('medicines', Medicine::all())
-        ->with('collaborators',Collaborator::all());
+        ->with('collaborators',Collaborator::all())
+        ->with('back_flag_redirect', 1);
     }
     /**
      * Creates a new Receipts

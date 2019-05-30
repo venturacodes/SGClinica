@@ -27,4 +27,7 @@ class Exam extends Model
     public function result(){
         return $this->hasOne(Result::class);
     }
+    public function appointments(){
+        return $this->belongsToMany(Appointment::class,'appointments_exams');
+    }
 }

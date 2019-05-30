@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Exam;
+use App\Receipt;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use \App\Clinic as Clinic;
+use App\AppointmentReceipt;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +31,12 @@ class Appointment extends Model
     {
         return $this->belongsTo(Collaborator::class);
     }
+    public function receipts(){
+        return $this->belongsToMany(Receipt::class,'appointments_receipts');
+    }
+    public function exams(){
+        return $this->belongsToMany(Exam::class,'appointments_exams');
+    }
     public function prepare(array $data)
     {
         $this->start = $data['start'];
@@ -36,4 +45,5 @@ class Appointment extends Model
         $this->collaborator_id = $data['collaborator'];
         $this->note = $data['note'];
     }
+    
 }

@@ -14,11 +14,20 @@ Route::group(['prefix'=> 'appointments', 'middleware' => 'auth'], function ()
     Route::post('/{id}', 'Web\AppointmentController@update')->name('appointment.update');
     Route::get('/{appointment}', 'Web\AppointmentController@show')->name('appointment.show');
     Route::get('/{id}/delete', 'Web\AppointmentController@destroy')->name('appointment.delete');
-    Route::get('/{id}/attend_to', 'Web\AppointmentController@attendTo')->name('appointment.attend_to');
-    Route::get('/{id}/needExams', 'Web\AppointmentController@needExams')->name('appointment.need_exams');
-    Route::post('/{id}', 'Web\AppointmentController@store')->name('appointment.store');
-    Route::post('/{id}/attachExams', 'Web\AppointmentController@attachExams')->name('appointment.attachExams');
+    Route::get('/{appointment}/attendTo', 'Web\AppointmentController@attendTo')->name('appointment.attendTo');
+    Route::get('/{appointment}/needExams', 'Web\AppointmentController@needExams')->name('appointment.needExams');
+    Route::post('/{appointment}/add_description', 'Web\AppointmentController@addDescription')->name('appointment.add_description');
+    Route::get('/{appointment}/attachExam', 'Web\AppointmentController@attachExam')->name('appointment.attachExam');
+    Route::get('/{appointment}/{exam}/delete', 'Web\AppointmentController@destroyExam')->name('appointment.deleteExam');
+    Route::post('/{appointment}/storeExam', 'Web\AppointmentController@storeExam')->name('appointment.storeExam');
     
+    Route::get('/{appointment}/needReceipts', 'Web\AppointmentController@needReceipts')->name('appointment.needReceipt');
+    Route::get('/{appointment}/attachReceipt', 'Web\AppointmentController@attachReceipt')->name('appointment.attachReceipt');
+    Route::get('/{appointment}/{receipt}/deleteReceipt', 'Web\AppointmentController@destroyReceipt')->name('appointment.deleteReceipt');
+    Route::post('/{appointment}/storeReceipt', 'Web\AppointmentController@storeReceipt')->name('appointment.storeReceipt');
+    Route::get('/{appointment}/{receipt}/showReceipt', 'Web\AppointmentController@showReceipt')->name('appointment.showReceipt');
+    Route::post('/{appointment}/endAppointment', 'Web\AppointmentController@endAppointment')->name('appointment.endAppointment');
+
 });
 Route::group(['prefix'=> 'collaborators', 'middleware' => 'auth'], function () 
 {

@@ -63,7 +63,7 @@
                 @endif
             </div>
             <div class="pull-left info">
-            <p>{{explode('@',Auth::user()->email)[0]}}</p>
+            <p>{{auth()->user()->collaborator->name}}</p>
               <!-- Status -->
             <p><strong>{{isset(Auth::user()->role) ? Auth::user()->role->name : ''}}</strong></p>
             </div>

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Appointment;
 use App\PrescriptMedicine;
+use App\AppointmentReceipt;
 use Illuminate\Database\Eloquent\Model;
 
 class Receipt extends Model
@@ -18,4 +20,7 @@ class Receipt extends Model
     public function PrescriptMedicines(){
         return $this->belongsToMany(PrescriptMedicine::class,'receipt_prescript_medicine');
     }      
+    public function appointments(){
+        return $this->belongsToMany(Appointment::class,'appointments_receipts');
+    }
 }
