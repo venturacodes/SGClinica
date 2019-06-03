@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\storeAppointmentRequest;
 
@@ -91,7 +92,7 @@ class AppointmentController extends Controller
      */
     public function showByCollaboratorId($collaborator_id)
     {
-        return new JsonResponse(Appointment::where('collaborator_id', $collaborator_id)->get());
+        return new JsonResponse(Appointment::where('collaborator_id', $collaborator_id)->where('is_done',false)->get());
     }
     /**
      * Show appointments by it's clinic_id.
@@ -108,5 +109,14 @@ class AppointmentController extends Controller
         $appointment->deleted = true;
 
         return new JsonResponse($appointment);
+    }
+    public function getAppointmentsDone(){
+        $appointments = DB::table('appointments')
+                 ->select('collaborators.name', DB::raw('count(*) as total'))
+                 ->join('collaborators', 'appointments.collaborator_id', '=', 'collaborators.id')
+                 ->groupBy('collaborators.name')
+                 ->get();
+
+        return new JsonResponse($appointments);
     }
 }

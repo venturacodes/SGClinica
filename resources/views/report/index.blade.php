@@ -4,33 +4,36 @@
     <span class="navbar-brand" href="#">
       Relatórios
     </span>
-    </nav>    
-    <div class="chart-container" style="width: 400px;height:400px;">
-        <canvas id="myChart"></canvas>
+</nav> 
+ <div class="container">
+ <div class="chart-container" style="width: 800px;height:800px;">
+    <p>Para verificar informações do gráfico clique duas vezes sobre o dataset. Neste caso: "Consultas realizadas"</p>
+    <canvas id="myChart"></canvas>
     </div>
+ </div>         
+    
 @endsection
 @section('additional-js')
 <script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
+$(document).ready(function(){
+    var url = "{{url('api/appointments/getDone')}}";
+    var collaborators = new Array();
+    var total_appointments = new Array();
+    let data = new Array();
+    $.get(url, function(response){
+            response.forEach(function(data){
+                collaborators.push(data.name);
+                total_appointments.push(data.total);
+            })
+    });
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Bruno", "Arthur", "Paulo", "Priscilla"],
+        labels: collaborators,
         datasets: [{
             label: 'Consultas realizadas',
-            data: [12, 19, 3, 5],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)'
-            ],
+            data: total_appointments,
             borderWidth: 2        
         }]
     },
@@ -44,6 +47,8 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+});
+
 </script>
 @endsection
 

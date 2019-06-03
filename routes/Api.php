@@ -11,3 +11,4 @@ Route::middleware('Api')->post('/appointments', 'api\AppointmentController@creat
 Route::middleware('Api')->post('/appointments/web', 'api\AppointmentController@create_for_the_web');
 Route::middleware('Api')->post('/appointments/update/{appointment_id}', 'api\AppointmentController@update');
 Route::middleware('Api')->post('/appointments/delete/{appointment_id}', 'api\AppointmentController@delete');
+Route::middleware('Api')->get('/appointments/getDone', 'api\AppointmentController@getAppointmentsDone');
