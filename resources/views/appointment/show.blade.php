@@ -60,7 +60,7 @@
             <section class="panel">
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                     
-                    <h3>Exames solicitados</h3>
+                    <h3>Histórico de exames solicitados</h3>
                 </nav>
                     
                         <table class="table table-hover">

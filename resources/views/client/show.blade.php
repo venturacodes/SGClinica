@@ -26,7 +26,8 @@
            
                     <tbody>
                     @foreach($client->appointments as $appointment)
-                        @if($appointment == false)
+                    
+                        @if($appointment->is_done == 0)
                             @if(auth()->user()->role->level == 1)
                                 @if($appointment->collaborator_id == auth()->user()->collaborator->id)
                                 <tr>
@@ -69,7 +70,7 @@
            
                     <tbody>
                     @foreach($client->appointments as $appointment)
-                        @if($appointment == true)
+                        @if($appointment->is_done == 1)
                             @if(auth()->user()->role->level == 1)
                                 @if($appointment->collaborator_id == auth()->user()->collaborator->id)
                                 <tr>
@@ -136,7 +137,7 @@
             <section class="panel">
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA">
                     
-                    <h3>Exames solicitados</h3>
+                    <h3>Histórico de exames solicitados</h3>
                 </nav>
                     
                         <table class="table table-hover">

@@ -10,7 +10,7 @@
         <input type="text" name="pacient_name"  class="form-control" value="{{$appointment->client->name}}" disabled>
         <section class="panel">
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="background-color:#FAFAFA"> 
-            <h3>Exames solicitados</h3>
+            <h3>Histórico de exames solicitados</h3>
             @if(auth()->user()->role->level == 1)
                 <a href="{{route('appointment.attachExam', $appointment->id)}}" class="btn btn-block btn-primary">Solicitar novo exame</a>
             @endif
