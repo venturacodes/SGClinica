@@ -34,6 +34,7 @@
                                     <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
                                     <td>
                                         <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
+
                                         <a href="{{route('appointment.attendTo', $appointment->id)}}" class="btn btn-primary">Atender</a>
                                     </td>
                                 </tr>
@@ -43,7 +44,6 @@
                                     <td>{{date('d/m/Y', strtotime($appointment->start))}} {{date('H:i', strtotime($appointment->start))}} - {{date('H:i', strtotime($appointment->end))}}</td>
                                     <td>
                                         <a href="{{route('appointment.show', $appointment->id)}}" class="btn btn-primary">Detalhes</a>
-                                        <a href="{{route('appointment.attendTo', $appointment->id)}}" class="btn btn-primary">Atender</a>
                                     </td>
                                 </tr>
                             @endif
