@@ -32,7 +32,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd(Appointment::first()->Receipts->PrescriptMedicine);
         $collaborators = collect();
         foreach(User::with('collaborator')->where('role_id', 4)->get() as $user){
             $collaborators->push($user->collaborator);
